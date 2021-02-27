@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "handlebars.suffix.expose-session-attributes",
+      "type": "java.lang.String",
+      "description": "Description for handlebars.suffix.expose-session-attributes."
+  }
+] }
