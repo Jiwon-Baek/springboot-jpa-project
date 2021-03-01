@@ -1,9 +1,9 @@
 package com.springboot.project.web;
 
 
-
 import com.springboot.project.config.auth.LoginUser;
 import com.springboot.project.config.auth.dto.SessionUser;
+import com.springboot.project.doamin.user.User;
 import com.springboot.project.service.UserService;
 import com.springboot.project.web.dto.PostsResponseDto;
 import com.springboot.project.service.PostsService;
@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
@@ -29,34 +28,36 @@ public class IndexController {
     private final PostsService postsService;
     private final UserService userService;
 
-
+    /*메인 페이지*/
     @GetMapping("/")
-    public String index(Model model,@LoginUser SessionUser user) {
+    public String index(Model model, @LoginUser SessionUser user) {
 
         model.addAttribute("posts", postsService.findAllDesc());
 
-        if (user  != null) {
+        if (user != null) {
             model.addAttribute("user", user.getUsername());
-            System.out.print("아이디"+ user.getUsername());
+            System.out.print("아이디" + user.getUsername());
         }
         return "index";
     }
 
-    @GetMapping("/user/signup")
-    public String signup(){
+    /*회원 가입*/
+    @GetMapping("/signup")
+    public String signup() {
 
         return "user/signup";
     }
 
 
+    /*로그인*/
     @GetMapping("/login")
-    public String login(){
+    public String login() {
 
         return "user/signin";
     }
 
 
-
+    /*로그아웃*/
     @GetMapping(value = "/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
@@ -64,14 +65,15 @@ public class IndexController {
     }
 
 
-
+    /*게시물 등록*/
     @GetMapping("/posts/save")
-    public String postsSave(){
+    public String postsSave() {
 
         return "posts/posts-save";
     }
 
 
+    /*게시물 수정*/
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
@@ -79,7 +81,6 @@ public class IndexController {
 
         return "posts/posts-update";
     }
-
 
 
 }

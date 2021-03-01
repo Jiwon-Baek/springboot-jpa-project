@@ -1,23 +1,27 @@
 {{>layout/header}}
 
-<h1>스프링부트로 시작하는 웹 서비스</h1>
+<h1>웹 서비스</h1>
 <div class="col-md-12">
+
     <div class="row">
+
         <div class="col-md-6">
-           <a href="/posts/save">글 등록</a>
+            {{#username}}
+                <a href="/posts/save">글 등록</a>
+            {{/username}}
         </div>
         <div class="col-md-6">
-            {{#user}}
+            {{#username}}
              <span id="user">{{username}}</span>님 환영합니다.
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/user}}
-            {{^user}}
-                    <a href="/user/signup">회원가입</a>
+
+            {{/username}}
+            {{^username}}
+                    <a href="/signup">회원가입</a>
                     <a href="/login">Login</a>
-            {{/user}}
+            {{/username}}
         </div>
-        </div>
-    </div>
+       </div>
     <br>
     <!-- 목록 출력 영역 -->
     <table class="table table-horizontal table-bordered">

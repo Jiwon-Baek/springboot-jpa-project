@@ -47,6 +47,7 @@ dependencies {
 
     //보안 설정
     compile('org.springframework.boot:spring-boot-starter-security')
+    compile 'org.springframework.security:spring-security-config'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 

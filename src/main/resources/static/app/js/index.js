@@ -101,23 +101,23 @@ var main = {
         });
     },
     signin : function () {
-            var data = {
-                username: $('#username').val(),
-                password: $('#password').val()
-            };
+        var data = {
+            username: $('#username').val(),
+            password: $('#password').val()
+        };
 
-            $.ajax({
-                type: 'POST',
-                url: '/api/v1/login',
-                dataType: 'json',
-                contentType:'application/json; charset=utf-8',
-                data: JSON.stringify(data)
-            }).done(function() {
-                alert('로그인이 되었습니다.');
-                window.location.href = '/';
-            }).fail(function (error) {
-                alert("없는 회원입니다.");
-            });
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/login',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('로그인이 되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert("없는 회원입니다.");
+        });
     }
 
 };
