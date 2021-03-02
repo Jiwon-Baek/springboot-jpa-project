@@ -43,7 +43,7 @@ public class User extends BaseTimeEntity implements UserDetails {
     private Role role;
 
     @Builder
-    public User(String username,String password,String name, String email,Role role) {
+    public User(String username, String password, String name, String email, Role role) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -62,6 +62,11 @@ public class User extends BaseTimeEntity implements UserDetails {
         this.role = role;
     }
 
+    public User(String username, Long id) {
+        this.username = username;
+        this.id = id;
+    }
+
 
     public Long getId() {
         return id;
@@ -71,7 +76,9 @@ public class User extends BaseTimeEntity implements UserDetails {
         return username;
     }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
     public String getName() {
         return name;
@@ -117,7 +124,6 @@ public class User extends BaseTimeEntity implements UserDetails {
         return authorities;
 
     }
-
 
 
 }

@@ -12,11 +12,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "from User where username=:username")
     User findByUsername(@Param("username") String username);
 
-    @Query(value = "from User where email=:email")
-    String findByEmail(@Param("email") String email);
+
+    @Query(value = "select username from User where id=:id")
+    String findIdd(@Param("id") Long id);
 
 
-    @Query(value = "select username from User where name =:name and email=:email")
-    String findId(@Param("name") String name,@Param("email") String email );
+    @Query(value = "select id from User where name =:name and email=:email")
+    Long findId(@Param("name") String name,@Param("email") String email );
+
+
 
 }

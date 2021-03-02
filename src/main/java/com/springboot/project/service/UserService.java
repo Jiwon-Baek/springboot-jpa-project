@@ -98,10 +98,14 @@ public class UserService implements UserDetailsService {
     @Transactional
     public String idCheck(String username) {
 
+        System.out.print(username);
+
         if (userRepository.findByUsername(username) == null) {
             return "YES";
         } else {
             return "NO";
         }
     }
+
+
 }

@@ -8,6 +8,7 @@ import com.springboot.project.config.auth.dto.SessionUser;
 import com.springboot.project.doamin.user.User;
 import com.springboot.project.service.UserService;
 import com.springboot.project.web.dto.UserLoginDto;
+import com.springboot.project.web.dto.UserResponseDto;
 import com.springboot.project.web.dto.UserSaveDto;
 import lombok.RequiredArgsConstructor;
 
@@ -34,8 +35,6 @@ public class UserApiController {
     //아이디 중복 체크
     @PostMapping("/api/v1/idCheck")
     public String idCheck(String username) {
-
-
         String str = userService.idCheck(username);
         return str;
     }
@@ -58,5 +57,6 @@ public class UserApiController {
         return userLoginDto;
 
     }
+
 
 }
