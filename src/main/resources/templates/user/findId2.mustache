@@ -1,0 +1,17 @@
+{{>layout/header}}
+
+<h1>아이디 찾기</h1>
+<hr/>
+회원님의 아이디는<br/>
+{{#findid}}
+    {{findid}}
+{{/findid}}
+<br/>
+
+
+<a href="/signup">회원 가입</a><br/>
+<a href="/findpassword">비밀 번호 찾기</a><br/>
+<a href="/login">로그인</a><br/>
+
+{{>layout/footer}}
+

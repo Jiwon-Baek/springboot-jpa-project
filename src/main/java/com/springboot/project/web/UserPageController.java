@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
 @RequiredArgsConstructor
 @Controller
 public class UserPageController {
@@ -17,17 +18,21 @@ public class UserPageController {
 
     private final UserService userService;
 
+    //아이디 찾기
     @GetMapping("/findid")
     public String findId() {
 
         return "user/findId";
     }
 
-    @GetMapping("/popupfindid")
-    public String popupFindId() {
+    @GetMapping("/findid/{id}")
+    public String findId2(@PathVariable Long id, Model model) {
 
+        String username = userService.findUsernameByid(id);
+        model.addAttribute("findid", username);
 
-        return "user/popupFindId";
+        return "user/findId2";
     }
+
 
 }

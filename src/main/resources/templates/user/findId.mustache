@@ -3,13 +3,15 @@
 <h1>아이디 찾기</h1>
 <hr/>
 <form>
-    <input type="text"  id="name" placeholder="이름" autofocus/> <br/>
-    <input type="text"  id="email" placeholder="이메일" autofocus/> <br/>
+    <input type="text" id="name" placeholder="이름" autofocus/> <br/>
+    <input type="text" id="email" placeholder="이메일" autofocus/> <br/>
     <button type="button" class="btn btn-primary" id="btn-findId">아이디 찾기</button>
 </form>
+<div class="text-center small mt-2" id="findid"></div>
+
 <a href="/signup">회원 가입</a><br/>
-<a href="/findpassword">비밀 번호 찾기</a>
+<a href="/findpassword">비밀 번호 찾기</a><br/>
 <a href="/login">로그인</a><br/>
 
 {{>layout/footer}}
-<input type="button" value="새창열기"  onclick="nwindow()"/>
+

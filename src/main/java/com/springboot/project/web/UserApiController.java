@@ -35,7 +35,7 @@ public class UserApiController {
     //아이디 중복 체크
     @PostMapping("/api/v1/idCheck")
     public String idCheck(String username) {
-        String str = userService.idCheck(username);
+        String str = userService.usernameCheck(username);
         return str;
     }
 
@@ -58,5 +58,13 @@ public class UserApiController {
 
     }
 
+    @PostMapping("api/v1/findid")
+    public Long findIdByNE(@RequestBody UserResponseDto user) {
+
+       Long id = userService.findUsernameByNE(user.getName(),user.getEmail());
+
+        return id;
+
+    }
 
 }

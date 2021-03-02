@@ -258,8 +258,18 @@ var main = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
+        }).done(function (data) {
+
+            var id = data;
+            var url = '/findid/'+id;
+            var name = "popup test";
+            var option = "width = 300, height = 300, top = 100, left = 200, location = no";
+            window.open(url, name, option);
+            $('#name').focus();
+            $('#email').focus();
+
         }).fail(function (error) {
-            alert("일치하지 않거나 없는 회원입니다.");
+            $('#findid').html('<p style="color:red">일치하지 않거나 없는 회원입니다.</p>');
         });
     }
 

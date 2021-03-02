@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
+
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
@@ -96,7 +98,7 @@ public class UserService implements UserDetailsService {
 
     //아이디 중복체크
     @Transactional
-    public String idCheck(String username) {
+    public String usernameCheck(String username) {
 
         System.out.print(username);
 
@@ -105,6 +107,29 @@ public class UserService implements UserDetailsService {
         } else {
             return "NO";
         }
+    }
+
+    @Transactional
+    public Long findUsernameByNE(String name, String email) throws UsernameNotFoundException {
+
+        User user = userRepository.findByNM(name,email);
+
+        if (user == null) {
+            throw new RuntimeException("user not found");
+        }
+
+        System.out.println(user.getUsername());
+
+        return user.getId();
+    }
+
+    @Transactional
+    public String findUsernameByid(Long id) {
+
+        User user =  userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다."));
+
+        return user.getUsername();
     }
 
 
