@@ -153,12 +153,12 @@ var main = {
             password: $('#password').val()
         };
 
-        if($('#username').val()==""){
+        if ($('#username').val() == "") {
             alert("아이디를 입력해주세요.")
             return false;
         }
 
-        if($('#password').val()==""){
+        if ($('#password').val() == "") {
             alert("비밀번호를 입력해주세요.")
             return false;
         }
@@ -268,12 +268,12 @@ var main = {
             email: $('#email').val()
         };
 
-        if($('#name').val()==""){
+        if ($('#name').val() == "") {
             alert("이름을 입력해주세요.")
             return false;
         }
 
-        if($('#email').val()==""){
+        if ($('#email').val() == "") {
             alert("이메일을 입력해주세요.")
             return false;
         }
@@ -287,7 +287,7 @@ var main = {
         }).done(function (data) {
 
             var id = data;
-            var url = '/findid/'+id;
+            var url = '/findid/' + id;
             var name = "아이디 찾기";
             var option = "width = 300, height = 300, top = 100, left = 200, location = no";
             window.open(url, name, option);
@@ -307,17 +307,17 @@ var main = {
             email: $('#email').val()
         };
 
-        if($('#username').val()==""){
+        if ($('#username').val() == "") {
             alert("아이디를 입력해주세요.")
             return false;
         }
 
-        if($('#name').val()==""){
+        if ($('#name').val() == "") {
             alert("이름을 입력해주세요.")
             return false;
         }
 
-        if($('#email').val()==""){
+        if ($('#email').val() == "") {
             alert("이메일을 입력해주세요.")
             return false;
         }
@@ -331,7 +331,7 @@ var main = {
         }).done(function (data) {
 
             var id = data;
-            var url = '/findpassword/'+id;
+            var url = '/findpassword/' + id;
             var name = "비밀번호 찾기";
             var option = "width = 300, height = 300, top = 100, left = 200, location = no";
             window.open(url, name, option);
@@ -343,7 +343,6 @@ var main = {
             $('#findpassword').html('<p style="color:red">일치하지 않거나 없는 회원입니다.</p>');
         });
     }
-
 
 
 };

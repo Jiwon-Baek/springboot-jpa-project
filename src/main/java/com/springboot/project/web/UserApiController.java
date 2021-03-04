@@ -1,11 +1,6 @@
 package com.springboot.project.web;
 
 
-
-
-
-import com.springboot.project.config.auth.dto.SessionUser;
-import com.springboot.project.doamin.user.User;
 import com.springboot.project.service.UserService;
 import com.springboot.project.web.dto.UserLoginDto;
 import com.springboot.project.web.dto.UserResponseDto;
@@ -15,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+
 
 
 @RequiredArgsConstructor
@@ -41,22 +36,17 @@ public class UserApiController {
 
     //로그인
     @PostMapping("api/v1/userLogin/login")
-    public UserLoginDto login(@RequestBody UserLoginDto user,HttpSession session) {
+    public UserLoginDto login(@RequestBody UserLoginDto dto) {
 
-        System.out.println("Login attmpted :: " + user.getUsername());
-        System.out.println("Login attmpted :: " + user.getPassword());
+        System.out.println("Login attmpted :: " + dto.getUsername());
+        System.out.println("Login attmpted :: " + dto.getPassword());
 
-
-        UserLoginDto userLoginDto = userService.findUserByUsername(user.getUsername(),user.getPassword());
-
-        User user1 = userService.userLoad(user.getUsername()); //받아온 유저 정보 저장
-
-        session.setAttribute("username", new SessionUser(user1)); //세션 저장
-
+        UserLoginDto userLoginDto = userService.findUserByUP(dto.getUsername(),dto.getPassword());
 
         return userLoginDto;
 
     }
+
 
     @PostMapping("api/v1/userLogin/findid")
     public Long findIdByNE(@RequestBody UserResponseDto user) {

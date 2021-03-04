@@ -51,22 +51,16 @@ public class User extends BaseTimeEntity implements UserDetails {
         this.role = role;
     }
 
+
     public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public User(String username, Role role) {
-        this.username = username;
-        this.role = role;
-    }
-
     public void update(String password){
         this.password=password;
     }
-
-
 
 
     public Long getId() {
@@ -91,6 +85,10 @@ public class User extends BaseTimeEntity implements UserDetails {
 
     public Role getRole() {
         return role;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
     }
 
     // 계정 만료 여부 반환
@@ -121,7 +119,7 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));//유저 권한 부여
         return authorities;
 
     }

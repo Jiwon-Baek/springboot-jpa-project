@@ -6,20 +6,21 @@
     <div class="row">
 
         <div class="col-md-6">
-            {{#username}}
+            {{#userId}}
                 <a href="/posts/save">글 등록</a>
-            {{/username}}
+                <a href="/mypage/detail/{{userId}}">마이페이지</a>
+            {{/userId}}
         </div>
         <div class="col-md-6">
-            {{#username}}
-             <span id="user">{{username}}</span>님 환영합니다.
+            {{#userId}}
+             <span id="user">{{userId}}</span>님 환영합니다.
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
 
-            {{/username}}
-            {{^username}}
+            {{/userId}}
+            {{^userId}}
                     <a href="/signup">회원가입</a>
                     <a href="/login">Login</a>
-            {{/username}}
+            {{/userId}}
         </div>
        </div>
     <br>

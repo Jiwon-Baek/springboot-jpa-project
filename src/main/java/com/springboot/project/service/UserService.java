@@ -1,6 +1,6 @@
 package com.springboot.project.service;
 
-
+import com.springboot.project.config.auth.dto.SessionUser;
 import com.springboot.project.doamin.user.User;
 import com.springboot.project.doamin.user.UserRepository;
 
@@ -15,14 +15,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
+
+
 
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final HttpSession httpSession;
 
 
+
+    //회원가입
     @Transactional
     public Long signUp(UserSaveDto userSaveDto) {
         // 비밀번호 암호화
@@ -33,9 +39,11 @@ public class UserService implements UserDetailsService {
     }
 
 
+    //유저 아이디로 유저가 있는지 확인
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
 
         User user = userRepository.findByUsername(username);
 
@@ -43,13 +51,14 @@ public class UserService implements UserDetailsService {
             throw new RuntimeException("user not found");
         }
 
-        return new User(user.getUsername(), user.getPassword(), user.getRole());
+        return user;
     }
+
 
 
     //로그인시 비밀번호까지 일치한지 확인
     @Transactional
-    public UserLoginDto findUserByUsername(String username, String password) {
+    public UserLoginDto findUserByUP (String username, String password) {
 
         User user = this.userRepository.findByUsername(username);
 
@@ -72,6 +81,9 @@ public class UserService implements UserDetailsService {
             userLoginDto.setUsername(user.getUsername());
             userLoginDto.setPassword(user.getPassword());
 
+            httpSession.setAttribute("user", new SessionUser(user));//세션 유지
+
+
         } else {
             throw new RuntimeException("없는 회원입니다.");
         }
@@ -79,20 +91,6 @@ public class UserService implements UserDetailsService {
         return userLoginDto;
     }
 
-    //유저 확인 및 세션
-    @Transactional
-    public User userLoad(String username) throws UsernameNotFoundException {
-
-        User user = userRepository.findByUsername(username);
-
-        if (user == null) {
-            throw new RuntimeException("user not found");
-        }
-
-        System.out.println(user.getUsername());
-
-        return new User(user.getUsername(), user.getRole());
-    }
 
     //아이디 중복체크
     @Transactional
@@ -107,6 +105,7 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    //이름과 이메일로 아이디 찾기
     @Transactional
     public Long findUsernameByNE(String name, String email) throws UsernameNotFoundException {
 
@@ -121,6 +120,7 @@ public class UserService implements UserDetailsService {
         return user.getId();
     }
 
+    //user id(회원번호)로 유저 아이디 찾기
     @Transactional
     public String findUsernameByid(Long id) {
 
@@ -131,6 +131,7 @@ public class UserService implements UserDetailsService {
     }
 
 
+    //아이디,이름,이메일로 유저찾기
     @Transactional
     public Long findPasswordByUNE(String username, String name, String email) throws UsernameNotFoundException {
 
@@ -143,6 +144,7 @@ public class UserService implements UserDetailsService {
         return user.getId();
     }
 
+    //user id로 비밀번호 찾아 임시번호 발급
     @Transactional
     public String findPasswordByid(Long id) {
 
@@ -166,6 +168,7 @@ public class UserService implements UserDetailsService {
                 str += charSet[idx];
             }
 
+            //임시번호를 유저 데이터로 업뎃
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String temporarypw = passwordEncoder.encode(str);
 
@@ -178,6 +181,18 @@ public class UserService implements UserDetailsService {
         return str;
 
     }
+
+    //유저 아이디로 유저 정보 찾기
+    @Transactional
+    public UserResponseDto findUserByUsername (String username) {
+
+      User userEntity = userRepository.findByUsername(username);
+
+
+      return new UserResponseDto(userEntity);
+
+    }
+
 
 
 }

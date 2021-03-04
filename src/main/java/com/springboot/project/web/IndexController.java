@@ -3,8 +3,6 @@ package com.springboot.project.web;
 
 import com.springboot.project.config.auth.LoginUser;
 import com.springboot.project.config.auth.dto.SessionUser;
-import com.springboot.project.doamin.user.User;
-import com.springboot.project.service.UserService;
 import com.springboot.project.web.dto.PostsResponseDto;
 import com.springboot.project.service.PostsService;
 import lombok.RequiredArgsConstructor;
@@ -26,18 +24,17 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexController {
 
     private final PostsService postsService;
-    private final UserService userService;
 
     /*메인 페이지*/
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user) {
+    public String index(Model model,@LoginUser SessionUser user) {
 
         model.addAttribute("posts", postsService.findAllDesc());
 
         if (user != null) {
-            model.addAttribute("user", user.getUsername());
-            System.out.print("아이디" + user.getUsername());
+            model.addAttribute("userId", user.getUsername());
         }
+
         return "index";
     }
 
@@ -67,7 +64,9 @@ public class IndexController {
 
     /*게시물 등록*/
     @GetMapping("/posts/save")
-    public String postsSave() {
+    public String postsSave(@LoginUser SessionUser user,Model model) {
+
+        model.addAttribute("author", user.getUsername());
 
         return "posts/posts-save";
     }

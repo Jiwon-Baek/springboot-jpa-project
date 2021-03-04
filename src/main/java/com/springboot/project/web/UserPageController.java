@@ -4,7 +4,6 @@ package com.springboot.project.web;
 import com.springboot.project.service.UserService;
 import com.springboot.project.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,6 +48,26 @@ public class UserPageController {
         model.addAttribute("findpassword", password);
 
         return "user/findpassword2";
+    }
+
+    //유저 개인 정보 페이지
+    @GetMapping("/mypage/detail/{username}")
+    public String mypageDetail(@PathVariable String username, Model model) {
+
+        UserResponseDto dto = userService.findUserByUsername(username);
+        model.addAttribute("userD", dto);
+
+        return "/user/mypage-detail";
+    }
+
+    //유저 개인 정보 수정 페이지
+    @GetMapping("/mypage/update/{username}")
+    public String mypageUpdate(@PathVariable String username, Model model) {
+
+        UserResponseDto dto = userService.findUserByUsername(username);
+        model.addAttribute("users", dto);
+
+        return "/user/mypage-update";
     }
 
 
