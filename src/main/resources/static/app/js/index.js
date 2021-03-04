@@ -21,7 +21,7 @@ var main = {
             _this.signin();
         });
 
-        $('#username').keyup(function () {
+        $('#username').blur(function () {
             _this.idCheck();
         });
 
@@ -35,6 +35,10 @@ var main = {
 
         $('#btn-findId').on('click', function () {
             _this.findId();
+        });
+
+        $('#btn-findPassword').on('click', function () {
+            _this.findPassword();
         });
 
     },
@@ -130,7 +134,7 @@ var main = {
 
         $.ajax({
             type: 'POST',
-            url: '/api/v1/user',
+            url: '/api/v1/userLogin/signup',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -149,9 +153,19 @@ var main = {
             password: $('#password').val()
         };
 
+        if($('#username').val()==""){
+            alert("아이디를 입력해주세요.")
+            return false;
+        }
+
+        if($('#password').val()==""){
+            alert("비밀번호를 입력해주세요.")
+            return false;
+        }
+
         $.ajax({
             type: 'POST',
-            url: '/api/v1/login',
+            url: '/api/v1/userLogin/login',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -171,7 +185,7 @@ var main = {
         } else {
             $.ajax({
                 type: "POST",
-                url: "/api/v1/idCheck",
+                url: "/api/v1/userLogin/idCheck",
                 data: {
                     "username": $('#username').val()
                 }
@@ -184,6 +198,8 @@ var main = {
                 } else if ($.trim(data) == "NO") {
                     if ($('#username').val() != '') {
                         $('#checkId').html('<p style="color:red">이미 사용중인 ID 입니다.</p>');
+                        $('#username').val().focus();
+                        return false;
                     }
                 }
             });
@@ -252,9 +268,19 @@ var main = {
             email: $('#email').val()
         };
 
+        if($('#name').val()==""){
+            alert("이름을 입력해주세요.")
+            return false;
+        }
+
+        if($('#email').val()==""){
+            alert("이메일을 입력해주세요.")
+            return false;
+        }
+
         $.ajax({
             type: 'POST',
-            url: '/api/v1/findid',
+            url: '/api/v1/userLogin/findid',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -262,7 +288,7 @@ var main = {
 
             var id = data;
             var url = '/findid/'+id;
-            var name = "popup test";
+            var name = "아이디 찾기";
             var option = "width = 300, height = 300, top = 100, left = 200, location = no";
             window.open(url, name, option);
             $('#name').focus();
@@ -271,7 +297,54 @@ var main = {
         }).fail(function (error) {
             $('#findid').html('<p style="color:red">일치하지 않거나 없는 회원입니다.</p>');
         });
+    },
+
+    findPassword: function () {
+
+        var data = {
+            username: $('#username').val(),
+            name: $('#name').val(),
+            email: $('#email').val()
+        };
+
+        if($('#username').val()==""){
+            alert("아이디를 입력해주세요.")
+            return false;
+        }
+
+        if($('#name').val()==""){
+            alert("이름을 입력해주세요.")
+            return false;
+        }
+
+        if($('#email').val()==""){
+            alert("이메일을 입력해주세요.")
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/userLogin/findpassword',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+
+            var id = data;
+            var url = '/findpassword/'+id;
+            var name = "비밀번호 찾기";
+            var option = "width = 300, height = 300, top = 100, left = 200, location = no";
+            window.open(url, name, option);
+            $('#username').focus();
+            $('#name').focus();
+            $('#email').focus();
+
+        }).fail(function (error) {
+            $('#findpassword').html('<p style="color:red">일치하지 않거나 없는 회원입니다.</p>');
+        });
     }
+
+
 
 };
 

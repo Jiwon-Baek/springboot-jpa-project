@@ -1,6 +1,7 @@
 package com.springboot.project.config;
 
 
+import com.springboot.project.doamin.user.Role;
 import com.springboot.project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**", "/app/js/**", "/h2-console/**", "/profile").permitAll()
+                .antMatchers("/","/css/**", "/images/**", "/app/js/**", "/h2-console/**", "/profile").permitAll()
                 .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

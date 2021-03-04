@@ -72,6 +72,15 @@ public class IndexController {
         return "posts/posts-save";
     }
 
+    //게시물 세부 내용
+    @GetMapping("/posts/detail/{id}")
+    public String postsContent(@PathVariable Long id, Model model) {
+        PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("postD", dto);
+
+        return "posts/posts-detail";
+    }
+
 
     /*게시물 수정*/
     @GetMapping("/posts/update/{id}")

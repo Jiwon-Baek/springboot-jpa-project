@@ -16,8 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
-
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
@@ -112,7 +110,7 @@ public class UserService implements UserDetailsService {
     @Transactional
     public Long findUsernameByNE(String name, String email) throws UsernameNotFoundException {
 
-        User user = userRepository.findByNM(name,email);
+        User user = userRepository.findByNM(name, email);
 
         if (user == null) {
             throw new RuntimeException("user not found");
@@ -126,10 +124,59 @@ public class UserService implements UserDetailsService {
     @Transactional
     public String findUsernameByid(Long id) {
 
-        User user =  userRepository.findById(id)
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다."));
 
         return user.getUsername();
+    }
+
+
+    @Transactional
+    public Long findPasswordByUNE(String username, String name, String email) throws UsernameNotFoundException {
+
+        User user = userRepository.findByUNM(username, name, email);
+
+        if (user == null) {
+            throw new RuntimeException("user not found");
+        }
+
+        return user.getId();
+    }
+
+    @Transactional
+    public String findPasswordByid(Long id) {
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다."));
+
+
+        String str = "";
+
+        //임시 비밀번호 구현
+        if (user != null) {
+
+            char[] charSet = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+                    'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
+
+            int idx = 0;
+
+            for (int i = 0; i < 10; i++) {
+                idx = (int) (charSet.length * Math.random());
+                str += charSet[idx];
+            }
+
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String temporarypw = passwordEncoder.encode(str);
+
+            user.update(temporarypw);
+
+
+        }
+
+
+        return str;
+
     }
 
 

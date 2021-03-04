@@ -8,23 +8,23 @@
             <input type="hidden" name="_method" value="delete"/>
             <div class="form-group">
                 <label for="title">글 번호</label>
-                <input type="text" class="form-control" id="id" value="{{posts.id}}" readonly>
+                <input type="text" class="form-control" id="id" value="{{postD.id}}" readonly>
             </div>
             <div class="form-group">
                 <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" value="{{posts.title}}" readonly>
+                <input type="text" class="form-control" id="title" value="{{postD.title}}" readonly>
             </div>
             <div class="form-group">
                 <label for="author"> 작성자 </label>
-                <input type="text" class="form-control" id="author" value="{{posts.author}}" readonly>
+                <input type="text" class="form-control" id="author" value="{{postD.author}}" readonly>
             </div>
             <div class="form-group">
                 <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content" readonly>{{posts.content}}</textarea>
+                <textarea class="form-control" id="content" readonly>{{postD.content}}</textarea>
             </div>
         </form>
         <a href="/" role="button" >취소</a>
-        <a href="/post/update/{{id}}" type="button">수정</a>
+        <a href="/posts/update/{{postD.id}}" type="button">수정</a>
         <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
     </div>
 </div>

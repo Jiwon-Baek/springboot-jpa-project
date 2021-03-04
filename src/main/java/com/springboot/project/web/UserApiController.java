@@ -26,21 +26,21 @@ public class UserApiController {
 
 
    //회원 가입
-    @PostMapping("/api/v1/user")
+    @PostMapping("/api/v1/userLogin/signup")
     public Long signUp(@RequestBody UserSaveDto userSaveDto) {
 
         return userService.signUp(userSaveDto);
     }
 
     //아이디 중복 체크
-    @PostMapping("/api/v1/idCheck")
+    @PostMapping("/api/v1/userLogin/idCheck")
     public String idCheck(String username) {
         String str = userService.usernameCheck(username);
         return str;
     }
 
     //로그인
-    @PostMapping("api/v1/login")
+    @PostMapping("api/v1/userLogin/login")
     public UserLoginDto login(@RequestBody UserLoginDto user,HttpSession session) {
 
         System.out.println("Login attmpted :: " + user.getUsername());
@@ -58,10 +58,20 @@ public class UserApiController {
 
     }
 
-    @PostMapping("api/v1/findid")
+    @PostMapping("api/v1/userLogin/findid")
     public Long findIdByNE(@RequestBody UserResponseDto user) {
 
        Long id = userService.findUsernameByNE(user.getName(),user.getEmail());
+
+        return id;
+
+    }
+
+
+    @PostMapping("api/v1/userLogin/findpassword")
+    public Long findPasswordByUNE(@RequestBody UserResponseDto user) {
+
+        Long id = userService.findPasswordByUNE(user.getUsername(),user.getName(),user.getEmail());
 
         return id;
 

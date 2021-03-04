@@ -62,10 +62,11 @@ public class User extends BaseTimeEntity implements UserDetails {
         this.role = role;
     }
 
-    public User(String username, Long id) {
-        this.username = username;
-        this.id = id;
+    public void update(String password){
+        this.password=password;
     }
+
+
 
 
     public Long getId() {
