@@ -18,14 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpSession;
 
 
-
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final HttpSession httpSession;
-
 
 
     //회원가입
@@ -55,10 +53,9 @@ public class UserService implements UserDetailsService {
     }
 
 
-
     //로그인시 비밀번호까지 일치한지 확인
     @Transactional
-    public UserLoginDto findUserByUP (String username, String password) {
+    public UserLoginDto findUserByUP(String username, String password) {
 
         User user = this.userRepository.findByUsername(username);
 
@@ -172,8 +169,7 @@ public class UserService implements UserDetailsService {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String temporarypw = passwordEncoder.encode(str);
 
-            user.update(temporarypw);
-
+            user.updatePw(temporarypw);
 
         }
 
@@ -184,14 +180,30 @@ public class UserService implements UserDetailsService {
 
     //유저 아이디로 유저 정보 찾기
     @Transactional
-    public UserResponseDto findUserByUsername (String username) {
+    public UserResponseDto findUserByUsername(String username) {
 
-      User userEntity = userRepository.findByUsername(username);
+        User userEntity = userRepository.findByUsername(username);
 
-
-      return new UserResponseDto(userEntity);
+        return new UserResponseDto(userEntity);
 
     }
+
+
+
+    @Transactional
+    public String update(String username, UserUpdateDto requestDto) throws Exception {
+
+
+        User user = userRepository.findByUsername(username);
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode(requestDto.getPassword());
+
+        userRepository.updateUser(username,password,requestDto.getName(),requestDto.getEmail());
+
+        return user.getUsername();
+    }
+
 
 
 

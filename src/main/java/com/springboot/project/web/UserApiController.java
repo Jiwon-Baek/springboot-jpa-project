@@ -5,6 +5,7 @@ import com.springboot.project.service.UserService;
 import com.springboot.project.web.dto.UserLoginDto;
 import com.springboot.project.web.dto.UserResponseDto;
 import com.springboot.project.web.dto.UserSaveDto;
+import com.springboot.project.web.dto.UserUpdateDto;
 import lombok.RequiredArgsConstructor;
 
 
@@ -65,6 +66,13 @@ public class UserApiController {
 
         return id;
 
+    }
+
+
+    @PutMapping("/api/v1/user/{username}")
+    public String update(@PathVariable String username, @RequestBody UserUpdateDto requestDto) throws Exception {
+
+        return userService.update(username, requestDto);
     }
 
 }

@@ -41,6 +41,10 @@ var main = {
             _this.findPassword();
         });
 
+        $('#btn-userUpdate').on('click', function () {
+            _this.userUpdate();
+        });
+
     },
 
     save: function () {
@@ -341,6 +345,29 @@ var main = {
 
         }).fail(function (error) {
             $('#findpassword').html('<p style="color:red">일치하지 않거나 없는 회원입니다.</p>');
+        });
+    },
+
+    userUpdate: function () {
+
+        var data = {
+            password: $('#password').val(),
+            name: $('#name').val(),
+            email: $('#email').val()
+        };
+        var username = $('#username').val();
+
+        $.ajax({
+            type: 'PUT',
+            url: '/api/v1/user/'+username,
+            dataType: 'text',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function () {
+            alert('회원정보가 수정되었습니다.');
+            window.location.href = '/mypage/detail/'+username;
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
         });
     }
 

@@ -51,15 +51,16 @@ public class User extends BaseTimeEntity implements UserDetails {
         this.role = role;
     }
 
+    public void updateUser(String username, String password, String name, String email) {
 
-    public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.name = name;
+        this.email = email;
     }
 
-    public void update(String password){
-        this.password=password;
+    public void updatePw(String password) {
+        this.password = password;
     }
 
 
