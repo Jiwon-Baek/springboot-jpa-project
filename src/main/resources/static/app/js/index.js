@@ -45,6 +45,10 @@ var main = {
             _this.userUpdate();
         });
 
+        $('#btn-withdrawal').on('click', function () {
+            _this.withdrawal();
+        });
+
     },
 
     save: function () {
@@ -78,7 +82,7 @@ var main = {
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts/' + id,
+            url: '/api/v1/posts/'+ id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -91,11 +95,12 @@ var main = {
     },
 
     delete: function () {
+
         var id = $('#id').val();
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/posts/' + id,
+            url: '/api/v1/posts/'+id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function () {
@@ -350,25 +355,101 @@ var main = {
 
     userUpdate: function () {
 
+        if ($('#password').val() == "") {
+            alert("비밀번호를 입력해주세요.")
+            return false;
+        }
+
+        if ($('#password2').val() == "") {
+            alert("비밀번호를 확인해주세요.")
+            return false;
+        }
+
+        if ($('#name').val() == "") {
+            alert("이름을 입력해주세요.")
+            return false;
+        }
+
+        if ($('#email').val() == "") {
+            alert("이메일을 입력해주세요.")
+            return false;
+        }
+
         var data = {
             password: $('#password').val(),
             name: $('#name').val(),
             email: $('#email').val()
         };
+
         var username = $('#username').val();
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/user/'+username,
+            url: '/api/v1/user/update/'+username,
             dataType: 'text',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function () {
             alert('회원정보가 수정되었습니다.');
-            window.location.href = '/mypage/detail/'+username;
+            window.location.href = '/mypage/detail';
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+    },
+
+    withdrawal: function () {
+
+        var data = {
+            password: $('#password').val()
+        };
+
+        if ($('#password').val() == "") {
+            alert("비밀번호를 입력해주세요.")
+            return false;
+        }
+
+        if ($('#password2').val() == "") {
+            alert("비밀번호를 입력해주세요.")
+            return false;
+        }
+
+        if ($('#password').val() != $('#password2').val()) {
+            if ($('#password2').val() != '') {
+                $('#checkPassword').html('<p style="color:red">비밀번호가 일치하지 않습니다.</p>');
+                $('#password2').val('');
+                $('#password').focus();
+                $('#password2').focus();
+            }
+        } else if ($('#password').val() == $('#password2').val()) {
+
+            var username = $('#username').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/user/withdrawal/' + username,
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function (data) {
+
+                var id = data;
+
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/api/v1/user/withdrawal/' + id,
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                }).done(function () {
+                    alert('정상적으로 탈퇴되었습니다.');
+                    window.location.href = '/';
+                }).fail(function (error) {
+                    alert("비밀번호가 틀렸습니다.");
+                });
+
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
     }
 
 

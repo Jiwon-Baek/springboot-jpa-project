@@ -68,11 +68,25 @@ public class UserApiController {
 
     }
 
-
-    @PutMapping("/api/v1/user/{username}")
-    public String update(@PathVariable String username, @RequestBody UserUpdateDto requestDto) throws Exception {
+    @PutMapping("/api/v1/user/update/{username}")
+    public String update(@PathVariable String username,@RequestBody UserUpdateDto requestDto) throws Exception {
 
         return userService.update(username, requestDto);
     }
 
+    @PostMapping("api/v1/user/withdrawal/{username}")
+    public Long withdrawal(@PathVariable String username, @RequestBody UserLoginDto dto) {
+
+        Long id = userService.findIdByPassword(username, dto.getPassword());
+
+        return id;
+
+    }
+
+    @DeleteMapping("/api/v1/user/withdrawal/{id}")
+    public Long delete(@PathVariable Long id) {
+        System.out.println(id);
+        userService.delete(id);
+        return id;
+    }
 }

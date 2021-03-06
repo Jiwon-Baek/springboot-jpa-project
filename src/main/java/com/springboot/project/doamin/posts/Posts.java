@@ -2,6 +2,8 @@ package com.springboot.project.doamin.posts;
 
 
 import com.springboot.project.doamin.BaseTimeEntity;
+
+import com.springboot.project.doamin.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,14 +27,24 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-
     private String author;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
     @Builder
-    public Posts(Long id, String title, String content, String author) {
+    public Posts(Long id, String title, String content, String author, User user_id) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.author = author;
+        this.user = user_id;
+    }
+
+    public Posts(long id, String author) {
+        this.id = id;
         this.author = author;
     }
 
@@ -40,4 +52,20 @@ public class Posts extends BaseTimeEntity {
         this.title = title;
         this.content = content;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    //연관관계 설정
+    public void setUser(User user) {
+
+        if (this.user != null) {
+            this.user.getPosts().remove(this);
+        }
+        this.user = user;
+        user.getPosts().add(this);
+    }
+
+
 }

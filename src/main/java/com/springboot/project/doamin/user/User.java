@@ -1,6 +1,7 @@
 package com.springboot.project.doamin.user;
 
 import com.springboot.project.doamin.BaseTimeEntity;
+import com.springboot.project.doamin.posts.Posts;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,6 +43,10 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
+    @OneToMany(mappedBy = "user")
+    private List<Posts> posts = new ArrayList<Posts>();
+
+
     @Builder
     public User(String username, String password, String name, String email, Role role) {
         this.username = username;
@@ -51,12 +56,9 @@ public class User extends BaseTimeEntity implements UserDetails {
         this.role = role;
     }
 
-    public void updateUser(String username, String password, String name, String email) {
-
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.email = email;
+    public User(Long id, String username) {
+        this.id =id;
+        this.username=username;
     }
 
     public void updatePw(String password) {

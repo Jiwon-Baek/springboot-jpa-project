@@ -1,0 +1,32 @@
+{{>layout/header}}
+
+<h1>내가 쓴 게시물</h1>
+<div class="col-md-12">
+
+    <table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+        {{#userPosts}}
+        <tr>
+            <th>게시글번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>최종수정일</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        <tr>
+            <td>{{id}}</td>
+            <td><a href="/posts/detail/{{id}}">{{title}}</a></td>
+            <td>{{author}}</td>
+            <td>{{modifiedDate}}</td>
+        </tr>
+        {{/userPosts}}
+        {{^userPosts}}
+        작성하신 게시물이 없습니다.
+        {{/userPosts}}
+    </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}

@@ -8,7 +8,7 @@
             <input type="hidden" name="_method" value="delete"/>
             <div class="form-group">
                 <label for="title">글 번호</label>
-               <div>{{postD.id}}</div>
+                <div>{{postD.id}}</div>
             </div>
             <div class="form-group">
                 <label for="title">제목</label>
@@ -23,9 +23,10 @@
                 <div>{{postD.content}}</div>
             </div>
         </form>
-        <a href="/" role="button" >취소</a>
-        <a href="/posts/update/{{postD.id}}" type="button">수정</a>
-        <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
+        {{#postUser}}
+            <a href="/" role="button">취소</a>
+            <a href="/posts/update/{{postD.id}}" type="button">수정</a>
+        {{/postUser}}
     </div>
 </div>
 

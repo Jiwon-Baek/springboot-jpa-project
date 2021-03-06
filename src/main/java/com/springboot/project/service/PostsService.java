@@ -1,7 +1,9 @@
 package com.springboot.project.service;
 
 import com.springboot.project.doamin.posts.Posts;
-import com.springboot.project.doamin.posts.PostsRepository;
+import com.springboot.project.doamin.posts.PostsRepository;;
+import com.springboot.project.doamin.user.User;
+import com.springboot.project.doamin.user.UserRepository;
 import com.springboot.project.web.dto.PostsListDto;
 import com.springboot.project.web.dto.PostsResponseDto;
 import com.springboot.project.web.dto.PostsSaveDto;
@@ -17,12 +19,19 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class PostsService {
+
     private final PostsRepository postsRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public Long save(PostsSaveDto postsSaveDto) {
 
+        User user = userRepository.findByUsername(postsSaveDto.getAuthor());
+       //작성자의 회원번호를 같이 저장하여 조인
+        postsSaveDto.setUser(user);
+
         return postsRepository.save(postsSaveDto.toEntity()).getId();
+
     }
 
     @Transactional
@@ -45,6 +54,7 @@ public class PostsService {
 
     @Transactional(readOnly = true)
     public PostsResponseDto findById(Long id) {
+
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
@@ -56,5 +66,14 @@ public class PostsService {
         return postsRepository.findAllDesc().stream()
                 .map(PostsListDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<PostsListDto> findByUserId(Long userId) {
+
+     return postsRepository.findByUserId(userId).stream()
+             .map(PostsListDto::new)
+             .collect(Collectors.toList());
+
     }
 }

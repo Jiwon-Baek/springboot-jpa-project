@@ -3,6 +3,8 @@ package com.springboot.project.web;
 
 import com.springboot.project.config.auth.LoginUser;
 import com.springboot.project.config.auth.dto.SessionUser;
+
+
 import com.springboot.project.web.dto.PostsResponseDto;
 import com.springboot.project.service.PostsService;
 import lombok.RequiredArgsConstructor;
@@ -73,9 +75,15 @@ public class IndexController {
 
     //게시물 세부 내용
     @GetMapping("/posts/detail/{id}")
-    public String postsContent(@PathVariable Long id, Model model) {
+    public String postsContent(@PathVariable Long id, Model model,@LoginUser SessionUser user) {
+
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("postD", dto);
+
+
+        if(user!=null){
+            model.addAttribute("postUser",user.getUsername());
+        }
 
         return "posts/posts-detail";
     }

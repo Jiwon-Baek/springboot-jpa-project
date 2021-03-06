@@ -14,6 +14,11 @@
                 <div><input type="password" class="form-control" id="password"></div>
             </div>
             <div class="form-group">
+                <label for="password">비밀번호 확인</label>
+                <div><input type="password" class="form-control" id="password2"></div>
+            </div>
+            <div class="text-center small mt-2" id="checkPw"></div>
+            <div class="form-group">
                 <label for="title">이름</label>
                 <div><input type="text" class="form-control" id="name" value="{{users.name}}"></div>
             </div>
@@ -22,6 +27,7 @@
                 <div><input type="text" class="form-control" id="email" value="{{users.email}}"></div>
             </div>
         </form>
+
         <button type="button" class="btn btn-primary" id="btn-userUpdate">수정</button>
     </div>
 </div>

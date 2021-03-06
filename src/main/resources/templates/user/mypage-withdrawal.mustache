@@ -1,0 +1,25 @@
+{{>layout/header}}
+
+<h1>탈퇴 페이지</h1>
+<hr/>
+<div>회원 탈퇴</div>
+<br/>
+<form>
+    <div>
+        <label>비밀번호</label>
+        <input type="password" id="password" placeholder="password"/>
+    </div>
+    <div>
+        <label>비밀번호 확인</label>
+        <input type="password" id="password2" placeholder="password"/>
+    </div>
+</form>
+<div class="text-center small mt-2" id="checkPassword"></div>
+
+<br/>
+
+<input type="hidden" id="username" value="{{username}}">
+<button type="button" class="btn btn-danger" id="btn-withdrawal">삭제</button>
+
+{{>layout/footer}}
+

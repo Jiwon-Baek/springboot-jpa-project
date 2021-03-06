@@ -1,6 +1,7 @@
 package com.springboot.project.service;
 
 import com.springboot.project.config.auth.dto.SessionUser;
+
 import com.springboot.project.doamin.user.User;
 import com.springboot.project.doamin.user.UserRepository;
 
@@ -189,7 +190,7 @@ public class UserService implements UserDetailsService {
     }
 
 
-
+    //회원 정보 수정
     @Transactional
     public String update(String username, UserUpdateDto requestDto) throws Exception {
 
@@ -199,12 +200,41 @@ public class UserService implements UserDetailsService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String password = passwordEncoder.encode(requestDto.getPassword());
 
-        userRepository.updateUser(username,password,requestDto.getName(),requestDto.getEmail());
+        userRepository.updateUser(username, password, requestDto.getName(), requestDto.getEmail());
 
         return user.getUsername();
     }
 
+    //회원 삭제를 위한 서비스
+    @Transactional
+    public Long findIdByPassword(String username, String password) {
 
+        User user = this.userRepository.findByUsername(username);
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        String rawPassword = password;
+        String encodedPassword = user.getPassword();
+
+        if (passwordEncoder.matches(rawPassword, encodedPassword)) {
+
+            return user.getId();
+
+        } else {
+            throw new RuntimeException("비밀번호가 틀렸습니다.");
+        }
+    }
+
+    //회원 삭제
+    @Transactional
+    public void delete(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        httpSession.invalidate();//세션 저장된 내용 삭제
+
+        userRepository.delete(user);
+    }
 
 
 }

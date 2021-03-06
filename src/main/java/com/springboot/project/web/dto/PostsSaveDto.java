@@ -1,6 +1,7 @@
 package com.springboot.project.web.dto;
 
 import com.springboot.project.doamin.posts.Posts;
+import com.springboot.project.doamin.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,14 @@ public class PostsSaveDto {
     private String title;
     private String content;
     private String author;
+    private User user;
 
     @Builder
     public PostsSaveDto(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;
+
     }
 
     public Posts toEntity() {
@@ -25,6 +28,11 @@ public class PostsSaveDto {
                 .title(title)
                 .content(content)
                 .author(author)
+                .user_id(user)
                 .build();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
