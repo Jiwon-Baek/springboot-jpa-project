@@ -1,5 +1,6 @@
 {{>layout/header}}
 
+
 <h1> Join Page </h1>
 <form>
     <div class="form-group">
@@ -24,7 +25,13 @@
     </div>
     <div class="fom-group">
         <label for="email">이메일</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요"/>
+        <input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요"/>
+        <select id="emailSelect">
+        <option value="">선택</option>
+        <option value="@naver.com">@naver.com</option>
+        <option value="@gamil.com">@gamil.com</option>
+        <option value="@hanmail.net">@hanmail.net</option>
+    </select>
     </div>
 </form>
 <button type="button" class="btn btn-primary" id="btn-signup">가입하기</button><br/>

@@ -19,12 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpSession;
 
 
+
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final HttpSession httpSession;
+
 
 
     //회원가입
@@ -40,17 +42,15 @@ public class UserService implements UserDetailsService {
 
     //유저 아이디로 유저가 있는지 확인
     @Override
-    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 
-        User user = userRepository.findByUsername(username);
+        User entity = userRepository.findByUsername(username);
 
-        if (user == null) {
-            throw new RuntimeException("user not found");
-        }
+        if(entity == null) throw new UsernameNotFoundException("해당 아이디를 가진 유저를 찾을 수 없습니다");
 
-        return user;
+        return entity;
+
     }
 
 

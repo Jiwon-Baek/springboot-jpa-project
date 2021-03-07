@@ -24,7 +24,7 @@
             </div>
         </form>
         {{#postUser}}
-            <a href="/" role="button">취소</a>
+            <button onclick="history.back()">돌아가기</button>
             <a href="/posts/update/{{postD.id}}" type="button">수정</a>
         {{/postUser}}
     </div>

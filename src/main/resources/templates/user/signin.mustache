@@ -2,13 +2,42 @@
 
 <h1> Login Page </h1>
 <hr/>
-<form action="/login" method="POST">
-    <input type="text"  id="username"placeholder="username" autofocus/> <br/>
-    <input type="password" id="password" placeholder="password"/>
-    <button type="button" class="btn btn-primary" id="btn-signin">로그인</button>
-</form>
-<a href="/signup">회원 가입</a><br/>
-<a href="/findid">아이디 찾기</a><br/>
-<a href="/findpassword">비밀 번호 찾기</a>
 
+<div class="wrapper">
+    <div class="main">
+        <div class="logo">
+
+        </div>
+
+        <form action="/login" method="POST">
+            <div class="login_box">
+                <div class="input_login">
+                    <input type="text" id="username" placeholder="username" autofocus/>
+                </div>
+                <div class="input_login">
+                    <input type="password" id="password" placeholder="password"/>
+                </div>
+                <div class="login">
+                    <button type="button" class="btn btn-primary" id="btn-signin">로그인</button>
+                </div>
+                <div>
+                    <div class="text-center small mt-2" id="login"></div>
+                </div>
+                <div class="last">
+                    <div class="signup">
+                        <a class="signup" href="/signup">회원가입</a>
+                    </div>
+                    <div class="findid">
+                        <a class="id_pwd_search" href="/findid">아이디 찾기</a><br/>
+                    </div>
+                    <div clas="findpw">
+                        <a class="findpw" href="/findpassword">비밀 번호 찾기</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<link href="/app/css/signin.css" rel="stylesheet" type="text/css">
 {{>layout/footer}}
