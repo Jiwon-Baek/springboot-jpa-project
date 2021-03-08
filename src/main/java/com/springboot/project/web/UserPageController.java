@@ -92,6 +92,7 @@ public class UserPageController {
         UserResponseDto userDto = userService.findUserByUsername(user.getUsername());
 
         Long id =userDto.getId();
+        System.out.println(id);
 
         //해당 회원번호로 저장된 게시물을 전부  출력
         model.addAttribute("userPosts",postsService.findByUserId(id));

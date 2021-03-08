@@ -1,37 +1,30 @@
 {{>layout/header}}
-
-<h1> Login Page </h1>
-<hr/>
+<!--로그인화면-->
 
 <div class="wrapper">
     <div class="main">
-        <div class="logo">
-
-        </div>
-
+        <span class="title3">Login</span>
         <form action="/login" method="POST">
-            <div class="login_box">
-                <div class="input_login">
-                    <input type="text" id="username" placeholder="username" autofocus/>
+            <div class="box">
+                <div class="input">
+                    <input type="text" id="username" placeholder="아이디" autofocus/>
                 </div>
-                <div class="input_login">
-                    <input type="password" id="password" placeholder="password"/>
+                <div class="input">
+                    <input type="password" id="password" placeholder="비밀번호"/>
                 </div>
-                <div class="login">
+                <div class="button">
                     <button type="button" class="btn btn-primary" id="btn-signin">로그인</button>
                 </div>
-                <div>
-                    <div class="text-center small mt-2" id="login"></div>
-                </div>
+                <div class="notice" id="login"></div>
                 <div class="last">
-                    <div class="signup">
-                        <a class="signup" href="/signup">회원가입</a>
-                    </div>
-                    <div class="findid">
+                    <div class="left">
                         <a class="id_pwd_search" href="/findid">아이디 찾기</a><br/>
                     </div>
-                    <div clas="findpw">
+                    <div class="middle">
                         <a class="findpw" href="/findpassword">비밀 번호 찾기</a>
+                    </div>
+                    <div class="right">
+                        <a class="signup " href="/signup">회원가입</a>
                     </div>
                 </div>
             </div>
@@ -39,5 +32,6 @@
     </div>
 </div>
 
-<link href="/app/css/signin.css" rel="stylesheet" type="text/css">
+<link href="/app/css/Login-find.css" rel="stylesheet" type="text/css">
+
 {{>layout/footer}}

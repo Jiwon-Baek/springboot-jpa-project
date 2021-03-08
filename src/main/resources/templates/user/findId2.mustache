@@ -1,15 +1,18 @@
-{{>layout/header}}
+{{>layout/smallHeader}}
 
 <h1>아이디 찾기</h1>
-<hr/>
-회원님의 아이디는<br/>
-{{#findid}}
-    {{findid}}
-{{/findid}}
-<br/>
 
-
-<input type="button" value="창닫기" onClick="window.close()">
-
-{{>layout/footer}}
+<div class="smallMain">
+    <div class="find">
+    <span>회원님의 아이디는</span>
+    {{#findid}}
+        {{findid}} 입니다.
+    {{/findid}}
+    </div>
+    <div class="close">
+        <input type="button" value="창닫기" onClick="window.close()">
+    </div>
+</div>
+<link href="/app/css/smallfind-id-pw.css" rel="stylesheet" type="text/css">
+{{>layout/smallFooter}}
 

@@ -1,0 +1,122 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup,
+menu, nav, section {
+    display: block;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    line-height: 1;
+    min-height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    margin: 50px auto;
+    padding-top: 5%;
+    padding-right: 35%;
+    padding-bottom: 300px;
+    opacity: 0.6;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 13px;
+    background: #fff;
+    margin: 60px;
+    border-collapse: collapse;
+    text-align: center;
+    border-bottom: 5px solid #592d00;
+    top: 50%;
+    table-layout: fixed;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 2px #d1d1d1;
+    -webkit-box-shadow: 0 1px 2px #d1d1d1;
+    box-shadow: 0 1px 2px #d1d1d1;
+    padding-top: 75px;
+}
+
+table {
+    width: 900px;
+    border-bottom: 1px solid #a9a9a9;
+    margin-left: 200px;
+    margin-top: 35px;
+}
+
+table {
+    background-color: #ffffff;
+}
+
+.tdId{
+    width: 35px;
+}
+
+.author{
+    width: 80px;
+}
+
+.createdDate{
+    width: 150px;
+}
+
+
+.bold :hover {
+    color: black;
+    font-weight: bold;
+
+}
+
+.bold{
+    text-align: left;
+}
+
+.bold a {
+    color: black;
+    text-decoration: none;
+}
+
+table tr th {
+    height: 10px;
+    background: #fafafa;
+    center: auto;
+    border-top: 1px solid #1a1515;
+    border-bottom: 1px solid #1a1515;
+}
+
+table th {
+    font-weight: bold;
+    color: #000000;
+    padding: 3px 3px;
+    border-bottom: 1px solid #a9a9a9;
+}
+
+table td {
+    border-bottom: 1px solid #ccc;
+    color: black;
+    padding: 2px 2px;
+    font-weight: lighter;
+}
+

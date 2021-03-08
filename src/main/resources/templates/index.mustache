@@ -1,27 +1,32 @@
 {{>layout/header}}
 
 
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
+<!-- 목록 출력 영역 -->
+<div class="wrapper">
+    <table class="table">
+        <thead>
         <tr>
-            <th>게시글번호</th>
+            <th class="tdId">번호</th>
+            <th class="tdId"></th>
             <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
+            <th class="author">작성자</th>
+            <th class="createdDate">작성일</th>
         </tr>
         </thead>
         <tbody id="tbody">
         {{#posts}}
             <tr>
-                <td>{{id}}</td>
-                <td><a href="/posts/detail/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
+                <td class="tdId">{{id}}</td>
+                <td class="tdId"></td>
+                <td class="bold"><a href="/posts/detail/{{id}}">{{title}}</a></td>
+                <td class="author">{{author}}</td>
+                <td class="createdDate">{{createdDate}}</td>
             </tr>
         {{/posts}}
         </tbody>
     </table>
 </div>
 
+
+<link href="/app/css/posts-list.css" rel="stylesheet" type="text/css">
 {{>layout/footer}}

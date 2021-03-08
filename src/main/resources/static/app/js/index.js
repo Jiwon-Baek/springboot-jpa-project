@@ -112,13 +112,12 @@ var main = {
         },
 
         signup: function () {
-            var email = $('#email').val() + $('#emailSelect').val()
 
             var data = {
                 username: $('#username').val(),
                 password: $('#password').val(),
                 name: $('#name').val(),
-                email: email
+                email: $('#email').val()
             };
 
             if ($('#username').val() == "") {
@@ -140,52 +139,55 @@ var main = {
                 $('#checkAll').html('<p style="color:red">이메일을 입력하지 않았습니다.</p>');
                 $('#email').val().focus();
                 return false;
-
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/v1/userLogin/signup',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(data)
-                }).done(function () {
-                    alert('회원가입이 되었습니다.');
-                    window.location.href = '/login';
-                }).fail(function (error) {
-                    alert(JSON.stringify(error));
-                });
-
-            }
-        },
-
-        signin: function () {
-            var data = {
-                username: $('#username').val(),
-                password: $('#password').val()
-            };
-
-            if ($('#username').val() == "") {
-                $('#login').html('<p style="color:red">아이디를 입력하지 않았습니다.</p>');
-                return false;
-            }
-
-            if ($('#password').val() == "") {
-                $('#login').html('<p style="color:red">비밀번호를 입력하지 않았습니다.</p>');
-                return false;
             }
 
             $.ajax({
                 type: 'POST',
-                url: '/api/v1/userLogin/login',
+                url: '/api/v1/userLogin/signup',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(data)
             }).done(function () {
-                window.location.href = '/';
+                alert('회원가입이 되었습니다.');
+                window.location.href = '/login';
             }).fail(function (error) {
-                $('#login').html('<p style="color:red">일치하지 않거나 없는 회원입니다.</p>');
+                alert(JSON.stringify(error));
             });
+
         },
+
+        signin:
+
+            function () {
+                var data = {
+                    username: $('#username').val(),
+                    password: $('#password').val()
+                };
+
+                if ($('#username').val() == "") {
+                    $('#login').html('<p>아이디를 입력하지 않았습니다.</p>');
+                    return false;
+                }
+
+                if ($('#password').val() == "") {
+                    $('#login').html('<p>비밀번호를 입력하지 않았습니다.</p>');
+                    return false;
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/v1/userLogin/login',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(data)
+                }).done(function () {
+                    window.location.href = '/';
+                }).fail(function (error) {
+                    $('#login').html('<p>일치하지 않거나 없는 회원입니다.</p>');
+                });
+            }
+
+        ,
 
         idCheck: function () {
 
@@ -214,7 +216,8 @@ var main = {
                     }
                 });
             }
-        },
+        }
+        ,
 
 
         passwordCheck1:
@@ -264,6 +267,7 @@ var main = {
 
         passwordCheck2: function () {
 
+            if($('#password').val() !=0 && $('#password2').val()!=0)
             if ($('#password').val() != $('#password2').val()) {
                 if ($('#password2').val() != '') {
                     $('#checkPw').html('<p style="color:red">비밀번호가 일치하지 않습니다.</p>');
@@ -285,12 +289,12 @@ var main = {
             };
 
             if ($('#name').val() == "") {
-                alert("이름을 입력해주세요.")
+                $('#findid').html('<p>이름을 입력해주세요.</p>');
                 return false;
             }
 
             if ($('#email').val() == "") {
-                alert("이메일을 입력해주세요.")
+                $('#findid').html('<p>이메일을 입력해주세요.</p>');
                 return false;
             }
 
@@ -325,17 +329,17 @@ var main = {
             };
 
             if ($('#username').val() == "") {
-                alert("아이디를 입력해주세요.")
+                $('#findpassword').html('<p>아이디를 입력해주세요.</p>');
                 return false;
             }
 
             if ($('#name').val() == "") {
-                alert("이름을 입력해주세요.")
+                $('#findpassword').html('<p>이름을 입력해주세요.</p>');
                 return false;
             }
 
             if ($('#email').val() == "") {
-                alert("이메일을 입력해주세요.")
+                $('#findpassword').html('<p>이메일을 입력해주세요.</p>');
                 return false;
             }
 
@@ -465,6 +469,7 @@ var main = {
                 }
             }
 
-    };
+    }
+;
 
 main.init();

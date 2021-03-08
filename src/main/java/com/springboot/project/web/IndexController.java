@@ -29,7 +29,7 @@ public class IndexController {
 
     /*메인 페이지*/
     @GetMapping("/")
-    public String index(Model model,@LoginUser SessionUser user) {
+    public String index(Model model, @LoginUser SessionUser user) {
 
         model.addAttribute("posts", postsService.findAllDesc());
 
@@ -66,7 +66,7 @@ public class IndexController {
 
     /*게시물 등록*/
     @GetMapping("/posts/save")
-    public String postsSave(@LoginUser SessionUser user,Model model) {
+    public String postsSave(@LoginUser SessionUser user, Model model) {
 
         model.addAttribute("author", user.getUsername());
 
@@ -75,14 +75,17 @@ public class IndexController {
 
     //게시물 세부 내용
     @GetMapping("/posts/detail/{id}")
-    public String postsContent(@PathVariable Long id, Model model,@LoginUser SessionUser user) {
+    public String postsContent(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
 
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("postD", dto);
 
 
-        if(user!=null){
-            model.addAttribute("postUser",user.getUsername());
+        //로그인한 유저가 글을 작성한 유저와 다를 때 수정,삭제 버튼이 안뜨게 하기 위함
+        if (user != null) {
+            if (dto.getAuthor().equals(user.getUsername())) {
+                model.addAttribute("postUser", user.getUsername());
+            }
         }
 
         return "posts/posts-detail";
