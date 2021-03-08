@@ -1,35 +1,44 @@
 {{>layout/header}}
 
-<h1>나의정보 수정</h1>
-
-<div class="col-md-12">
-    <div class="col-md-4">
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
+        <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
+        <div class="col1"><a href="/mypage/update">수정하기</a></div>
+        <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
+    </div>
+    <div class="main">
+        <div class="wrapper-h3">
+            <h3>정보 수정</h3>
+        </div>
         <form>
-            <div class="form-group">
-                <label for="username">아이디</label>
-                <div><input type="text" class="form-control" id="username" value="{{users.username}}" readonly></div>
-            </div>
-            <div class="form-group">
-                <label for="password">비밀번호</label>
-                <div><input type="password" class="form-control" id="password"></div>
-            </div>
-            <div class="form-group">
-                <label for="password">비밀번호 확인</label>
-                <div><input type="password" class="form-control" id="password2"></div>
-            </div>
-            <div class="text-center small mt-2" id="checkPw"></div>
-            <div class="form-group">
-                <label for="title">이름</label>
-                <div><input type="text" class="form-control" id="name" value="{{users.name}}"></div>
-            </div>
-            <div class="form-group">
-                <label for="email"> 이메일 </label>
-                <div><input type="text" class="form-control" id="email" value="{{users.email}}"></div>
+            <div class="box">
+                <div class="input">
+                    <input type="text" id="username" value="{{users.username}}" placeholder="아이디" readonly/>
+                </div>
+                <div class="input">
+                    <input type="text" id="password" placeholder="비밀번호" autofocus/>
+                </div>
+                <div class="input">
+                    <input type="text" id="password2" placeholder="비밀번호 확인" autofocus/>
+                </div>
+                <div class="input">
+                    <input type="text" id="name" value="{{users.name}}" placeholder="이름" autofocus/>
+                </div>
+                <div class="input">
+                    <input type="text" id="email" value="{{users.email}} " placeholder="이메일" autofocus/>
+                </div>
+                <div class="last">
+                    <button type="button" class="btn btn-primary" id="btn-userUpdate">수정</button>
+                </div>
+
             </div>
         </form>
 
-        <button type="button" class="btn btn-primary" id="btn-userUpdate">수정</button>
     </div>
 </div>
+<link href="/app/css/mypage.css" rel="stylesheet" type="text/css">
 
 {{>layout/footer}}

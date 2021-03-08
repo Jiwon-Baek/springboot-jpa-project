@@ -1,25 +1,36 @@
 {{>layout/header}}
 
-<h1>탈퇴 페이지</h1>
-<hr/>
-<div>회원 탈퇴</div>
-<br/>
-<form>
-    <div>
-        <label>비밀번호</label>
-        <input type="password" id="password" placeholder="password"/>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
+        <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
+        <div class="col1"><a href="/mypage/update">수정하기</a></div>
+        <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
     </div>
-    <div>
-        <label>비밀번호 확인</label>
-        <input type="password" id="password2" placeholder="password"/>
+    <div class="main">
+        <div class="wrapper-h3">
+            <h3>회원 탈퇴</h3>
+        </div>
+        <form>
+            <div class="box">
+                <div class="input">
+                    <input type="text" id="password" placeholder="비밀번호" autofocus/>
+                </div>
+                <div class="input">
+                    <input type="text" id="password2" placeholder="비밀번호 확인" autofocus/>
+                </div>
+                <div class="last">
+                    <input type="hidden" id="username" value="{{username}}">
+                    <button type="button" class="btn btn-danger" id="btn-withdrawal">삭제</button>
+                </div>
+            </div>
+        </form>
+
     </div>
-</form>
-<div class="text-center small mt-2" id="checkPassword"></div>
-
-<br/>
-
-<input type="hidden" id="username" value="{{username}}">
-<button type="button" class="btn btn-danger" id="btn-withdrawal">삭제</button>
+</div>
+<link href="/app/css/mypage.css" rel="stylesheet" type="text/css">
 
 {{>layout/footer}}
 

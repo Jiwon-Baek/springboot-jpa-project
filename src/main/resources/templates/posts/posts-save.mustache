@@ -1,26 +1,30 @@
 {{>layout/header}}
-
-<h1>게시글 등록</h1>
-
-<div class="col-md-12">
-    <div class="col-md-4">
+<div class="wrapper">
+    <div class="posts-save">
         <form>
-            <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="title">작성자</label>
-                <input type="text" class="form-control" id="author" value="{{author}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
-            </div>
+            <table class="table">
+                <tr>
+                    <th>제목</th>
+                    <td><input type="text"  id="title" placeholder="제목을 입력하세요"></td>
+                </tr>
+                <tr>
+                    <th>작성자</th>
+                    <td colspan="3"><input type="text"id="author" value="{{author}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="4">내용</th>
+                </tr>
+                <tr>
+                    <td colspan="4"><textarea id="content" placeholder="내용을 입력하세요"></textarea></td>
+                </tr>
+            </table>
         </form>
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
+    </div>
+    <div class="btn-input">
         <button type="button" class="btn btn-primary" id="btn-save">등록</button>
+        <a href="/" role="button" class="btn btn-secondary">취소</a>
     </div>
 </div>
-
+<link href="/app/css/posts.css" rel="stylesheet" type="text/css">
 {{>layout/footer}}

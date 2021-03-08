@@ -1,3 +1,4 @@
+/*공통부분*/
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
 em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
@@ -34,11 +35,86 @@ html {
     position: relative;
     width: 400px;
     margin: 50px auto;
+    margin-top: 100px;
     padding-right: 38%;
     padding-bottom: 300px;
     opacity: 0.6;
-    cursor:auto;
+    cursor: auto;
 }
+
+
+table {
+    width: 900px;
+    border-bottom: 1px solid #fcfcfc;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+
+table {
+    background-color: #ffffff;
+}
+
+
+table tr th {
+    background: #f4f6f6;
+    center: auto;
+}
+
+table th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #000000;
+    padding: 5px 3px;
+    border-bottom: 1px solid #a9a9a9;
+}
+
+table td {
+
+    text-align: left;
+    font-size: 15px;
+    border-bottom: 1px solid #ccc;
+    color: black;
+    padding: 6px 8px;
+}
+
+.wrapper .btn-input {
+    width: 80%;
+    margin-left: 200%;
+}
+
+.wrapper .btn-input button {
+    background-color: #000705;
+    border: none;
+    color: #ffffff;
+    padding: 10px 10px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+
+}
+
+
+.wrapper .btn-input a {
+    background-color: #090000;
+    border: none;
+    color: #ffffff;
+    padding: 10px 10px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/*세부사항*/
 
 .wrapper .posts-detail .table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
@@ -64,40 +140,59 @@ html {
     text-align: left;
 }
 
-table {
-    width: 900px;
-    border-bottom: 1px solid #a9a9a9;
-    margin-left: 200px;
-    margin-top: 35px;
-}
-
-table {
-    background-color: #ffffff;
+.wrapper .btn-right {
+    padding-left: 30px;
+    margin-top: -50px;
 }
 
 
-table tr th {
-    background: #004b4b;
-    center: auto;
+/*등록 ,수정 부분*/
+
+.wrapper .posts-save {
+    margin-left: 10px;
 }
 
-table th {
-    font-size: 17px;
+.wrapper .posts-save th {
+    width: 150px;
+}
+
+.wrapper .posts-save input {
+    width: 100%;
+    border: none;
+}
+
+
+.wrapper .posts-save textarea {
+    border: none;
+    height: 500px;
+    width: 100%;
+}
+
+
+/*수정부분*/
+
+.wrapper .btn-input2 {
+    width: 80%;
+    margin-left: 190%;
+}
+
+.wrapper .btn-input2 button {
+    background-color: #000906;
+    border: none;
+    color: #ffffff;
+    padding: 10px 10px;
     font-weight: bold;
-    color: #ebebeb;
-    padding: 5px 3px;
-    border-bottom: 1px solid #a9a9a9;
+    font-size: 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+
 }
 
-table td {
-
-    text-align: left;
-    font-size: 15px;
-    border-bottom: 1px solid #ccc;
-    color: black;
-    padding: 6px 8px;
-}
-
-.last{
+.wrapper .btn-input2 button :hover {
+    color: #010501;
 
 }

@@ -1,28 +1,40 @@
 {{>layout/header}}
-
-<h1>나의 정보</h1>
-
-<div class="col-md-12">
-    <div class="col-md-4">
-        <form>
-            <div class="form-group">
-                <label for="username">아이디</label>
-                <div>{{userD.username}}</div>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
+        <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
+        <div class="col1"><a href="/mypage/update">수정하기</a></div>
+        <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
+    </div>
+    <div class="main">
+            <div class="wrapper-h3">
+                <h3>{{userD.name}}님의 프로필 정보</h3>
             </div>
-            <div class="form-group">
-                <label for="name">이름</label>
-                <div>{{userD.name}}</div>
+            <div class="wrapper-body">
+                <div class="wrapper-left">
+                    <div class="imgmove">
+                    <img src="/app/images/profile.jpg" alt="이미지"></div>
+                </div>
+                <div class="wrapper-right">
+                    <div class="col1">
+                        <div class="row1">아이디:</div>
+                        <div class="row1-data">{{userD.username}}</div>
+                    </div>
+                    <div class="col2">
+                        <div class="row2">이름:</div>
+                        <div class="row2-data">{{userD.name}}</div>
+                    </div>
+                    <div class="col3">
+                        <div class="row3">이메일:</div>
+                        <div class="row3-data">{{userD.email}}</div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email"> 이메일 </label>
-                <div>{{userD.email}}</div>
-            </div>
-        </form>
-
-        <a href="/mypage/posts">작성한 게시물</a><br/>
-        <a href="/mypage/update">수정하기</a><br/>
-        <a href="/mypage/withdrawal">회원탈퇴</a>
     </div>
 </div>
 
+
+<link href="/app/css/mypage.css" rel="stylesheet" type="text/css">
 {{>layout/footer}}

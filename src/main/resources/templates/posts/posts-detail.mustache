@@ -18,7 +18,7 @@
                     <th>수정 날짜</th>
                     <td>{{postD.modifiedDate}}</td>
                 </tr>
-                <tr >
+                <tr>
                     <th colspan="4">내용</th>
                 </tr>
                 <tr>
@@ -26,12 +26,12 @@
                 </tr>
             </table>
         </form>
-        <div class="last">
+    </div>
+    <div class="btn-input btn-right">
         {{#postUser}}
             <button onclick="history.back()">돌아가기</button>
             <a href="/posts/update/{{postD.id}}" type="button">수정</a>
         {{/postUser}}
-        </div>
     </div>
 </div>
 

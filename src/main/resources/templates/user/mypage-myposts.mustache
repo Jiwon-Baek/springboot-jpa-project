@@ -1,34 +1,50 @@
 {{>layout/header}}
 
-<h1>내가 쓴 게시물</h1>
+
+
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
+        <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
+        <div class="col1"><a href="/mypage/update">수정하기</a></div>
+        <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
+    </div>
 {{#userPosts}}
-    <div class="wrapper">
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="tdId">번호</th>
-                <th class="tdId"></th>
-                <th>제목</th>
-                <th class="author">작성자</th>
-                <th class="createdDate">작성일</th>
-            </tr>
-            </thead>
-            <tbody id="tbody">
-                <tr>
-                    <td class="tdId">{{id}}</td>
-                    <td class="tdId"></td>
-                    <td class="bold"><a href="/posts/detail/{{id}}">{{title}}</a></td>
-                    <td class="author">{{author}}</td>
-                    <td class="createdDate">{{createdDate}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="main">
+            <div class="wrapper-h3">
+                <h3>나의 게시물</h3>
+            </div>
+            <div class="tabletop">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="tdId">번호</th>
+                        <th class="tdId"></th>
+                        <th>제목</th>
+                        <th class="author">작성자</th>
+                        <th class="createdDate">작성일</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    <tr>
+                        <td class="tdId">{{id}}</td>
+                        <td class="tdId"></td>
+                        <td class="bold"><a href="/posts/detail/{{id}}">{{title}}</a></td>
+                        <td class="author">{{author}}</td>
+                        <td class="createdDate">{{createdDate}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {{/userPosts}}
 {{^userPosts}}
     작성하신 게시물이 없습니다.
 {{/userPosts}}
 
-<link href="/app/css/posts-list.css" rel="stylesheet" type="text/css">
+<link href="/app/css/mypage.css" rel="stylesheet" type="text/css">
 
 {{>layout/footer}}
