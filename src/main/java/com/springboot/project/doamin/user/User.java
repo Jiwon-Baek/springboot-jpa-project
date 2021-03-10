@@ -44,7 +44,7 @@ public class User extends BaseTimeEntity implements UserDetails {
     private Role role;
 
     @OneToMany(mappedBy = "user")
-    private List<Posts> posts = new ArrayList<Posts>();
+    private final List<Posts> posts = new ArrayList<>();
 
 
     @Builder

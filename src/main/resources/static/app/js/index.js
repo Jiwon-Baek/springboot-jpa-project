@@ -49,6 +49,11 @@ var main = {
                 _this.withdrawal();
             });
 
+            $('#btn-search').on('click', function () {
+                _this.search();
+            });
+
+
         },
 
         save: function () {
@@ -66,7 +71,7 @@ var main = {
                 data: JSON.stringify(data)
             }).done(function () {
                 alert('글이 등록되었습니다.');
-                window.location.href = '/';
+                window.location.href = '/posts';
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
@@ -88,7 +93,6 @@ var main = {
                 data: JSON.stringify(data)
             }).done(function () {
                 alert('글이 수정되었습니다.');
-                window.location.href = '/';
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
@@ -105,7 +109,7 @@ var main = {
                 contentType: 'application/json; charset=utf-8'
             }).done(function () {
                 alert('글이 삭제되었습니다.');
-                window.location.href = '/';
+                window.location.href = '/posts';
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
@@ -267,16 +271,16 @@ var main = {
 
         passwordCheck2: function () {
 
-            if($('#password').val() !=0 && $('#password2').val()!=0)
-            if ($('#password').val() != $('#password2').val()) {
-                if ($('#password2').val() != '') {
-                    $('#checkPw').html('<p style="color:red">비밀번호가 일치하지 않습니다.</p>');
-                    $('#password2').val('');
-                    $('#password2').focus();
+            if ($('#password').val() != 0 && $('#password2').val() != 0)
+                if ($('#password').val() != $('#password2').val()) {
+                    if ($('#password2').val() != '') {
+                        $('#checkPw').html('<p style="color:red">비밀번호가 일치하지 않습니다.</p>');
+                        $('#password2').val('');
+                        $('#password2').focus();
+                    }
+                } else if ($('#password').val() == $('#password2').val()) {
+                    $('#checkPw').html('<p style="color:green">비밀번호가 일치합니다.</p>');
                 }
-            } else if ($('#password').val() == $('#password2').val()) {
-                $('#checkPw').html('<p style="color:green">비밀번호가 일치합니다.</p>');
-            }
 
         }
         ,
@@ -412,62 +416,101 @@ var main = {
         ,
 
 
-        withdrawal:
+        withdrawal: function () {
 
-            function () {
+            var data = {
+                password: $('#password').val()
+            };
 
-                var data = {
-                    password: $('#password').val()
-                };
+            if ($('#password').val() == "") {
+                alert("비밀번호를 입력해주세요.")
+                return false;
+            }
 
-                if ($('#password').val() == "") {
-                    alert("비밀번호를 입력해주세요.")
-                    return false;
+            if ($('#password2').val() == "") {
+                alert("비밀번호를 입력해주세요.")
+                return false;
+            }
+
+            if ($('#password').val() != $('#password2').val()) {
+
+                if ($('#password2').val() != '') {
+                    $('#checkPassword').html('<p style="color:red">비밀번호가 일치하지 않습니다.</p>');
+                    $('#password2').val('');
+                    $('#password').focus();
+                    $('#password2').focus();
                 }
 
-                if ($('#password2').val() == "") {
-                    alert("비밀번호를 입력해주세요.")
-                    return false;
-                }
+            } else if ($('#password').val() == $('#password2').val()) {
 
-                if ($('#password').val() != $('#password2').val()) {
-                    if ($('#password2').val() != '') {
-                        $('#checkPassword').html('<p style="color:red">비밀번호가 일치하지 않습니다.</p>');
-                        $('#password2').val('');
-                        $('#password').focus();
-                        $('#password2').focus();
-                    }
-                } else if ($('#password').val() == $('#password2').val()) {
+                var username = $('#username').val();
 
-                    var username = $('#username').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/v1/user/withdrawal/' + username,
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(data)
+                }).done(function (data) {
+
+                    var id = data;
 
                     $.ajax({
-                        type: 'POST',
-                        url: '/api/v1/user/withdrawal/' + username,
+                        type: 'DELETE',
+                        url: '/api/v1/user/withdrawal/' + id,
                         dataType: 'json',
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(data)
-                    }).done(function (data) {
-
-                        var id = data;
-
-                        $.ajax({
-                            type: 'DELETE',
-                            url: '/api/v1/user/withdrawal/' + id,
-                            dataType: 'json',
-                            contentType: 'application/json; charset=utf-8'
-                        }).done(function () {
-                            alert('정상적으로 탈퇴되었습니다.');
-                            window.location.href = '/';
-                        }).fail(function (error) {
-                            alert("비밀번호가 틀렸습니다.");
-                        });
-
+                        contentType: 'application/json; charset=utf-8'
+                    }).done(function () {
+                        alert('정상적으로 탈퇴되었습니다.');
+                        window.location.href = '/';
                     }).fail(function (error) {
-                        alert(JSON.stringify(error));
+                        alert("비밀번호가 틀렸습니다.");
                     });
-                }
+
+                }).fail(function (error) {
+                    alert(JSON.stringify(error));
+                });
             }
+
+
+        },
+
+        search: function () {
+            if($('#searchType').val()=="author"){
+                var data = {
+                    author: $('#keyword').val()
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/v1/posts/searchAuthor',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(data)
+                }).done(function (data) {
+                    var author= data;
+                    window.location.href = '/posts/author/'+author;
+                }).fail(function (error) {
+                    alert(JSON.stringify(error));
+                });
+            }else if($('#searchType').val()=="title") {
+
+                var data = {
+                    title: $('#keyword').val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/v1/posts/searchTitle',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(data)
+                }).done(function (data) {
+                    var title = data;
+                    window.location.href = '/posts/title/'+title;
+                }).fail(function (error) {
+                    alert(JSON.stringify(error));
+                });
+            }
+        }
+
 
     }
 ;

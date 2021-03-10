@@ -358,3 +358,8 @@ button {
 .wrapper .main .box .last :hover {
     background-color: #004b4b;
 }
+
+.notice{
+    padding: 20px 0 50px 0;
+    font-weight: bold;
+}

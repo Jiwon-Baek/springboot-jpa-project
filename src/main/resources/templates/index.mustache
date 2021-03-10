@@ -1,32 +1,74 @@
 {{>layout/header}}
 
+<div class="slider slider-1">
+    <div class="slides">
+        <div class="active" style="background-color:red;">
+            <h2 class="title">뉴땡 뉴땡<strong class="sub">날아올라 브루스리</strong></h2>
+            <span>렛미인트로듀스 뉴땡뉴땡</span>
+        </div>
+        <div style="background-color:blue;"><img src="/app/images/banner.jpg"></div>
+        <div style="background-color:green;"></div>
+        <div style="background-color:gold;"></div>
+    </div>
 
-<!-- 목록 출력 영역 -->
-<div class="wrapper">
-    <table class="table">
-        <thead>
-        <tr>
-            <th class="tdId">번호</th>
-            <th class="tdId"></th>
-            <th>제목</th>
-            <th class="author">작성자</th>
-            <th class="createdDate">작성일</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        {{#posts}}
-            <tr>
-                <td class="tdId">{{id}}</td>
-                <td class="tdId"></td>
-                <td class="bold"><a href="/posts/detail/{{id}}">{{title}}</a></td>
-                <td class="author">{{author}}</td>
-                <td class="createdDate">{{createdDate}}</td>
-            </tr>
-        {{/posts}}
-        </tbody>
-    </table>
+    <div class="pages">
+        <div class="active"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$('.slider > .pages > div').click(function() {
+var $this = $(this);
+var $slider = $this.closest('.slider');
 
-<link href="/app/css/posts-list.css" rel="stylesheet" type="text/css">
+$this.addClass('active');
+$this.siblings('.active').removeClass('active');
+
+var index = $this.index();
+
+$slider.find(' > .slides > .active').removeClass('active');
+$slider.find(' > .slides > div').eq(index).addClass('active');
+});
+
+$('.slider > .side-btns > div').click(function() {
+var $this = $(this);
+var index = $this.index();
+var $slider = $this.closest('.slider');
+
+var $current = $slider.find('.pages > div.active');
+var $post;
+
+if ( index == 0 ) {
+$post = $current.prev();
+}
+else {
+$post = $current.next();
+}
+
+if ( $post.length == 0 ) {
+if ( index == 0 ) {
+$post = $slider.find('.pages > div:last-child');
+}
+else {
+$post = $slider.find('.pages > div:first-child');
+}
+}
+
+$post.click();
+});
+
+function Slider1__moveNext() {
+var $slider = $('.slider-1');
+var $nextBtn = $slider.find('.side-btns > div:last-child');
+$nextBtn.click();
+}
+
+setInterval(Slider1__moveNext, 3000);
+
+</script>
+<link href="/app/css/index.css" rel="stylesheet" type="text/css">
 {{>layout/footer}}

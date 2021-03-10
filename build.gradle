@@ -27,6 +27,7 @@ dependencies {
     //mustache
     compile'org.springframework.boot:spring-boot-starter-mustache'
 
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
 
     //lombok

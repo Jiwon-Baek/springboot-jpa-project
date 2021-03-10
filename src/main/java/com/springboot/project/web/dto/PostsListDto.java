@@ -1,18 +1,25 @@
 package com.springboot.project.web.dto;
 
 import com.springboot.project.doamin.posts.Posts;
+
+import com.springboot.project.doamin.user.User;
+import javafx.scene.NodeBuilder;
+import lombok.Builder;
 import lombok.Getter;
 
+
 import java.time.LocalDateTime;
+
 
 
 @Getter
 public class PostsListDto {
 
-    private Long id;
-    private String title;
-    private String author;
-    private LocalDateTime createdDate;
+    private final Long id;
+    private final String title;
+    private final String author;
+    private final LocalDateTime createdDate;
+
 
 
     public PostsListDto(Posts entity) {
@@ -21,4 +28,5 @@ public class PostsListDto {
         this.author = entity.getAuthor();
         this.createdDate=entity.getCreatedDate();
     }
+
 }

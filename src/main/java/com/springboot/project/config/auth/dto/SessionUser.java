@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Getter
 public class SessionUser implements Serializable {
 
-    private String username;
-    private String name;
-    private String email;
+    private final String username;
+    private final String name;
+    private final String email;
 
 
     public SessionUser(User user) {
