@@ -4,17 +4,12 @@ import com.springboot.project.doamin.posts.Posts;
 import com.springboot.project.doamin.posts.PostsRepository;
 import com.springboot.project.doamin.user.User;
 import com.springboot.project.doamin.user.UserRepository;
-import com.springboot.project.web.dto.PostsListDto;
-import com.springboot.project.web.dto.PostsResponseDto;
-import com.springboot.project.web.dto.PostsSaveDto;
-import com.springboot.project.web.dto.PostsUpdateDto;
+import com.springboot.project.web.dto.*;
 import lombok.RequiredArgsConstructor;
 
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -113,7 +108,49 @@ public class PostsService {
     //게시판 페이지 서비스
 
     @Transactional
-    public Page<Posts> findBooksByPageRequest(Pageable pageable) {
+    public Page<Posts> findPostsByPageRequest(Pageable pageable) {
+
         return postsRepository.findAll(pageable);
     }
+
+    //게시물 전체 갯수를 구하는 서비스
+    @Transactional
+    public Long getPostsCount() {
+        return postsRepository.count();
+    }
+
+
+    //게시물 전체 갯수를 활용하여 필요한 페이지 버튼 수를 구해 활용
+    @Transactional
+    public List<PostsPageDto> getPageList(Pageable pageable) {
+
+        List<Integer> pageDtos = new ArrayList<>();
+
+        // 총 게시글 갯수
+        Double postsTotalCount = Double.valueOf(this.getPostsCount());
+
+        // 총 게시글 기준으로 계산한 마지막 페이지 번호 계산
+        Integer totalLastPageNum = (int) (Math.ceil((postsTotalCount / pageable.getPageSize())));
+
+        // 현재 페이지를 기준으로 블럭의 마지막 페이지 번호 계산
+        Integer blockLastPageNum = (totalLastPageNum > pageable.getPageNumber() + 10)
+                ? pageable.getPageNumber() + 10
+                : totalLastPageNum;
+
+        // 페이지 시작 번호 조정
+        Integer curPageNum = (pageable.getPageNumber() < 3) ? 1 : pageable.getPageNumber() - 2;
+
+
+        // 페이지 번호 할당
+        for (int i = 0; i < blockLastPageNum; i++) {
+
+            pageDtos.add(curPageNum);
+            curPageNum++;
+
+        }
+
+        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+
+    }
+
 }

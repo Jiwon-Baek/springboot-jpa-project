@@ -10,12 +10,13 @@ import com.springboot.project.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -28,9 +29,12 @@ public class PostsPageController {
 
     /*게시물 전체 출력*/
     @GetMapping("/posts")
-    public String postsList(Model model, @LoginUser SessionUser user, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+    public String postsList(Model model, @LoginUser SessionUser user, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-        model.addAttribute("postsList", postsService.findAllDesc());
+
+        model.addAttribute("posts", postsService.findPostsByPageRequest(pageable));
+
+        model.addAttribute("pageList", postsService.getPageList(pageable));
 
         if (user != null) {
             model.addAttribute("userId", user.getUsername());

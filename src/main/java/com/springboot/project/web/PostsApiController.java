@@ -58,7 +58,7 @@ public class PostsApiController {
     public String findByTitle(@RequestBody PostsResponseDto dto) {
         String title = dto.getTitle();
 
-         postsService.findByTitle(title);
+        postsService.findByTitle(title);
 
         return title;
     }
@@ -74,10 +74,11 @@ public class PostsApiController {
         return author;
     }
 
+
     //페이징
     @RequestMapping("/posts")
     public Page<Posts> findPostsByPageRequest(final Pageable pageable) {
-        return postsService.findBooksByPageRequest(pageable);
+        return postsService.findPostsByPageRequest(pageable);
     }
-
 }
+

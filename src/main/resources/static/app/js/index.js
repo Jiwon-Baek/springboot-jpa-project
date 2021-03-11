@@ -476,7 +476,7 @@ var main = {
         },
 
         search: function () {
-            if($('#searchType').val()=="author"){
+            if ($('#searchType').val() == "author") {
                 var data = {
                     author: $('#keyword').val()
                 };
@@ -486,12 +486,12 @@ var main = {
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(data)
                 }).done(function (data) {
-                    var author= data;
-                    window.location.href = '/posts/author/'+author;
+                    var author = data;
+                    window.location.href = '/posts/author/' + author;
                 }).fail(function (error) {
                     alert(JSON.stringify(error));
                 });
-            }else if($('#searchType').val()=="title") {
+            } else if ($('#searchType').val() == "title") {
 
                 var data = {
                     title: $('#keyword').val()
@@ -504,7 +504,7 @@ var main = {
                     data: JSON.stringify(data)
                 }).done(function (data) {
                     var title = data;
-                    window.location.href = '/posts/title/'+title;
+                    window.location.href = '/posts/title/' + title;
                 }).fail(function (error) {
                     alert(JSON.stringify(error));
                 });

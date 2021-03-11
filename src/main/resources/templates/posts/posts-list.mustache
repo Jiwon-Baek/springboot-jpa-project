@@ -59,14 +59,25 @@
         {{/postsT}}
         </tbody>
     </table>
+    <div>
+        {{#pageList}}
+            <a href="javascript:;" class="pageNum"  value="{{listNum}}">{{listNum}}</a>
+        {{/pageList}}
+    </div>
 </div>
-<div>
-{{#pageList}}
-    <span>
-        <a href="/posts?page= + {{pageList}}">[[{{pageList}}]</a>
-    </span>
-{{/pageList}}
-</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    var page= "";
+
+    $(".pageNum").on("click",function() {
+
+        var page = $(this).attr('value')-1;
+
+        window.location.href = '/posts?page='+page;
+
+    });
+</script>
 
 <link href="/app/css/posts-list.css" rel="stylesheet" type="text/css">
 {{>layout/footer}}
