@@ -9,8 +9,6 @@ import com.springboot.project.web.dto.*;
 import lombok.RequiredArgsConstructor;
 
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,10 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpSession;
 
 
-
 @RequiredArgsConstructor
 @Service
-public class UserService implements UserDetailsService {
+public class UserService{
 
     private final UserRepository userRepository;
     private final HttpSession httpSession;
@@ -40,26 +37,11 @@ public class UserService implements UserDetailsService {
     }
 
 
-    //유저 아이디로 유저가 있는지 확인
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-
-        User entity = userRepository.findByUsername(username);
-
-        if(entity == null) throw new UsernameNotFoundException("해당 아이디를 가진 유저를 찾을 수 없습니다");
-
-        return entity;
-
-    }
-
-
-    //로그인시 비밀번호까지 일치한지 확인
+    //로그인시 비밀번호까지 일치한지 확인후 세션에 담기
     @Transactional
     public UserLoginDto findUserByUP(String username, String password) {
 
         User user = this.userRepository.findByUsername(username);
-
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

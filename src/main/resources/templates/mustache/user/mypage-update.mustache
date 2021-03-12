@@ -1,4 +1,4 @@
-{{>layout/header}}
+{{>mustache/layout/header}}
 
 <div class="wrapper">
     <div class="sidebar">
@@ -19,16 +19,16 @@
                     <input type="text" id="username" value="{{users.username}}" placeholder="아이디" readonly/>
                 </div>
                 <div class="input">
-                    <input type="text" id="password" placeholder="비밀번호" autofocus/>
+                    <input type="password" id="password" placeholder="비밀번호" autofocus/>
                 </div>
                 <div class="input">
-                    <input type="text" id="password2" placeholder="비밀번호 확인" autofocus/>
+                    <input type="password" id="password2" placeholder="비밀번호 확인" autofocus/>
                 </div>
                 <div class="input">
                     <input type="text" id="name" value="{{users.name}}" placeholder="이름" autofocus/>
                 </div>
                 <div class="input">
-                    <input type="text" id="email" value="{{users.email}} " placeholder="이메일" autofocus/>
+                    <input type="email" id="email" value="{{users.email}} " placeholder="이메일" autofocus/>
                 </div>
                 <div class="last">
                     <button type="button" class="btn btn-primary" id="btn-userUpdate">수정</button>
@@ -41,4 +41,4 @@
 </div>
 <link href="/app/css/mypage.css" rel="stylesheet" type="text/css">
 
-{{>layout/footer}}
+{{>mustache/layout/footer}}

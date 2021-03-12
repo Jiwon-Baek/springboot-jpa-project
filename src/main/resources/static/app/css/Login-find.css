@@ -78,14 +78,20 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background-color: #f6f5f5;
     line-height: 1;
     min-height: 100%;
+}
+
+.main{
+    background-color: #ffffff;
 }
 
 .box .input {
     border-bottom: 2px solid #c4c5c4;
     padding: 30px 0 35px 0;
+    width: 100%;
+    height: 100%;
 }
 
 .box .input input {
@@ -121,8 +127,11 @@ button {
     width: 100%;
     margin-top: 15px;
     padding-top: 20px;
-
+    background-color: #ffffff;
     font-family: 'Gothic A1', sans-serif;
+}
+.last{
+    background-color: #ffffff;
 }
 
 .box .last :hover {
@@ -132,18 +141,21 @@ button {
 .box .last .left {
     float: left;
     font-weight: bold;
+
 }
 
 .box .last .middle {
     float: left;
     margin-left: 24px;
     font-weight: bold;
+
 }
 
 .box .last .right {
     float: right;
     margin-left: 24px;
     font-weight: bold;
+
 }
 
 .notice {
@@ -151,4 +163,18 @@ button {
     margin-top: 25px;
     font-weight: bold;
     color: #ad1d1d;
+}
+
+.wrapper-h3 {
+    background-color: #5a863a;
+    height: 50px;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    margin-top: -60px;
+}
+
+.wrapper-h3 h3 {
+    padding-left: 10px;
+    padding-top: 15px;
 }

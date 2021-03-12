@@ -35,7 +35,7 @@ public class UserApiController {
         return str;
     }
 
-    //로그인
+    //로그인 후 세션에 담기
     @PostMapping("api/v1/userLogin/login")
     public UserLoginDto login(@RequestBody UserLoginDto dto) {
 
@@ -49,6 +49,7 @@ public class UserApiController {
     }
 
 
+    //아이디 찾기
     @PostMapping("api/v1/userLogin/findid")
     public Long findIdByNE(@RequestBody UserResponseDto user) {
 
@@ -59,6 +60,7 @@ public class UserApiController {
     }
 
 
+    //비밀번호 찾기
     @PostMapping("api/v1/userLogin/findpassword")
     public Long findPasswordByUNE(@RequestBody UserResponseDto user) {
 
@@ -68,12 +70,14 @@ public class UserApiController {
 
     }
 
+    //개인정보 수정
     @PutMapping("/api/v1/user/update/{username}")
     public String update(@PathVariable String username,@RequestBody UserUpdateDto requestDto) throws Exception {
 
         return userService.update(username, requestDto);
     }
 
+    //회원 탈퇴 확인
     @PostMapping("api/v1/user/withdrawal/{username}")
     public Long withdrawal(@PathVariable String username, @RequestBody UserLoginDto dto) {
 
@@ -83,9 +87,11 @@ public class UserApiController {
 
     }
 
+    //회원 탈퇴
     @DeleteMapping("/api/v1/user/withdrawal/{id}")
     public Long delete(@PathVariable Long id) {
         System.out.println(id);
+
         userService.delete(id);
         return id;
     }

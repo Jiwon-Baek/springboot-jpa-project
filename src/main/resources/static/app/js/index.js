@@ -160,9 +160,7 @@ var main = {
 
         },
 
-        signin:
-
-            function () {
+        signin: function () {
                 var data = {
                     username: $('#username').val(),
                     password: $('#password').val()
@@ -185,7 +183,7 @@ var main = {
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(data)
                 }).done(function () {
-                    window.location.href = '/';
+
                 }).fail(function (error) {
                     $('#login').html('<p>일치하지 않거나 없는 회원입니다.</p>');
                 });

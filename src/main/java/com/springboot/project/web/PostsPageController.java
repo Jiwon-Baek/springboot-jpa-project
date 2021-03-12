@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RequiredArgsConstructor
@@ -40,7 +39,7 @@ public class PostsPageController {
             model.addAttribute("userId", user.getUsername());
         }
 
-        return "/posts/posts-list";
+        return "/mustache/posts/posts-list";
     }
 
     /*게시물 등록*/
@@ -49,7 +48,7 @@ public class PostsPageController {
 
         model.addAttribute("author", user.getUsername());
 
-        return "posts/posts-save";
+        return "/mustache/posts/posts-save";
     }
 
     //게시물 세부 내용
@@ -67,7 +66,7 @@ public class PostsPageController {
             }
         }
 
-        return "posts/posts-detail";
+        return "/mustache/posts/posts-detail";
     }
 
 
@@ -77,35 +76,37 @@ public class PostsPageController {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
 
-        return "posts/posts-update";
+        return "/mustache/posts/posts-update";
     }
 
 
     /*작성자명 검색 결과창*/
     @GetMapping("/posts/author/{author}")
-    public String searchAuthor(Model model, @LoginUser SessionUser user, @PathVariable String author) {
+    public String searchAuthor(Model model, @LoginUser SessionUser user, @PathVariable String author, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-        model.addAttribute("postsA", postsService.findByAuthor(author));
+        model.addAttribute("postsA", postsService.findByAuthor(author,pageable));
+        model.addAttribute("pageListA", postsService.getSearchAuthorPageList(author, pageable));
 
         if (user != null) {
             model.addAttribute("userId", user.getUsername());
         }
 
 
-        return "/posts/posts-list";
+        return "/mustache/posts/posts-searchauthor";
     }
 
     /*제목명 검색 결과창*/
     @GetMapping("/posts/title/{title}")
-    public String searchTitle(Model model, @LoginUser SessionUser user, @PathVariable String title) {
+    public String searchTitle(Model model, @LoginUser SessionUser user, @PathVariable String title,@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-        model.addAttribute("postsT", postsService.findByTitle(title));
+        model.addAttribute("postsT", postsService.findByTitle(title,pageable));
+        model.addAttribute("pageListT", postsService.getSearchTitlePageList(title,pageable));
 
         if (user != null) {
             model.addAttribute("userId", user.getUsername());
         }
 
-        return "/posts/posts-list";
+        return "/mustache/posts/posts-searchtitle";
     }
 
 }

@@ -58,6 +58,7 @@ public class PostsService {
         postsRepository.delete(posts);
     }
 
+
     //글번호로 게시물 찾기
     @Transactional(readOnly = true)
     public PostsResponseDto findById(Long id) {
@@ -77,9 +78,9 @@ public class PostsService {
     }
 
     //유저의 고유 번호로 게시물 찾기(연동)
-    @Transactional(readOnly = true)
-    public List<PostsListDto> findByUserId(Long userId) {
-        return postsRepository.findByUserId(userId).stream()
+    @Transactional
+    public List<PostsListDto> findByUserId(Long userId,Pageable pageable) {
+        return postsRepository.findAllByUserId(userId,pageable).stream()
                 .map(PostsListDto::new)
                 .collect(Collectors.toList());
 
@@ -87,9 +88,9 @@ public class PostsService {
 
     //검색한 작성자명과 같은 작성자 게시물 출력
     @Transactional
-    public List<PostsListDto> findByAuthor(String author) {
+    public List<PostsListDto> findByAuthor(String author, Pageable pageable) {
 
-        return postsRepository.findByAuthorContains(author).stream()
+        return postsRepository.findByAuthorContains(author, pageable).stream()
                 .map(PostsListDto::new)
                 .collect(Collectors.toList());
 
@@ -97,15 +98,15 @@ public class PostsService {
 
     //검색한 제목과 같은 제목 게시물 출력
     @Transactional
-    public List<PostsListDto> findByTitle(String title) {
+    public List<PostsListDto> findByTitle(String title, Pageable pageable) {
 
-        return postsRepository.findByTitleContains(title).stream()
+        return postsRepository.findByTitleContains(title, pageable).stream()
                 .map(PostsListDto::new)
                 .collect(Collectors.toList());
 
     }
 
-    //게시판 페이지 서비스
+    /*게시판 페이지 서비스*/
 
     @Transactional
     public Page<Posts> findPostsByPageRequest(Pageable pageable) {
@@ -152,5 +153,135 @@ public class PostsService {
         return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
 
     }
+
+    //제목으로 검색해 해당되는 게시물 갯수
+    @Transactional
+    public Long getPostsSearchTitleCount(String title) {
+
+        return postsRepository.findCountByTitleContains(title);
+    }
+
+
+    //제목으로 검색해 해당되는 게시물 갯수를 활용하여 페이지번호 계산
+    @Transactional
+    public List<PostsPageDto> getSearchTitlePageList(String title, Pageable pageable) {
+
+        List<Integer> pageDtos = new ArrayList<>();
+
+        // 총 게시글 갯수
+        Double postsTotalCount = Double.valueOf(this.getPostsSearchTitleCount(title));
+
+        // 총 게시글 기준으로 계산한 마지막 페이지 번호 계산
+        Integer totalLastPageNum = (int) (Math.ceil((postsTotalCount / pageable.getPageSize())));
+
+        // 현재 페이지를 기준으로 블럭의 마지막 페이지 번호 계산
+        Integer blockLastPageNum = (totalLastPageNum > pageable.getPageNumber() + 10)
+                ? pageable.getPageNumber() + 10
+                : totalLastPageNum;
+
+        // 페이지 시작 번호 조정
+        Integer curPageNum = (pageable.getPageNumber() < 3) ? 1 : pageable.getPageNumber() - 2;
+
+
+        // 페이지 번호 할당
+        for (int i = 0; i < blockLastPageNum; i++) {
+
+            pageDtos.add(curPageNum);
+            curPageNum++;
+
+        }
+
+        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+
+    }
+
+
+    //작성자로 검색해 해당되는 게시물 갯수
+    @Transactional
+    public Long getPostsSearchAuthorCount(String author) {
+
+        return postsRepository.findCountByAuthorContains(author);
+    }
+
+
+    //작성자로 검색해 해당되는 게시물 갯수를 활용하여 페이지번호 계산
+    @Transactional
+    public List<PostsPageDto> getSearchAuthorPageList(String author, Pageable pageable) {
+
+        List<Integer> pageDtos = new ArrayList<>();
+
+        // 총 게시글 갯수
+        Double postsTotalCount = Double.valueOf(this.getPostsSearchAuthorCount(author));
+
+        // 총 게시글 기준으로 계산한 마지막 페이지 번호 계산
+        Integer totalLastPageNum = (int) (Math.ceil((postsTotalCount / pageable.getPageSize())));
+
+        // 현재 페이지를 기준으로 블럭의 마지막 페이지 번호 계산
+        Integer blockLastPageNum = (totalLastPageNum > pageable.getPageNumber() + 10)
+                ? pageable.getPageNumber() + 10
+                : totalLastPageNum;
+
+        // 페이지 시작 번호 조정
+        Integer curPageNum = (pageable.getPageNumber() < 3) ? 1 : pageable.getPageNumber() - 2;
+
+
+        // 페이지 번호 할당
+        for (int i = 0; i < blockLastPageNum; i++) {
+
+            pageDtos.add(curPageNum);
+            curPageNum++;
+
+        }
+
+        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+
+    }
+
+
+
+
+
+
+    @Transactional
+    public Long getPostsSearchUserCount(Long userId) {
+
+        return postsRepository.findCountByUserId(userId);
+    }
+
+
+
+    @Transactional
+    public List<PostsPageDto> getSearchUserPageList(Long userId, Pageable pageable) {
+
+        List<Integer> pageDtos = new ArrayList<>();
+
+        // 총 게시글 갯수
+        Double postsTotalCount = Double.valueOf(this.getPostsSearchUserCount(userId));
+
+        // 총 게시글 기준으로 계산한 마지막 페이지 번호 계산
+        Integer totalLastPageNum = (int) (Math.ceil((postsTotalCount / pageable.getPageSize())));
+
+        // 현재 페이지를 기준으로 블럭의 마지막 페이지 번호 계산
+        Integer blockLastPageNum = (totalLastPageNum > pageable.getPageNumber() + 10)
+                ? pageable.getPageNumber() + 10
+                : totalLastPageNum;
+
+        // 페이지 시작 번호 조정
+        Integer curPageNum = (pageable.getPageNumber() < 3) ? 1 : pageable.getPageNumber() - 2;
+
+
+        // 페이지 번호 할당
+        for (int i = 0; i < blockLastPageNum; i++) {
+
+            pageDtos.add(curPageNum);
+            curPageNum++;
+
+        }
+
+        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+
+    }
+
+
 
 }

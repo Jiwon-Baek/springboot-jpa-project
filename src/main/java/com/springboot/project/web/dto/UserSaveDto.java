@@ -16,10 +16,10 @@ public class UserSaveDto {
     private String password;
     private String name;
     private String email;
-    private Role role;
+    private String role;
 
     @Builder
-    public UserSaveDto(String username,String password, String name, String email, Role role){
+    public UserSaveDto(String username,String password, String name, String email, String role){
 
         this.username = username;
         this.password = password;
@@ -34,7 +34,7 @@ public class UserSaveDto {
                 .password(password)
                 .name(name)
                 .email(email)
-                .role(Role.USER)
+                .role(Role.USER.getKey())
                 .build();
     }
 

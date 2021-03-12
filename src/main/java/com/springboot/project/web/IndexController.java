@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -37,7 +36,7 @@ public class IndexController {
         }
 
 
-        return "index";
+        return "/mustache/index";
     }
 
 
@@ -45,7 +44,7 @@ public class IndexController {
     @GetMapping("/signup")
     public String signup() {
 
-        return "user/signup";
+        return "/mustache/user/signup";
     }
 
 
@@ -53,7 +52,7 @@ public class IndexController {
     @GetMapping("/login")
     public String login() {
 
-        return "user/signin";
+        return "/mustache/user/signin";
     }
 
 

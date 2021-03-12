@@ -55,21 +55,21 @@ public class PostsApiController {
 
     //제목으로 게시물 찾기
     @PostMapping("/api/v1/posts/searchTitle")
-    public String findByTitle(@RequestBody PostsResponseDto dto) {
+    public String findByTitle(@RequestBody PostsResponseDto dto,Pageable pageable) {
         String title = dto.getTitle();
 
-        postsService.findByTitle(title);
+        postsService.findByTitle(title,pageable);
 
         return title;
     }
 
     //작성자명으로 게시물 찾기
     @PostMapping("/api/v1/posts/searchAuthor")
-    public String findByAuthor(@RequestBody PostsResponseDto dto) {
+    public String findByAuthor(@RequestBody PostsResponseDto dto,Pageable pageable) {
 
         String author = dto.getAuthor();
 
-        postsService.findByAuthor(author);
+        postsService.findByAuthor(author,pageable);
 
         return author;
     }

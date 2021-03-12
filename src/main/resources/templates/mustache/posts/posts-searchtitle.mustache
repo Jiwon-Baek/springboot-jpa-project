@@ -1,0 +1,75 @@
+{{>mustache/layout/header}}
+
+<!-- 목록 출력 영역 -->
+<div class="wrapper">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="tdId">번호</th>
+            <th class="tdId"></th>
+            <th>제목</th>
+            <th class="author">작성자</th>
+            <th class="createdDate">작성일</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        {{#postsT}}
+            <tr>
+                <td class="tdId">{{id}}</td>
+                <td class="tdId"></td>
+                <td class="bold"><a href="/posts/detail/{{id}}">{{title}}</a></td>
+                <td class="author">{{author}}</td>
+                <td class="createdDate">{{createdDate}}</td>
+            </tr>
+        {{/postsT}}
+        {{^postsT}}
+            <tr>
+                <td></td>
+                <td></td>
+                <td>검색결과가 없습니다.</td>
+            </tr>
+        {{/postsT}}
+        </tbody>
+    </table>
+    <div class="page_wrap">
+        <div class="page_nation">
+            {{#pageListT}}
+                <a href="javascript:;" class="pageNum" value="{{listNum}}">{{listNum}}</a>
+            {{/pageListT}}
+        </div>
+    </div>
+    <div class="search">
+        <div class="select">
+            <select id="searchType">
+                <option value="title">제목</option>
+                <option value="author">작성자</option>
+            </select>
+        </div>
+        <div class="input">
+            <input type="text" class="form-control form-control-sm" id="keyword" name="keyword">
+        </div>
+        <div class="button">
+            <button class="btn btn-primary" id="btn-search">검색</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    var page = "";
+
+    $(".pageNumT").on("click", function () {
+        var path = window.location.pathname;
+        var page = $(this).attr('value') - 1;
+
+        window.location.href = path + "?page=" + page;
+
+
+    });
+
+</script>
+
+<link href="/app/css/posts-list.css" rel="stylesheet" type="text/css">
+{{>mustache/layout/footer}}
