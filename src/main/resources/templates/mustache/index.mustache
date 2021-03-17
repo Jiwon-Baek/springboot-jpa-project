@@ -1,77 +1,23 @@
-{{>mustache/layout/header}}
+{{>mustache/layout/index-header}}
 
-<div class="slider slider-1">
-    <div class="slides">
-        <div class="active" style="background-color:red;">
-            <h2 class="title"><strong class="sub"></strong></h2>
-            <span></span>
-        </div>
-        <div style="background-color:blue;"><img src="/app/images/banner.jpg"></div>
-        <div style="background-color:green;"></div>
-        <div style="background-color:gold;"></div>
+<div class="img">
+    <div class="content">
+        <div class="main">BoardPlay</div>
+        <div></div>
+        <section class="main-section">
+            <div class="searchbar-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-input" id="keyword" name="keyword">
+                <i class="fas fa-keyboard"></i>
+            </div>
+            <div class="buttons">
+                <button><a href="/posts">보러가기</a></button>
+                <button class="btn btn-primary" id="btn-mainSearch">검색하기</button>
+            </div>
+        </section>
     </div>
-
-    <div class="pages">
-        <div class="active"></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+    <div class="img-cover"></div>
 </div>
-
-
-<!--배너 스크립트-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-$('.slider > .pages > div').click(function() {
-var $this = $(this);
-var $slider = $this.closest('.slider');
-
-$this.addClass('active');
-$this.siblings('.active').removeClass('active');
-
-var index = $this.index();
-
-$slider.find(' > .slides > .active').removeClass('active');
-$slider.find(' > .slides > div').eq(index).addClass('active');
-});
-
-$('.slider > .side-btns > div').click(function() {
-var $this = $(this);
-var index = $this.index();
-var $slider = $this.closest('.slider');
-
-var $current = $slider.find('.pages > div.active');
-var $post;
-
-if ( index == 0 ) {
-$post = $current.prev();
-}
-else {
-$post = $current.next();
-}
-
-if ( $post.length == 0 ) {
-if ( index == 0 ) {
-$post = $slider.find('.pages > div:last-child');
-}
-else {
-$post = $slider.find('.pages > div:first-child');
-}
-}
-
-$post.click();
-});
-
-function Slider1__moveNext() {
-var $slider = $('.slider-1');
-var $nextBtn = $slider.find('.side-btns > div:last-child');
-$nextBtn.click();
-}
-
-setInterval(Slider1__moveNext, 3000);
-
-</script>
 
 
 <link href="/app/css/index.css" rel="stylesheet" type="text/css">

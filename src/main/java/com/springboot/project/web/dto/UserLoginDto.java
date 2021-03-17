@@ -1,14 +1,13 @@
 package com.springboot.project.web.dto;
 
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
 @Getter
 @NoArgsConstructor
-public class UserLoginDto{
+public class UserLoginDto {
 
 
     private String username;

@@ -53,6 +53,9 @@ var main = {
                 _this.search();
             });
 
+            $('#btn-mainSearch').on('click', function () {
+                _this.mainSearch();
+            });
 
         },
 
@@ -161,33 +164,33 @@ var main = {
         },
 
         signin: function () {
-                var data = {
-                    username: $('#username').val(),
-                    password: $('#password').val()
-                };
+            var data = {
+                username: $('#username').val(),
+                password: $('#password').val()
+            };
 
-                if ($('#username').val() == "") {
-                    $('#login').html('<p>아이디를 입력하지 않았습니다.</p>');
-                    return false;
-                }
-
-                if ($('#password').val() == "") {
-                    $('#login').html('<p>비밀번호를 입력하지 않았습니다.</p>');
-                    return false;
-                }
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/v1/userLogin/login',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(data)
-                }).done(function () {
-
-                }).fail(function (error) {
-                    $('#login').html('<p>일치하지 않거나 없는 회원입니다.</p>');
-                });
+            if ($('#username').val() == "") {
+                $('#login').html('<p>아이디를 입력하지 않았습니다.</p>');
+                return false;
             }
+
+            if ($('#password').val() == "") {
+                $('#login').html('<p>비밀번호를 입력하지 않았습니다.</p>');
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/userLogin/login',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+
+            }).fail(function (error) {
+                $('#login').html('<p>일치하지 않거나 없는 회원입니다.</p>');
+            });
+        }
 
         ,
 
@@ -478,26 +481,65 @@ var main = {
                 var data = {
                     author: $('#keyword').val()
                 };
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/v1/posts/searchAuthor',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(data)
-                }).done(function (data) {
-                    var author = data;
-                    window.location.href = '/posts/author/' + author;
-                }).fail(function (error) {
-                    alert(JSON.stringify(error));
-                });
+
+                if ($('#keyword').val() == "") {
+                    alert('입력하신 검색어가 없습니다.');
+                    window.location.href = '/posts';
+                } else {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/v1/search/searchAuthor',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(data)
+                    }).done(function (data) {
+                        var author = data;
+                        window.location.href = '/posts/author/' + author;
+                    }).fail(function (error) {
+                        alert(JSON.stringify(error));
+                    });
+                }
+
             } else if ($('#searchType').val() == "title") {
 
                 var data = {
                     title: $('#keyword').val()
                 };
 
+                if ($('#keyword').val() == "") {
+                    alert('입력하신 검색어가 없습니다.');
+                    window.location.href = '/posts';
+                } else {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/v1/search/searchTitle',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(data)
+                    }).done(function (data) {
+                        var title = data;
+                        window.location.href = '/posts/title/' + title;
+                    }).fail(function (error) {
+                        alert(JSON.stringify(error));
+                    });
+                }
+            }
+        },
+
+        mainSearch: function () {
+
+            var data = {
+                title: $('#keyword').val()
+            };
+
+
+            if ($('#keyword').val() == "") {
+                alert('입력하신 검색어가 없습니다.');
+                window.location.href = '/';
+            } else {
                 $.ajax({
                     type: 'POST',
-                    url: '/api/v1/posts/searchTitle',
+                    url: '/api/v1/search/searchTitle',
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(data)
                 }).done(function (data) {
@@ -508,8 +550,6 @@ var main = {
                 });
             }
         }
-
-
     }
 ;
 

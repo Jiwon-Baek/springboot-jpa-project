@@ -1,92 +1,116 @@
-body {
-    min-height: 100%;
-    width: 100%;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&display=swap');
 
 
-body, ul, li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* 슬라이더 공통 */
-
-.slider {
+.img {
     position: relative;
-}
-
-.slider > .pages {
-    text-align: center;
-    position: absolute;
-    bottom: 5%;
-    left: 0;
-    width: 100%;
-}
-
-.slider > .pages > div {
-    width: 20px;
-    height: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    border-radius: 5px;
-}
-
-.slider > .pages > div:hover, .slider > .pages > div.active {
-    background-color: rgba(255, 255, 255, 1);
-}
-
-.slider > .slides > div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.slider > .slides > div img {
-    width: 100%;
-    height: 100%;
-}
-
-.slider > .slides > div.active {
-    opacity: 1;
-}
-
-
-.slider-1 {
-    margin: 0 auto;
-    width: 100%;
-    height: 500px;
+    background-image: url("/app/images/paperplane.jpg");
+    height: 100vh;
+    background-size: cover;
     margin-top: -20px;
 }
-.slider > .slides .active .title .sub{
-    display: block;
+
+.img-cover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
 }
 
-.slider > .slides .active .title::before{
+.img .content {
     position: absolute;
-    top:35px;
-    left: -55px;
-    font-size: 125px;
-    font-weight: 100;
-    content: "[";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    color: white;
+    z-index: 2;
+    text-align: center;
+    font-family: 'Noto Serif KR', serif;
 }
 
-.slider > .slides .active .title::after{
-    position: absolute;
-    top:35px;
-    right:-55px;
-    font-size: 125px;
-    font-weight: 100;
-    content: "]";
+.img .content .main {
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+    padding-bottom: 70px;
+}
+
+
+:root {
+    --gray-color: #717271;
+    --light-gray-color: #dee0e5;
+    --midium-gray-color: #999fa6;
+    --button-gray-color: #f0f1f0;
+    --footer-back-color: #f1f2f1;
+    --footer-border-color: #e3e4e3;
+
+    --button-text-gray-color: #5F6368;
+    --font-family: 'Apple SD Gothic Neo', arial, sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-family);
+}
+
+.main-section .searchbar-wrap {
+    border: solid 1px var(--light-gray-color);
+    width: 490px;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: white;
+
+
+}
+
+.main-section .searchbar-wrap i {
+    line-height: 50px;
+    color: var(--midium-gray-color);
+
+}
+
+.main-section .searchbar-wrap .search-input {
+    width: 400px;
+    height: 50px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+
+}
+
+.main-section .buttons {
+    padding-top: 20px;
+    font-weight: bolder;
+
+}
+
+.main-section .buttons a {
+    text-decoration: none;
+    font-weight: bolder;
+
+}
+
+.main-section .buttons button {
+    background-color: var(--button-gray-color);
+    border: 0;
+    height: 38px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: var(--button-text-gray-color);
+    font-weight: bolder;
+}
+
+.main-section .now-lang {
+    padding-top: 25px;
+    font-size: 12px;
+    padding-right: 10px;
 }

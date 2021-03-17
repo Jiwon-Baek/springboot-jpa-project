@@ -47,43 +47,43 @@ body {
     min-height: 100%;
 }
 
-h1{
+h1 {
     font-weight: bold;
     font-size: 20px;
     padding-bottom: 10px;
 }
 
-.smallMain{
+.smallMain {
     margin-top: 10px;
     margin-bottom: 30px;
 }
 
-.smallMain .close{
-padding-left: 100px;
+.smallMain .close {
+    padding-left: 100px;
     padding-top: 50px;
 }
 
-.smallMain .close2{
+.smallMain .close2 {
     padding-left: 100px;
     padding-top: 20px;
 }
 
-.smallMain .close input{
-   background-color: #505757;
-    color: white;
-}
-
-.smallMain .close2 input{
+.smallMain .close input {
     background-color: #505757;
     color: white;
 }
 
-.smallMain .close input:hover{
+.smallMain .close2 input {
+    background-color: #505757;
+    color: white;
+}
+
+.smallMain .close input:hover {
     background-color: #1d1f1f;
     color: white;
 }
 
-.smallMain .close2 input:hover{
+.smallMain .close2 input:hover {
     background-color: #1d1f1f;
     color: white;
 }

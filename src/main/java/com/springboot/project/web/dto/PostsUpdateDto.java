@@ -13,7 +13,7 @@ public class PostsUpdateDto {
     private String content;
 
     @Builder
-    public PostsUpdateDto(String title, String content){
+    public PostsUpdateDto(String title, String content) {
         this.title = title;
         this.content = content;
     }

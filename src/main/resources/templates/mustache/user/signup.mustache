@@ -1,46 +1,65 @@
 {{>mustache/layout/header}}
-
-<div class="wrapper">
-    <div class="main">
-        <span class="title">회원 가입</span>
-        <form>
-            <div class="box">
-                <div class="input">
-                    <input type="text"  id="username" name="username" placeholder="아이디를 입력해주세요." required>
+<div class="main-container">
+    <div class="main-wrap">
+        <header>
+            <div class="logo-wrap">
+                <span>BoardPlay</span>
+            </div>
+        </header>
+        <form action="/login" method="POST">
+            <section class="login-input-section-wrap">
+                <div class="login-input-wrap">
+                    <input type="text" id="username" name="username" placeholder="아이디를 입력해주세요." required>
                 </div>
                 <div class="notice" id="checkId" style="color: red"></div>
-            </div>
-            <div class="box">
-                <div class="input">
+                <div class="login-input-wrap password-wrap">
                     <input type="password" id="password" class="pw" placeholder="비밀번호를 입력해주세요.">
                 </div>
-                <div class="notice"  style="color: red"></div>
-                <div class="input">
-                    <input type="password" id="password2" class="pw" placeholder="비밀번호를 확인해주세요.">
+                <div class="login-input-wrap password-wrap">
+                    <input type="password" id="password" class="pw" placeholder="비밀번호를 확인해주세요.">
                 </div>
                 <div class="notice" id="checkPw"></div>
-            </div>
-            <div class="box">
-                <div class="input">
+                <div class="login-input-wrap password-wrap">
                     <input type="name" id="name" placeholder="이름을 입력해주세요.">
                 </div>
-                <div class="notice"  style="color: red"></div>
-            </div>
-            <div class="box">
-                <div class="input">
+                <div class="notice" style="color: red"></div>
+                <div class="login-input-wrap password-wrap">
                     <input type="text" class="email" id="email" name="email" placeholder="이메일을 입력해주세요."/>
                 </div>
-                <div class="notice"  style="color: red"></div>
-            </div>
-            <div class="button">
-                <button type="button" class="btn btn-primary" id="btn-signup">가입하기</button>
-            </div>
-            <div class="notice" id="checkAll"></div>
+                <div class="notice" style="color: red"></div>
+                <div class="login-button-wrap password-wrap">
+                    <button type="submit" id="btn-signup">sign up</button>
+                </div>
+                <div class="notice" id="checkAll"></div>
+            </section>
 
+            <div class="login-stay-sign-in">
+                <i class="far fa-check-circle"></i>
+                <div class="notice" id="login"></div>
+            </div>
+            <section class="Easy-sgin-in-wrap">
+                <p class="forget-msg">Have you ever signed up? | Sign in </p>
+                <h2></h2>
+                <ul class="sign-button-list">
+                    <li>
+                        <button><i><img src="/app/images/pinkdot3.png"/></i><a href="/signin">Login</a></button>
+                    </li>
+                    <li>
+                        <button><i><img src="/app/images/pinkdot3.png"/></i><a href="/findid">아이디 찾기</a></button>
+                    </li>
+                    <li>
+                        <button><i><img src="/app/images/pinkdot3.png"/></i><a href="/findpassword">비밀 번호 찾기</a>
+                        </button>
+                    </li>
+                </ul>
+            </section>
+            <section class="Easy-sgin-in-wrap"></section>
+            <section class="Easy-sgin-in-wrap"></section>
+            <section class="Easy-sgin-in-wrap"></section>
         </form>
     </div>
 </div>
 
 
-<link href="/app/css/signup.css" rel="stylesheet" type="text/css">
+<link href="/app/css/Login-find.css" rel="stylesheet" type="text/css">
 {{>mustache/layout/footer}}

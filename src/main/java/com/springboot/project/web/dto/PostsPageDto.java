@@ -4,7 +4,6 @@ package com.springboot.project.web.dto;
 import lombok.Getter;
 
 
-
 @Getter
 public class PostsPageDto {
 
@@ -12,10 +11,10 @@ public class PostsPageDto {
     private int listNum;
 
 
-    public PostsPageDto(int listNum){
+    public PostsPageDto(int listNum) {
 
-        this.listNum=listNum;
+        this.listNum = listNum;
     }
 
-    
+
 }

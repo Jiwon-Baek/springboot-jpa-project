@@ -1,15 +1,30 @@
 {{>mustache/layout/header}}
+
+<h1 class="h1header">누구나 자유롭게 글을 작성해 보세요.</h1>
+
+<nav class="headernav">
+    <ul class="headerul">
+        <li class="menu2"><a class="headera" href="/">Home</a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera" href="/posts">게시판</a></li>
+        <li class="menu2"><a class="headera" href="/mypage/detail">마이 페이지</a></li>
+
+    </ul>
+</nav>
+
 <div class="wrapper">
     <div class="posts-save">
         <form>
             <table class="table">
                 <tr>
                     <th>제목</th>
-                    <td><input type="text"  id="title" placeholder="제목을 입력하세요"></td>
+                    <td><input type="text" id="title" placeholder="제목을 입력하세요"></td>
                 </tr>
                 <tr>
                     <th>작성자</th>
-                    <td colspan="3"><input type="text"id="author" value="{{author}}" readonly>
+                    <td colspan="3"><input type="text" id="author" value="{{author}}" readonly>
                     </td>
                 </tr>
                 <tr>

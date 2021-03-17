@@ -2,10 +2,6 @@ package com.springboot.project.doamin.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
-import java.util.stream.DoubleStream;
 
 @Getter
 @RequiredArgsConstructor

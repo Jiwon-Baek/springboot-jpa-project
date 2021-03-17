@@ -63,6 +63,20 @@ public class PostsService {
     @Transactional(readOnly = true)
     public PostsResponseDto findById(Long id) {
 
+
+        Posts entity = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        return new PostsResponseDto(entity);
+    }
+
+    //글 세부내용 클릭 후 조회수 증가
+    @Transactional(readOnly = true)
+    public PostsResponseDto findAllByIdAndHit(Long id) throws Exception {
+
+        postsRepository.updateHit(id);
+
+
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
@@ -236,10 +250,6 @@ public class PostsService {
         return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
 
     }
-
-
-
-
 
 
     @Transactional

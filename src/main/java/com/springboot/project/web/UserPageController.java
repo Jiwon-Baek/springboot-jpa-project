@@ -81,31 +81,30 @@ public class UserPageController {
 
     //회원 탈퇴 페이지
     @GetMapping("/mypage/withdrawal")
-    public String userWithdrawal(@LoginUser SessionUser user,Model model) {
+    public String userWithdrawal(@LoginUser SessionUser user, Model model) {
 
-        model.addAttribute("username",user.getUsername());
+        model.addAttribute("username", user.getUsername());
 
         return "/mustache/user/mypage-withdrawal";
     }
 
     //해당 회원이 쓴 게시물 조회
     @GetMapping("/mypage/posts")
-    public String userPosts(@LoginUser SessionUser user, Model model,@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public String userPosts(@LoginUser SessionUser user, Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
         //유저의 회원 번호를 받아
         UserResponseDto userDto = userService.findUserByUsername(user.getUsername());
 
-        Long id =userDto.getId();
+        Long id = userDto.getId();
 
 
         //해당 회원번호로 저장된 게시물을 전부 출력
-        model.addAttribute("userPosts",postsService.findByUserId(id,pageable));
-        model.addAttribute("myPageList", postsService.getSearchUserPageList(id,pageable));
+        model.addAttribute("userPosts", postsService.findByUserId(id, pageable));
+        model.addAttribute("myPageList", postsService.getSearchUserPageList(id, pageable));
 
 
         return "/mustache/user/mypage-myposts";
     }
-
 
 
 }

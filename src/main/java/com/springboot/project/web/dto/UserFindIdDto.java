@@ -1,7 +1,6 @@
 package com.springboot.project.web.dto;
 
 
-
 import com.springboot.project.doamin.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +13,10 @@ public class UserFindIdDto {
     private String email;
 
     public UserFindIdDto(User entity) {
-     this.name = entity.getName();
-     this.email = entity.getEmail();
+        this.name = entity.getName();
+        this.email = entity.getEmail();
     }
+
     public String getName() {
         return name;
     }

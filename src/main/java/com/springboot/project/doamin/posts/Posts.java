@@ -29,17 +29,20 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
+    private int hit;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
 
     @Builder
-    public Posts(Long id, String title, String content, String author, User user_id) {
+    public Posts(Long id, String title, String content, String author, int hit, User user_id) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
+        this.hit = hit;
         this.user = user_id;
     }
 

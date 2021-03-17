@@ -3,18 +3,27 @@
 <head>
     <title>BoardPlay</title>
 </head>
-<div class="header2">
-    <div class="logo2">
+
+<div class="header">
+    <div class="logo">
         <a href="/">BoardPlay</a>
     </div>
-    <div class="right2">
-        <div class="login">
-            {{#user}}
+    <div class="right">
+        {{#user}}
+            <div class="log">
                 <span id="user">{{user.username}}님 환영합니다.</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/user}}
-        </div>
-        <div class="logout">
+            </div>
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="/posts">게시판</a></li>
+                        <li><a href="/mypage/detail">마이페이지</a></li>
+                    </ul>
+                </nav>
+            </div>
+        {{/user}}
+        <div class="log2">
             {{^user}}
                 <a href="/signup">회원가입</a>
                 <a href="/login">Login</a>

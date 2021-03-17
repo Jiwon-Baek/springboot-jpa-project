@@ -40,10 +40,10 @@ html {
 
 /*헤더부분*/
 .header {
-    height: 60px;
+    height: 70px;
     padding: 1rem;
     color: white;
-    background:  #004b4b;
+    background: #545a57;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
@@ -60,15 +60,9 @@ html {
 
 .header .smallLogo a {
     font-family: 'Lobster', cursive;
-    font-size: 25px;
+    font-size: 35px;
     text-decoration: none;
     color: white;
-}
-
-.header .menu{
-    padding-top: -80px;
-    height: 20px;
-    margin-right: -20px;
 }
 
 .header .right .menu nav ul li a:hover{
@@ -79,7 +73,7 @@ html {
     list-style-type: none;
     margin-left: 190px;
     padding: 0;
-    background-color:  #004b4b;
+    background-color:  #545a57;
 }
 .header ul:after{
     content:'';
@@ -99,7 +93,7 @@ html {
 }
 
 .header .right {
-    margin-top: -70px;
+    margin-top: -50px;
     padding-right: 40px;
     float: right;
     font-size: 13px;
@@ -108,7 +102,7 @@ html {
 .header .right a {
     color: white;
     text-decoration: none;
-    background-color: #004b4b;
+    background-color: #545a57;
 }
 
 
@@ -120,15 +114,23 @@ html {
 
 .header .right .log{
    float: right;
-    margin-top: 70px;
+    margin-top: 65px;
     margin-bottom: 10px;
-    font-size: 11px;
+    font-size: 10px;
+}
+
+
+.header .right .menu{
+    padding-top: -80px;
+    height: 20px;
+   margin-right: -20px;
+
 }
 
 .header .right .log2{
     float: right;
-    margin-top: 40px;
-    font-size: 11px;
+    margin-top: 50px;
+    font-size: 20px;
 }
 
 .header .right .log2 a{
@@ -143,6 +145,7 @@ html {
     left: 0;
     bottom: 0;
     width: 100%;
+    margin-top: 20px;
     padding: 15px 0;
     text-align: center;
     color: black;
@@ -174,4 +177,104 @@ html {
     width: 100%;
     font-size: 10px;
    padding-left: 50px;
+}
+
+
+/*-------------게시판&마이페이지 헤더--------------------*/
+
+.header2 {
+    height: 10px;
+    padding: 1rem;
+    color: white;
+    background:  #545a57;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header2 .logo2 a {
+    font-family: 'Lobster', cursive;
+    font-size: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.header2 .smallLogo a {
+    font-family: 'Lobster', cursive;
+    font-size: 35px;
+    text-decoration: none;
+    color: white;
+}
+
+.header2 .menu{
+    padding-top: -80px;
+    height: 20px;
+    margin-right: -20px;
+}
+
+.header2 .right .menu nav ul li a:hover{
+    color: #ecf6d2;
+}
+
+.header2 ul {
+    list-style-type: none;
+    margin-left: 190px;
+    padding: 0;
+    background-color:  #545a57;
+}
+.header2 ul:after{
+    content:'';
+    display: block;
+    clear:both;
+}
+.header2 li {
+    float: left;
+}
+.header2 li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.header2 .right2 {
+    margin-top: -20px;
+    padding-right: 40px;
+    float: right;
+    font-size: 13px;
+}
+
+.header2 .right2 a {
+    color: white;
+    text-decoration: none;
+    background-color: #545a57;
+}
+
+
+.header2 .right2 span {
+    color: white;
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+.header2 .right2 .login{
+    float: right;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+
+.header2 .right2 .logout{
+    float: right;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+
+.header2 .right2 .logout a{
+    padding-right: 10px;
 }

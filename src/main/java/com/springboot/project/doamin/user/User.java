@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class User extends BaseTimeEntity implements Serializable {
     @Column(nullable = false)
     private String role;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private final List<Posts> posts = new ArrayList<>();
 
 
@@ -56,8 +55,8 @@ public class User extends BaseTimeEntity implements Serializable {
     }
 
     public User(Long id, String username) {
-        this.id =id;
-        this.username=username;
+        this.id = id;
+        this.username = username;
     }
 
     public void updatePw(String password) {

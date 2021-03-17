@@ -19,11 +19,10 @@ import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Service
-public class UserService{
+public class UserService {
 
     private final UserRepository userRepository;
     private final HttpSession httpSession;
-
 
 
     //회원가입

@@ -38,7 +38,7 @@ html {
     margin: 50px auto;
     padding-bottom: 300px;
     opacity: 0.6;
-    margin-top: -20px;
+    margin-top: -2px;
 
 }
 
@@ -48,7 +48,7 @@ html {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #0c1d16;
+    background-color: #070908;
     transition: 0.5s;
     padding-top: 60px;
 }
@@ -95,7 +95,7 @@ html {
 }
 
 .wrapper .main .tabletop table {
-   margin-top: 30px;
+    margin-top: 30px;
 }
 
 .wrapper .main .main-width {
@@ -107,7 +107,7 @@ html {
 
 
 .wrapper-h3 {
-    background-color: #00311f;
+    background-color: #1d1d1d;
     height: 50px;
     width: 100%;
     color: white;
@@ -306,7 +306,7 @@ table td {
 }
 
 /*수정*/
-.wrapper .main .box{
+.wrapper .main .box {
     width: 50%;
     height: 50%;
     margin-left: 200px;
@@ -359,45 +359,98 @@ button {
     background-color: #004b4b;
 }
 
-.notice{
+.notice {
     padding: 20px 0 50px 0;
     font-weight: bold;
 }
 
 /*페이지 버튼*/
 .page_wrap {
-    text-align:center;
-    font-size:0;
+    text-align: center;
+    font-size: 0;
     float: bottom;
     margin-top: 20px;
     margin-left: 280px;
 }
+
 .page_nation {
-    display:inline-block;
+    display: inline-block;
 }
+
 .page_nation .none {
-    display:none;
+    display: none;
 }
+
 .page_nation a {
-    display:block;
-    margin:0 3px;
-    float:left;
-    border:1px solid #e6e6e6;
-    width:28px;
-    height:28px;
-    line-height:28px;
-    text-align:center;
-    background-color:#fff;
-    font-size:13px;
-    color:#999999;
-    text-decoration:none;
+    display: block;
+    margin: 0 3px;
+    float: left;
+    border: 1px solid #e6e6e6;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background-color: #fff;
+    font-size: 13px;
+    color: #999999;
+    text-decoration: none;
 }
+
 .page_nation .arrow {
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
 }
 
 .page_nation a.active {
-    background-color:#42454c;
-    color:#fff;
-    border:1px solid #42454c;
+    background-color: #42454c;
+    color: #fff;
+    border: 1px solid #42454c;
+}
+
+/*-----------------------*/
+.h1header {
+    text-align: center;
+    font-weight: normal;
+    background-color: #090401;
+    height: 150px;
+    margin-top: -20px;
+    padding-top: 90px;
+    color: #eeeeec;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.headernav {
+    width: 100%;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-right: none;
+}
+
+.headernav .headerul {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+
+.headernav .headerul .menu2 {
+    list-style: none;
+    float: left;
+    text-align: center;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #ccc;
+    width: 16.6667%; /* fallback for non-calc() browsers */
+    width: calc(100% / 6);
+    box-sizing: border-box;
+}
+
+.headernav .headerul .menu2:first-child {
+    border-left: none;
+}
+
+.headernav .headerul .menu2 .headera {
+    display: block;
+    text-decoration: none;
+    color: #616161;
+    padding: 10px 0;
 }

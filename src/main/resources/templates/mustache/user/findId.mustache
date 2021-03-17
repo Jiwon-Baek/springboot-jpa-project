@@ -1,37 +1,53 @@
 {{>mustache/layout/header}}
-
-<div class="wrapper">
-    <div class="main">
-        <div class="wrapper-h3">
-            <h3>아이디 찾기</h3>
-        </div>
-        <form>
-            <div class="box">
-                <div class="input">
+<div class="main-container">
+    <div class="main-wrap">
+        <header>
+            <div class="logo-wrap">
+                <span>BoardPlay</span>
+            </div>
+        </header>
+        <form action="/login" method="POST">
+            <section class="login-input-section-wrap">
+                <div class="login-input-wrap">
                     <input type="text" id="name" placeholder="이름" autofocus/>
                 </div>
-                <div class="input">
+                <div class="login-input-wrap password-wrap">
                     <input type="text" id="email" placeholder="이메일" autofocus/>
                 </div>
-                <div class="button">
+                <div class="login-button-wrap">
                     <button type="button" class="btn btn-primary" id="btn-findId">아이디 찾기</button>
                 </div>
-                <div class="notice" id="findid"></div>
-                <div class="last">
-                    <div class="left">
-                        <a class="signup " href="/signup">회원가입</a>
-                    </div>
-                    <div class="middle">
-                        <a class="findpw" href="/findpassword">비밀번호 찾기</a><br/>
-                    </div>
-                    <div class="right">
-                        <a class="login" href="/login">로그인</a>
-                    </div>
-                </div>
+            </section>
+
+            <div class="login-stay-sign-in">
+                <i class="far fa-check-circle"></i>
+                <div class="notice" id="login"></div>
             </div>
+            <section class="Easy-sgin-in-wrap">
+                <p class="forget-msg">Forgot your Password? | Sign in or Sign up</p>
+                <h2></h2>
+                <ul class="sign-button-list">
+
+                    <li>
+                        <button><i><img src="/app/images/pinkdot2.png"/></i><a href="/findpassword">비밀번호 찾기</a>
+                        </button>
+                    </li>
+                    <li>
+                        <button><i><img src="/app/images/pinkdot2.png"/></i><a href="/signin">Sign in</a></button>
+                    </li>
+                    <li>
+                        <button><i><img src="/app/images/pinkdot2.png"/></i><a href="/signup">Sign up</a></button>
+                    </li>
+
+                </ul>
+            </section>
+            <section class="Easy-sgin-in-wrap"></section>
+            <section class="Easy-sgin-in-wrap"></section>
+            <section class="Easy-sgin-in-wrap"></section>
         </form>
     </div>
 </div>
+
 
 <link href="/app/css/Login-find.css" rel="stylesheet" type="text/css">
 {{>mustache/layout/footer}}

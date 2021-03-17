@@ -5,7 +5,6 @@ import com.springboot.project.config.auth.LoginUser;
 import com.springboot.project.config.auth.dto.SessionUser;
 
 
-
 import lombok.RequiredArgsConstructor;
 
 
@@ -62,7 +61,6 @@ public class IndexController {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/";
     }
-
 
 
 }

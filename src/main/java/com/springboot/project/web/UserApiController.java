@@ -12,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 
-
-
 @RequiredArgsConstructor
 @RestController
 public class UserApiController {
@@ -21,7 +19,7 @@ public class UserApiController {
     private final UserService userService;
 
 
-   //회원 가입
+    //회원 가입
     @PostMapping("/api/v1/userLogin/signup")
     public Long signUp(@RequestBody UserSaveDto userSaveDto) {
 
@@ -36,13 +34,13 @@ public class UserApiController {
     }
 
     //로그인 후 세션에 담기
-    @PostMapping("api/v1/userLogin/login")
+    @PostMapping("/api/v1/userLogin/login")
     public UserLoginDto login(@RequestBody UserLoginDto dto) {
 
         System.out.println("Login attmpted :: " + dto.getUsername());
         System.out.println("Login attmpted :: " + dto.getPassword());
 
-        UserLoginDto userLoginDto = userService.findUserByUP(dto.getUsername(),dto.getPassword());
+        UserLoginDto userLoginDto = userService.findUserByUP(dto.getUsername(), dto.getPassword());
 
         return userLoginDto;
 
@@ -50,10 +48,10 @@ public class UserApiController {
 
 
     //아이디 찾기
-    @PostMapping("api/v1/userLogin/findid")
+    @PostMapping("/api/v1/userLogin/findid")
     public Long findIdByNE(@RequestBody UserResponseDto user) {
 
-       Long id = userService.findUsernameByNE(user.getName(),user.getEmail());
+        Long id = userService.findUsernameByNE(user.getName(), user.getEmail());
 
         return id;
 
@@ -61,10 +59,10 @@ public class UserApiController {
 
 
     //비밀번호 찾기
-    @PostMapping("api/v1/userLogin/findpassword")
+    @PostMapping("/api/v1/userLogin/findpassword")
     public Long findPasswordByUNE(@RequestBody UserResponseDto user) {
 
-        Long id = userService.findPasswordByUNE(user.getUsername(),user.getName(),user.getEmail());
+        Long id = userService.findPasswordByUNE(user.getUsername(), user.getName(), user.getEmail());
 
         return id;
 
@@ -72,13 +70,13 @@ public class UserApiController {
 
     //개인정보 수정
     @PutMapping("/api/v1/user/update/{username}")
-    public String update(@PathVariable String username,@RequestBody UserUpdateDto requestDto) throws Exception {
+    public String update(@PathVariable String username, @RequestBody UserUpdateDto requestDto) throws Exception {
 
         return userService.update(username, requestDto);
     }
 
     //회원 탈퇴 확인
-    @PostMapping("api/v1/user/withdrawal/{username}")
+    @PostMapping("/api/v1/user/withdrawal/{username}")
     public Long withdrawal(@PathVariable String username, @RequestBody UserLoginDto dto) {
 
         Long id = userService.findIdByPassword(username, dto.getPassword());

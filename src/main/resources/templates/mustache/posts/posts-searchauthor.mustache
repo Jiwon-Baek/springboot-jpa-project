@@ -1,7 +1,43 @@
 {{>mustache/layout/header}}
 
+
+
+<h1 class="h1header">자유게시판</h1>
+
+<nav class="headernav">
+    <ul class="headerul">
+        <li class="menu2"><a class="headera" href="/">Home</a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera" href="/posts">게시판</a></li>
+        <li class="menu2"><a class="headera" href="/mypage/detail">마이 페이지</a></li>
+
+    </ul>
+</nav>
 <!-- 목록 출력 영역 -->
 <div class="wrapper">
+    <div class="searchWidth">
+        <div class="search">
+            <div class="select">
+                <select id="searchType">
+                    <option value="title">제목</option>
+                    <option value="author">작성자</option>
+                </select>
+            </div>
+            <div></div>
+            <div class="input">
+                <input type="text" class="form-control form-control-sm" id="keyword" name="keyword">
+            </div>
+            <div class="button">
+                <button class="btn btn-primary" id="btn-search">검색</button>
+            </div>
+            <div class="empty"></div>
+        </div>
+        <div class="saveButton">
+            <a href="/posts/save">글 쓰기</a>
+        </div>
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -10,6 +46,7 @@
             <th>제목</th>
             <th class="author">작성자</th>
             <th class="createdDate">작성일</th>
+            <th class="hit">조회수</th>
         </tr>
         </thead>
         <tbody id="tbody">
@@ -20,6 +57,7 @@
                 <td class="bold"><a href="/posts/detail/{{id}}">{{title}}</a></td>
                 <td class="author">{{author}}</td>
                 <td class="createdDate">{{createdDate}}</td>
+                <td class="hit">{{hit}}</td>
             </tr>
         {{/postsA}}
         {{^postsA}}
@@ -42,21 +80,6 @@
     <div></div>
     <div></div>
     <div></div>
-
-    <div class="search">
-        <div class="select">
-            <select id="searchType">
-                <option value="title">제목</option>
-                <option value="author">작성자</option>
-            </select>
-        </div>
-        <div class="input">
-            <input type="text" class="form-control form-control-sm" id="keyword" name="keyword">
-        </div>
-        <div class="button">
-            <button class="btn btn-primary" id="btn-search">검색</button>
-        </div>
-    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -3,14 +3,15 @@ package com.springboot.project.web.dto;
 import com.springboot.project.doamin.posts.Posts;
 import lombok.Builder;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class PostDetailDto {
 
     private Long id;
     private String title;
     private String author;
-    private LocalDateTime modifiedDate;
+    private LocalDate modifiedDate;
 
 
     @Builder

@@ -1,7 +1,18 @@
 {{>mustache/layout/header}}
 
+<h1 class="h1header">마이페이지</h1>
 
+<nav class="headernav">
+    <ul class="headerul">
+        <li class="menu2"><a class="headera" href="/">Home</a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera" href="/posts">게시판</a></li>
+        <li class="menu2"><a class="headera" href="/mypage/detail">마이 페이지</a></li>
 
+    </ul>
+</nav>
 <div class="wrapper">
     <div class="sidebar">
         <div class="col"></div>
@@ -25,6 +36,7 @@
                     <th>제목</th>
                     <th class="author">작성자</th>
                     <th class="createdDate">작성일</th>
+                    <th class="hit">조회수</th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
@@ -35,10 +47,15 @@
                         <td class="bold"><a href="/posts/detail/{{id}}">{{title}}</a></td>
                         <td class="author">{{author}}</td>
                         <td class="createdDate">{{createdDate}}</td>
+                        <td class="hit">{{hit}}</td>
                     </tr>
                 {{/userPosts}}
                 {{^userPosts}}
-                    작성하신 게시물이 없습니다.
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>등록된 게시물이 없습니다.</td>
+                    </tr>
                 {{/userPosts}}
                 </tbody>
             </table>
@@ -54,13 +71,12 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-    $(".myPageNum").on("click",function() {
+
+    $(".myPageNum").on("click", function () {
         var path = window.location.pathname;
-        var page = $(this).attr('value')-1;
+        var page = $(this).attr('value') - 1;
 
-        window.location.href =path+"?page="+page;
-
-
+        window.location.href = path + "?page=" + page;
 
     });
 </script>

@@ -19,7 +19,7 @@ public class UserSaveDto {
     private String role;
 
     @Builder
-    public UserSaveDto(String username,String password, String name, String email, String role){
+    public UserSaveDto(String username, String password, String name, String email, String role) {
 
         this.username = username;
         this.password = password;

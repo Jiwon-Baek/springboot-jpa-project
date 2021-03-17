@@ -53,11 +53,10 @@ public class PostsPageController {
 
     //게시물 세부 내용
     @GetMapping("/posts/detail/{id}")
-    public String postsContent(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
+    public String postsContent(@PathVariable Long id, Model model, @LoginUser SessionUser user) throws Exception {
 
-        PostsResponseDto dto = postsService.findById(id);
+        PostsResponseDto dto = postsService.findAllByIdAndHit(id);
         model.addAttribute("postD", dto);
-
 
         //로그인한 유저가 글을 작성한 유저와 다를 때 수정,삭제 버튼이 안뜨게 하기 위함
         if (user != null) {
@@ -84,7 +83,7 @@ public class PostsPageController {
     @GetMapping("/posts/author/{author}")
     public String searchAuthor(Model model, @LoginUser SessionUser user, @PathVariable String author, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-        model.addAttribute("postsA", postsService.findByAuthor(author,pageable));
+        model.addAttribute("postsA", postsService.findByAuthor(author, pageable));
         model.addAttribute("pageListA", postsService.getSearchAuthorPageList(author, pageable));
 
         if (user != null) {
@@ -97,10 +96,10 @@ public class PostsPageController {
 
     /*제목명 검색 결과창*/
     @GetMapping("/posts/title/{title}")
-    public String searchTitle(Model model, @LoginUser SessionUser user, @PathVariable String title,@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public String searchTitle(Model model, @LoginUser SessionUser user, @PathVariable String title, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-        model.addAttribute("postsT", postsService.findByTitle(title,pageable));
-        model.addAttribute("pageListT", postsService.getSearchTitlePageList(title,pageable));
+        model.addAttribute("postsT", postsService.findByTitle(title, pageable));
+        model.addAttribute("pageListT", postsService.getSearchTitlePageList(title, pageable));
 
         if (user != null) {
             model.addAttribute("userId", user.getUsername());

@@ -13,6 +13,7 @@ public class PostsSaveDto {
     private String title;
     private String content;
     private String author;
+    private int hit;
     private User user;
 
     @Builder
@@ -28,6 +29,7 @@ public class PostsSaveDto {
                 .title(title)
                 .content(content)
                 .author(author)
+                .hit(0)
                 .user_id(user)
                 .build();
     }

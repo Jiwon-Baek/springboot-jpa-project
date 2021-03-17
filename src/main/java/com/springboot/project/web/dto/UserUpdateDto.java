@@ -9,14 +9,13 @@ import lombok.*;
 public class UserUpdateDto {
 
 
-
     private String password;
     private String name;
     private String email;
 
 
     @Builder
-    public UserUpdateDto( String password, String name, String email){
+    public UserUpdateDto(String password, String name, String email) {
 
 
         this.password = password;

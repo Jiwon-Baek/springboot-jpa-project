@@ -1,4 +1,20 @@
 {{>mustache/layout/header}}
+
+
+<h1 class="h1header">마이 페이지</h1>
+
+<nav class="headernav">
+    <ul class="headerul">
+        <li class="menu2"><a class="headera" href="/">Home</a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera" href="/posts">게시판</a></li>
+        <li class="menu2"><a class="headera" href="/mypage/detail">마이 페이지</a></li>
+
+    </ul>
+</nav>
+
 <div class="wrapper">
     <div class="sidebar">
         <div class="col"></div>
@@ -9,29 +25,29 @@
         <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
     </div>
     <div class="main">
-            <div class="wrapper-h3">
-                <h3>{{userD.name}}님의 프로필 정보</h3>
-            </div>
-            <div class="wrapper-body">
-                <div class="wrapper-left">
-                    <div class="imgmove">
+        <div class="wrapper-h3">
+            <h3>{{userD.name}}님의 프로필 정보</h3>
+        </div>
+        <div class="wrapper-body">
+            <div class="wrapper-left">
+                <div class="imgmove">
                     <img src="/app/images/profile.jpg" alt="이미지"></div>
+            </div>
+            <div class="wrapper-right">
+                <div class="col1">
+                    <div class="row1">아이디:</div>
+                    <div class="row1-data">{{userD.username}}</div>
                 </div>
-                <div class="wrapper-right">
-                    <div class="col1">
-                        <div class="row1">아이디:</div>
-                        <div class="row1-data">{{userD.username}}</div>
-                    </div>
-                    <div class="col2">
-                        <div class="row2">이름:</div>
-                        <div class="row2-data">{{userD.name}}</div>
-                    </div>
-                    <div class="col3">
-                        <div class="row3">이메일:</div>
-                        <div class="row3-data">{{userD.email}}</div>
-                    </div>
+                <div class="col2">
+                    <div class="row2">이름:</div>
+                    <div class="row2-data">{{userD.name}}</div>
+                </div>
+                <div class="col3">
+                    <div class="row3">이메일:</div>
+                    <div class="row3-data">{{userD.email}}</div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 
