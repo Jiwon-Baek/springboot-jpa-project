@@ -13,6 +13,9 @@ import java.util.List;
 public interface PostsRepository extends JpaRepository<Posts, Long> {
 
 
+    @Query(value = "from Posts where id=:id")
+    Posts findForConmmentById(@Param("id") Long id);
+
     //전체 게시물 내림차순으로 정렬
     @Query("SELECT p FROM Posts p ORDER BY p.id DESC")
     List<Posts> findAllDesc();

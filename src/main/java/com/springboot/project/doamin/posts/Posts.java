@@ -3,12 +3,15 @@ package com.springboot.project.doamin.posts;
 
 import com.springboot.project.doamin.BaseTimeEntity;
 
+import com.springboot.project.doamin.comments.Comments;
 import com.springboot.project.doamin.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -34,6 +37,9 @@ public class Posts extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.PERSIST)
+    private final List<Comments> comments = new ArrayList<>();
 
 
     @Builder

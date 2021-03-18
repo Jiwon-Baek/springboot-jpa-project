@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -24,6 +26,7 @@ public class UserPageController {
 
     private final UserService userService;
     private final PostsService postsService;
+    private final HttpSession session;
 
     //아이디 찾기
     @GetMapping("/findid")
@@ -91,6 +94,9 @@ public class UserPageController {
     //해당 회원이 쓴 게시물 조회
     @GetMapping("/mypage/posts")
     public String userPosts(@LoginUser SessionUser user, Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        //조회수 중복방지를 위한 세션
+        session.setAttribute("hitCheck", "yes");
 
         //유저의 회원 번호를 받아
         UserResponseDto userDto = userService.findUserByUsername(user.getUsername());

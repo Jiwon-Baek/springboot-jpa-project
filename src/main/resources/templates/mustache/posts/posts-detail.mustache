@@ -1,6 +1,5 @@
 {{>mustache/layout/header}}
 
-
 <h1 class="h1header">자유게시판</h1>
 
 <nav class="headernav">
@@ -49,9 +48,118 @@
             <a href="/posts/update/{{postD.id}}" type="button">수정</a>
         {{/postUser}}
     </div>
-</div>
+
+    {{#commentAuthor}}
+        <input type="hidden" id="post_id" value="{{postD.id}}">
+        <div id="form-commentInfo">
+            <div id="comment-count">댓글
+                <span id="count">0</span></div>
+            <input type="hidden" id="author" value="{{commentAuthor}}">
+            <input id="comment" placeholder="댓글을 입력해 주세요.">
+            <button id="btn-commentSave">등록</button>
+        </div>
+    {{/commentAuthor}}
 
 
-<link href="/app/css/posts.css" rel="stylesheet" type="text/css">
+    <ul class="list-unstyled">
+        {{#comments}}
+            <li class="media mt-4" id="comments-{{id}}">
+                <img src="https://api.adorable.io/avatars/64/{{author}}.png" class="mr-3" alt="avata">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1">{{author}}
+                        <small>
+                            <a href="#" class="comment-edit-btn" data-toggle="collapse"
+                               data-target=".multi-collapse-{{id}}">수정</a>
+                            <input type="hidden" id="commentId" value="{{id}}">
+                            <a href="#comments" class="comment-destroy-btn" value="{{id}}">삭제</a>
+                        </small>
+                    </h5>
+                    <p class="collapse multi-collapse-{{id}} show">{{content}}</p>
 
+                    <form class="collapse multi-collapse-{{id}}">
+                        <div class="form-group">
+                            <textarea class="form-control" id="comment-content" rows="3">{{content}}</textarea>
+                        </div>
+                        <input type="hidden" id="comment-id" value="{{id}}">
+                        <input type="hidden" id="comment-author" value="{{author}}">
+                        <button type="button" class="btn btn-info comment-update-btn">수정 완료</button>
+                    </form>
+                </div>
+            </li>
+        {{/comments}}
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        var comment = {
+                    init: function () {
+
+                        // 수정 버튼 변수화
+                        const updateBtns = document.querySelectorAll('.comment-update-btn');
+
+                        updateBtns.forEach(function (item) {
+                            item.addEventListener('click', function () {
+                                var form = this.closest('form');
+                                _this.update(form);
+                            });
+                        });
+
+
+                        var _this = this;
+
+                        // 삭제 버튼 변수화
+                        const destroyBtns = document.querySelectorAll('.comment-destroy-btn');
+                        destroyBtns.forEach(function (item) {
+                            item.addEventListener('click', function () {
+                                var commentId = this.getAttribute('value');
+                                _this.commentDelete(commentId);
+                            });
+                        });
+                    },
+
+                    update: function (form) {
+                        // 데이터
+                        var data = {
+
+                            id: form.querySelector('#comment-id').value,
+                            author: form.querySelector('#comment-author').value,
+                            content: form.querySelector('#comment-content').value,
+                        };
+
+                        $.ajax({
+                            type: 'PUT',
+                            url: '/api/v1/comments/' + data.id,
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8',
+                            data: JSON.stringify(data)
+                        }).done(function () {
+                            alert('글이 수정되었습니다.');
+                            window.location.reload();
+                        }).fail(function (error) {
+                            alert(JSON.stringify(error));
+                        });
+                    },
+
+                    // 댓글 삭제
+                    commentDelete: function (commentId) {
+
+                        $.ajax({
+                            type: 'DELETE',
+                            url: '/api/v1/comments/' + commentId,
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8'
+                        }).done(function () {
+                            alert('댓글이 삭제되었습니다.');
+                            window.location.reload();
+                        }).fail(function (error) {
+                            alert(JSON.stringify(error));
+                        });
+                    }
+                }
+        ;
+
+        comment.init();
+    </script>
+
+    <link href="/app/css/posts.css" rel="stylesheet" type="text/css">
 {{>mustache/layout/footer}}

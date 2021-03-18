@@ -57,6 +57,10 @@ var main = {
                 _this.mainSearch();
             });
 
+            $('#btn-commentSave').on('click', function () {
+                _this.commentSave();
+            });
+
         },
 
         save: function () {
@@ -549,6 +553,35 @@ var main = {
                     alert(JSON.stringify(error));
                 });
             }
+        },
+
+        commentSave: function () {
+
+            var post_id = document.getElementById('post_id').value;
+
+            var data = {
+                content: $('#comment').val(),
+                author: $('#author').val()
+            };
+
+            if ($('#comment').val() == null) {
+                alert("입력된 내용이 없습니다.")
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/comments/' + post_id,
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+
+                var path = window.location.pathname;
+                window.location.href = path;
+
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
         }
     }
 ;

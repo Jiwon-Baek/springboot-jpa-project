@@ -1,6 +1,7 @@
 package com.springboot.project.doamin.user;
 
 import com.springboot.project.doamin.BaseTimeEntity;
+import com.springboot.project.doamin.comments.Comments;
 import com.springboot.project.doamin.posts.Posts;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -43,6 +44,9 @@ public class User extends BaseTimeEntity implements Serializable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private final List<Posts> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private final List<Comments> comments = new ArrayList<>();
 
 
     @Builder
