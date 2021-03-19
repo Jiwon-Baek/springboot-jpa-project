@@ -61,6 +61,7 @@ var main = {
                 _this.commentSave();
             });
 
+
         },
 
         save: function () {
@@ -160,7 +161,7 @@ var main = {
                 data: JSON.stringify(data)
             }).done(function () {
                 alert('회원가입이 되었습니다.');
-                window.location.href = '/login';
+                window.location.href = '/';
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import javax.servlet.http.HttpSession;
 
 
+
 @RequiredArgsConstructor
 @Controller
 public class PostsPageController {
@@ -65,7 +66,13 @@ public class PostsPageController {
     @GetMapping("/posts/detail/{id}")
     public String postsContent(@PathVariable Long id, Model model, @LoginUser SessionUser user) throws Exception {
 
+
+
+        //댓글 리스트
+        model.addAttribute("comments", commentsService.findAllBypostId(id));
+
         if (user != null) {
+
             model.addAttribute("commentAuthor", user.getUsername());
         }
 
@@ -96,12 +103,8 @@ public class PostsPageController {
 
         }
 
-        //댓글 리스트
-        model.addAttribute("comments", commentsService.findAllBypostId(id));
-
         return "/mustache/posts/posts-detail";
     }
-
 
     /*게시물 수정*/
     @GetMapping("/posts/update/{id}")

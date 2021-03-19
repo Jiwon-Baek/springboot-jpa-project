@@ -49,48 +49,74 @@
         {{/postUser}}
     </div>
 
-    {{#commentAuthor}}
-        <input type="hidden" id="post_id" value="{{postD.id}}">
-        <div id="form-commentInfo">
-            <div id="comment-count">댓글
-                <span id="count">0</span></div>
-            <input type="hidden" id="author" value="{{commentAuthor}}">
-            <input id="comment" placeholder="댓글을 입력해 주세요.">
-            <button id="btn-commentSave">등록</button>
-        </div>
-    {{/commentAuthor}}
+    <nav class="comments">
+        <div id="nav">
+            {{#commentAuthor}}
+                <input type="hidden" id="post_id" value="{{postD.id}}">
+                <div id="form-comment">
+                    <div id="comment-count">
+                        <input type="hidden" id="author" value="{{commentAuthor}}">
+                        <input id="comment" placeholder="댓글을 입력해 주세요.">
+                        <button id="btn-commentSave">등록</button>
+                    </div>
+                </div>
+            {{/commentAuthor}}
 
-
-    <ul class="list-unstyled">
-        {{#comments}}
-            <li class="media mt-4" id="comments-{{id}}">
-                <img src="https://api.adorable.io/avatars/64/{{author}}.png" class="mr-3" alt="avata">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">{{author}}
-                        <small>
-                            <a href="#" class="comment-edit-btn" data-toggle="collapse"
-                               data-target=".multi-collapse-{{id}}">수정</a>
+            <ul class="main">
+                {{#comments}}
+                    <li class="contents">
+                        <div class="contentBtn">
+                            <button class="button">수정</button>
                             <input type="hidden" id="commentId" value="{{id}}">
                             <a href="#comments" class="comment-destroy-btn" value="{{id}}">삭제</a>
-                        </small>
-                    </h5>
-                    <p class="collapse multi-collapse-{{id}} show">{{content}}</p>
-
-                    <form class="collapse multi-collapse-{{id}}">
-                        <div class="form-group">
-                            <textarea class="form-control" id="comment-content" rows="3">{{content}}</textarea>
                         </div>
-                        <input type="hidden" id="comment-id" value="{{id}}">
-                        <input type="hidden" id="comment-author" value="{{author}}">
-                        <button type="button" class="btn btn-info comment-update-btn">수정 완료</button>
-                    </form>
-                </div>
-            </li>
-        {{/comments}}
-    </ul>
+                        <div class="content">
+                            <h5>{{author}} {{modifiedDate}} </h5>
+                            <p>{{content}}</p>
+                        </div>
+                        <ul class="sub">
+                            <li>
+                                <form>
+                                    <textarea id="comment-content">{{content}}</textarea>
+                                    <input type="hidden" id="comment-id" value="{{id}}">
+                                    <input type="hidden" id="comment-author" value="{{author}}">
+                                    <div class="updateBtn">
+                                        <button type="button" class="comment-update-btn">수정 완료</button>
+                                        <button type="button" class="close">닫기</button>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                {{/comments}}
+            </ul>
+        </div>
+    </nav>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
+
+        $(document).ready(function () {
+
+            $('.sub').hide();
+
+
+            $(".main>li .button").click(function () {
+                $(this).closest('li').find('.sub').show();
+                $(this).closest('li').find('.content').hide();
+                $(this).closest('li').find('.contentBtn').hide();
+            });
+
+            $(".main>li .sub .close").click(function () {
+
+                $('.sub').hide();
+                $('.content').show();
+                $('.contentBtn').show();
+
+            });
+
+        });
+
         var comment = {
                     init: function () {
 
@@ -162,4 +188,5 @@
     </script>
 
     <link href="/app/css/posts.css" rel="stylesheet" type="text/css">
-{{>mustache/layout/footer}}
+
+{{>mustache/layout/detail-footer}}

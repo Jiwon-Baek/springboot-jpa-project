@@ -36,4 +36,5 @@ public class CommentsResponseDto {
         this.user = entity.getUser();
         this.posts = entity.getPosts();
     }
+
 }

@@ -140,26 +140,27 @@ html {
 
 /*푸터 부분*/
 
-.footer {
-
+#footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    margin-top: 20px;
+    margin-top: auto;
     padding: 15px 0;
     text-align: center;
     color: black;
     font-size: 10px;
+
+
 }
 
-.footer li {
+#footer li {
     position: relative;
     display: inline;
     padding: 0 7px 0 10px;
     white-space: nowrap;
 }
 
-.footer li:before {
+#footer li:before {
     content: '';
     width: 1px;
     height: 12px;
@@ -169,14 +170,47 @@ html {
     top: 2px;
 }
 
-.footer li:first-child:before {
+#footer li:first-child:before {
     width: 0;
 }
 
-.smallFooter{
+#smallFooter{
     width: 100%;
     font-size: 10px;
-   padding-left: 50px;
+    padding-left: 50px;
+}
+
+#detail-footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: auto;
+    padding: 15px 0;
+    text-align: center;
+    color: black;
+    font-size: 10px;
+    position: absolute;
+}
+
+#detail-footer li {
+    position: relative;
+    display: inline;
+    padding: 0 7px 0 10px;
+    white-space: nowrap;
+}
+
+#detail-footer li:before {
+    content: '';
+    width: 1px;
+    height: 12px;
+    background-color: #003458;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+#detail-footer li:first-child:before {
+    width: 0;
 }
 
 

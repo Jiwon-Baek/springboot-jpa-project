@@ -29,6 +29,7 @@ body {
 
 html {
     height: 100%;
+    width: 100%;
 }
 
 .wrapper {
@@ -259,29 +260,131 @@ table td {
 }
 
 /*----------댓글------------------*/
-.simple_table {
-    width: 100%;
+
+
+.comments {
+    width: 900px;
     border: none;
     border-collapse: separate;
     border-spacing: 2px;
+    margin-top: 80px;
+    min-height: 100%;
+    margin-bottom: 500px;
 }
 
-.simple_table th {
-    padding: 15px;
-    border: none;
-    border-left: 5px solid #C03;
-    border-bottom: 1px solid #DDD;
-    background: #FCF0F3;
-    font-weight: normal;
-    text-align:center;
-    text-shadow: 0 1px #FFF;
-    vertical-align: middle;
+.comments #nav #form-comment {
+    width: 100%;
+    margin-left: 60px;
+
 }
 
-.simple_table td {
+.comments #nav #form-comment input {
+    width: 91%;
+    height: 70px;
+}
+
+.comments #nav #form-comment button {
+    padding: 24px 23px 27px 23px;
+    margin-left: -7px;
+    font-weight: bolder;
+    background-color: #41516a;
+    color: white;
+}
+
+.comments .main {
+    margin-left: 60px;
+    margin-top: 10px;
+    width: 100%;
+
+}
+
+.comments li {
+    list-style: none;
+    min-height: 100%;
+
+}
+.comments .main .author h5{
+    padding-top: 10px;
+}
+
+.comments .main .contents {
+    border-left: 5px solid #554146;
     padding: 15px;
-    border: none;
     border-bottom: 1px solid #DDD;
     text-align: left;
     vertical-align: baseline;
+    float: left;
+    width: 880px;
+    min-height: 100%;
+    margin-top: 10px;
+}
+
+.comments .main .contents .contentBtn {
+    margin-left: 100px;
+    float: right;
+}
+
+.comments .main .contents .contentBtn button {
+    background-color: #41516a;
+    border: none;
+    color: #ffffff;
+    padding: 5px 5px;
+    font-weight: bold;
+    font-size: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+
+}
+
+.comments .main .contents .contentBtn a {
+    background-color: #41516a;
+    border: none;
+    color: #ffffff;
+    padding: 5px 5px 5px;
+    font-weight: bold;
+    font-size: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 10px;
+
+}
+.comments .main .contents .content {
+
+    width: 625px;
+    min-height: auto;
+}
+
+.comments .sub {
+    width: 100%;
+}
+
+.comments .sub textarea{
+    width: 600px;
+    height: 65px;
+    margin-top: -10px;
+}
+.comments .sub button{
+    background-color: #41516a;
+    border: none;
+    color: #ffffff;
+    padding: 5px 5px;
+    font-weight: bold;
+    font-size: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.comments .sub .updateBtn{
+    float: right;
 }
