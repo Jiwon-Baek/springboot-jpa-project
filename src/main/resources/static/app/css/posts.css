@@ -88,7 +88,7 @@ table td {
 }
 
 .wrapper .btn-input button {
-    background-color: #41516a;
+    background-color: #758292;
     border: none;
     color: #ffffff;
     padding: 10px 10px;
@@ -105,7 +105,7 @@ table td {
 
 
 .wrapper .btn-input a {
-    background-color: #41516a;
+    background-color: #758292;
     border: none;
     color: #ffffff;
     padding: 10px 10px;
@@ -182,7 +182,7 @@ table td {
 }
 
 .wrapper .btn-input2 button {
-    background-color: #41516a;
+    background-color: #758292;
     border: none;
     color: #ffffff;
     padding: 10px 10px;
@@ -270,6 +270,7 @@ table td {
     margin-top: 80px;
     min-height: 100%;
     margin-bottom: 500px;
+
 }
 
 .comments #nav #form-comment {
@@ -284,10 +285,10 @@ table td {
 }
 
 .comments #nav #form-comment button {
-    padding: 24px 23px 27px 23px;
+    padding: 24px 23px 28px 23px;
     margin-left: -7px;
     font-weight: bolder;
-    background-color: #41516a;
+    background-color: #758292;
     color: white;
 }
 
@@ -303,9 +304,15 @@ table td {
     min-height: 100%;
 
 }
-.comments .main .author h5{
+.comments .main .author .authorTime{
     padding-top: 10px;
 }
+
+.comments .main .contents .authorTime #postTime{
+    font-size: 8px;
+    color: #2a2a2a;
+}
+
 
 .comments .main .contents {
     border-left: 5px solid #554146;
@@ -325,7 +332,7 @@ table td {
 }
 
 .comments .main .contents .contentBtn button {
-    background-color: #41516a;
+    background-color: #758292;
     border: none;
     color: #ffffff;
     padding: 5px 5px;
@@ -341,7 +348,7 @@ table td {
 }
 
 .comments .main .contents .contentBtn a {
-    background-color: #41516a;
+    background-color: #758292;
     border: none;
     color: #ffffff;
     padding: 5px 5px 5px;
@@ -388,3 +395,45 @@ table td {
 .comments .sub .updateBtn{
     float: right;
 }
+
+.page_wrap {
+    text-align: center;
+    font-size: 0;
+    float: bottom;
+    margin-top: 20px;
+    margin-left: 280px;
+}
+
+.page_nation {
+    display: inline-block;
+}
+
+.page_nation .none {
+    display: none;
+}
+
+.page_nation a {
+    display: block;
+    margin: 0 3px;
+    float: left;
+    border: 1px solid #e6e6e6;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background-color: #fff;
+    font-size: 13px;
+    color: #999999;
+    text-decoration: none;
+}
+
+.page_nation .arrow {
+    border: 1px solid #ccc;
+}
+
+.page_nation a.active {
+    background-color: #42454c;
+    color: #fff;
+    border: 1px solid #42454c;
+}
+

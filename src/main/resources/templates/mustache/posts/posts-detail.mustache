@@ -71,7 +71,9 @@
                             <a href="#comments" class="comment-destroy-btn" value="{{id}}">삭제</a>
                         </div>
                         <div class="content">
-                            <h5>{{author}} {{modifiedDate}} </h5>
+                            <div class="authorTime">
+                                <a id="commentAuthor"> {{author}} </a>
+                                <a id="postTime">{{modifiedDate}}</a></div>
                             <p>{{content}}</p>
                         </div>
                         <ul class="sub">
@@ -79,7 +81,7 @@
                                 <form>
                                     <textarea id="comment-content">{{content}}</textarea>
                                     <input type="hidden" id="comment-id" value="{{id}}">
-                                    <input type="hidden" id="comment-author" value="{{author}}">
+                                    <input type="hidden" id="comment-author" name="comment-author" value="{{author}}">
                                     <div class="updateBtn">
                                         <button type="button" class="comment-update-btn">수정 완료</button>
                                         <button type="button" class="close">닫기</button>
@@ -93,30 +95,72 @@
         </div>
     </nav>
 
+    <div class="page_wrap">
+        <div class="page_nation">
+            {{#commentsPage}}
+                <a href="javascript:;" class="pageNum" value="{{listNum}}">{{listNum}}</a>
+            {{/commentsPage}}
+        </div>
+    </div>
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
 
-        $(document).ready(function () {
+        //페이지
+        var page = "";
 
-            $('.sub').hide();
+        $(".pageNum").on("click", function () {
 
+            var path = window.location.pathname;
 
-            $(".main>li .button").click(function () {
-                $(this).closest('li').find('.sub').show();
-                $(this).closest('li').find('.content').hide();
-                $(this).closest('li').find('.contentBtn').hide();
-            });
+            var page = $(this).attr('value') - 1;
 
-            $(".main>li .sub .close").click(function () {
-
-                $('.sub').hide();
-                $('.content').show();
-                $('.contentBtn').show();
-
-            });
+            window.location.href = path + "?page=" + page;
 
         });
 
+
+        $(document).ready(function () {
+
+
+            $('.sub').hide();
+
+            $('.main>li ').click(function () {
+
+                if ($('#author').val() != $(this).closest('li').find('#comment-author').val()) {
+
+                    alert("수정할 수 없는 글입니다.");
+                    $(this).closest('.contents').find('.sub').hide();
+                    $(this).closest('li').find('.contentBtn').hide();
+
+                } else if ($('#author').val() == $(this).closest('li').find('#comment-author').val()) {
+
+
+                    $(".main>li .button").click(function () {
+
+                        $(this).closest('.contents').find('.sub').show();
+                        $(this).closest('.contents').find('.content').hide();
+                        $(this).closest('li').find('.contentBtn').hide();
+
+                    });
+
+
+                    $(".main>li .sub .close").click(function () {
+
+                        $(this).closest('.contents').find('.sub').hide();
+                        $(this).closest('.contents').find('.content').show();
+                        $(this).closest('.contents').find('.contentBtn').show();
+
+                    });
+
+                }
+            });
+
+
+        });
+
+        //댓글 수정, 삭제
         var comment = {
                     init: function () {
 

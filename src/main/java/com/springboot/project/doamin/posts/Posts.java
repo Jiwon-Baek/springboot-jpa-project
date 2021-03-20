@@ -38,7 +38,7 @@ public class Posts extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "posts", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
     private final List<Comments> comments = new ArrayList<>();
 
 

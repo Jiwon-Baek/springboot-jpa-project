@@ -42,10 +42,10 @@ public class User extends BaseTimeEntity implements Serializable {
     @Column(nullable = false)
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private final List<Posts> posts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private final List<Comments> comments = new ArrayList<>();
 
 

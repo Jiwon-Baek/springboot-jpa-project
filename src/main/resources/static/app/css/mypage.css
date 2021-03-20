@@ -368,9 +368,8 @@ button {
 .page_wrap {
     text-align: center;
     font-size: 0;
-    float: bottom;
-    margin-top: 20px;
-    margin-left: 280px;
+    margin-top: 100px;
+    margin-left: -180px;
 }
 
 .page_nation {

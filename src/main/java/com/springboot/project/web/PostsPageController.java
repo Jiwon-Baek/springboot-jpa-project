@@ -64,12 +64,7 @@ public class PostsPageController {
 
     //게시물 세부 내용
     @GetMapping("/posts/detail/{id}")
-    public String postsContent(@PathVariable Long id, Model model, @LoginUser SessionUser user) throws Exception {
-
-
-
-        //댓글 리스트
-        model.addAttribute("comments", commentsService.findAllBypostId(id));
+    public String postsContent(@PathVariable Long id, Model model, @LoginUser SessionUser user,@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) throws Exception {
 
         if (user != null) {
 
@@ -102,6 +97,13 @@ public class PostsPageController {
             }
 
         }
+
+        //댓글 리스트
+        model.addAttribute("comments", commentsService.findAllBypostId(id,pageable));
+
+        model.addAttribute("commentsPage",commentsService.getPageList(pageable));
+
+
 
         return "/mustache/posts/posts-detail";
     }
