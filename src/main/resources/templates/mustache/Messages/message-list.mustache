@@ -1,0 +1,85 @@
+{{>mustache/layout/header}}
+
+<h1 class="h1header">마이페이지</h1>
+
+<nav class="headernav">
+    <ul class="headerul">
+        <li class="menu2"><a class="headera" href="/">Home</a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera"></a></li>
+        <li class="menu2"><a class="headera" href="/posts">게시판</a></li>
+        <li class="menu2"><a class="headera" href="/mypage/detail">마이 페이지</a></li>
+
+    </ul>
+</nav>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
+        <div class="col1"><a href="/mypage/message/list">나의 쪽지함</a></div>
+        <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
+        <div class="col1"><a href="/mypage/update">수정하기</a></div>
+        <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
+    </div>
+    <div class="col1"><a href="/mypage/message/post">쪽지 쓰기</a></div>
+    <div class="main">
+        <div class="wrapper-h3">
+            <h3>나의 쪽지함</h3>
+        </div>
+        <div class="tabletop">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="tdId"></th>
+                    <th>제목</th>
+                    <th class="author">보낸이</th>
+                    <th class="createdDate">작성일</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                {{#messages}}
+                    <tr>
+                        <td class="tdId"></td>
+                        <td class="bold"><a href="/mypage/message/detail/{{id}}">{{title}}</a></td>
+                        <td class="author">{{author}}</td>
+                        <td class="createdDate">{{createdDate}}</td>
+                    </tr>
+                {{/messages}}
+                {{^messages}}
+                    <tr>
+
+                        <td></td>
+                        <td>쪽지가 없습니다.</td>
+                        <td></td>
+                    </tr>
+                {{/messages}}
+                </tbody>
+            </table>
+            <div class="page_wrap">
+                <div class="page_nation">
+                    {{#messagePageList}}
+                        <a href="javascript:;" class="pageNum" value="{{listNum}}">{{listNum}}</a>
+                    {{/messagePageList}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+
+    $(".myPageNum").on("click", function () {
+        var path = window.location.pathname;
+        var page = $(this).attr('value') - 1;
+
+        window.location.href = path + "?page=" + page;
+
+    });
+</script>
+
+
+<link href="/app/css/mypage.css" rel="stylesheet" type="text/css">
+
+{{>mustache/layout/footer}}footer}}

@@ -12,10 +12,9 @@ import com.springboot.project.web.dto.CommentsSaveDto;
 
 import com.springboot.project.web.dto.CommentsUpdateDto;
 
-import com.springboot.project.web.dto.PostsPageDto;
+import com.springboot.project.web.dto.PageDto;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -87,7 +86,7 @@ public class CommentsService {
 
     //게시물 전체 갯수를 활용하여 필요한 페이지 버튼 수를 구해 활용
     @Transactional
-    public List<PostsPageDto> getPageList(Pageable pageable) {
+    public List<PageDto> getPageList(Pageable pageable) {
 
         List<Integer> pageDtos = new ArrayList<>();
 
@@ -114,7 +113,7 @@ public class CommentsService {
 
         }
 
-        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+        return pageDtos.stream().map(PageDto::new).collect(Collectors.toList());
 
     }
 

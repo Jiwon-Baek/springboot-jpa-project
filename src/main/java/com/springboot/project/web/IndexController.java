@@ -32,6 +32,7 @@ public class IndexController {
         //로그인이 되어있을 때
         if (user != null) {
             model.addAttribute("userId", user.getUsername());
+            System.out.println("메인"+ user.getUsername());
         }
 
 

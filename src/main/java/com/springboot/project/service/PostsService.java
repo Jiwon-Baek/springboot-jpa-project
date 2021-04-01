@@ -137,7 +137,7 @@ public class PostsService {
 
     //게시물 전체 갯수를 활용하여 필요한 페이지 버튼 수를 구해 활용
     @Transactional
-    public List<PostsPageDto> getPageList(Pageable pageable) {
+    public List<PageDto> getPageList(Pageable pageable) {
 
         List<Integer> pageDtos = new ArrayList<>();
 
@@ -164,7 +164,7 @@ public class PostsService {
 
         }
 
-        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+        return pageDtos.stream().map(PageDto::new).collect(Collectors.toList());
 
     }
 
@@ -178,7 +178,7 @@ public class PostsService {
 
     //제목으로 검색해 해당되는 게시물 갯수를 활용하여 페이지번호 계산
     @Transactional
-    public List<PostsPageDto> getSearchTitlePageList(String title, Pageable pageable) {
+    public List<PageDto> getSearchTitlePageList(String title, Pageable pageable) {
 
         List<Integer> pageDtos = new ArrayList<>();
 
@@ -205,7 +205,7 @@ public class PostsService {
 
         }
 
-        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+        return pageDtos.stream().map(PageDto::new).collect(Collectors.toList());
 
     }
 
@@ -220,7 +220,7 @@ public class PostsService {
 
     //작성자로 검색해 해당되는 게시물 갯수를 활용하여 페이지번호 계산
     @Transactional
-    public List<PostsPageDto> getSearchAuthorPageList(String author, Pageable pageable) {
+    public List<PageDto> getSearchAuthorPageList(String author, Pageable pageable) {
 
         List<Integer> pageDtos = new ArrayList<>();
 
@@ -247,7 +247,7 @@ public class PostsService {
 
         }
 
-        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+        return pageDtos.stream().map(PageDto::new).collect(Collectors.toList());
 
     }
 
@@ -261,7 +261,7 @@ public class PostsService {
 
 
     @Transactional
-    public List<PostsPageDto> getSearchUserPageList(Long userId, Pageable pageable) {
+    public List<PageDto> getSearchUserPageList(Long userId, Pageable pageable) {
 
         List<Integer> pageDtos = new ArrayList<>();
 
@@ -288,7 +288,7 @@ public class PostsService {
 
         }
 
-        return pageDtos.stream().map(PostsPageDto::new).collect(Collectors.toList());
+        return pageDtos.stream().map(PageDto::new).collect(Collectors.toList());
 
     }
 

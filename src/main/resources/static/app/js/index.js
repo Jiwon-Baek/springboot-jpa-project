@@ -61,6 +61,10 @@ var main = {
                 _this.commentSave();
             });
 
+            $('#btn-messageSave').on('click', function () {
+                _this.messageSave();
+            });
+
 
         },
 
@@ -566,7 +570,7 @@ var main = {
             };
 
             if ($('#comment').val() == null) {
-                alert("입력된 내용이 없습니다.")
+                alert("입력된 내용이 없습니다.");
             }
 
             $.ajax({
@@ -583,7 +587,39 @@ var main = {
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
+        },
+
+    messageSave: function () {
+
+        if($('#recipients').val()==null){
+            alert("보내는 이를 입력하지 않았습니다.");
         }
+
+        if ($('#content').val() == null) {
+            alert("입력된 내용이 없습니다.");
+        }
+
+        var data = {
+            title: $('#title').val(),
+            content: $('#content').val(),
+            author: $('#author').val(),
+            recipients:$('#recipients').val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/message/post',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function () {
+
+            alert("메세지를 보냈습니다.");
+
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    }
     }
 ;
 

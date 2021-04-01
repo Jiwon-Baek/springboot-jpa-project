@@ -38,7 +38,6 @@ public class User extends BaseTimeEntity implements Serializable {
     @Column(nullable = false)
     private String email;
 
-
     @Column(nullable = false)
     private String role;
 
@@ -56,6 +55,7 @@ public class User extends BaseTimeEntity implements Serializable {
         this.name = name;
         this.email = email;
         this.role = role;
+
     }
 
     public User(Long id, String username) {

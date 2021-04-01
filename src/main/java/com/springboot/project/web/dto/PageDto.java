@@ -5,13 +5,13 @@ import lombok.Getter;
 
 
 @Getter
-public class PostsPageDto {
+public class PageDto {
 
     //페이지를 위한 dto
     private int listNum;
 
 
-    public PostsPageDto(int listNum) {
+    public PageDto(int listNum) {
 
         this.listNum = listNum;
     }

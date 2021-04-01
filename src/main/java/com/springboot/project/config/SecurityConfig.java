@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/app/css/**", "/app/fonts/**", "/app/images/**", "/mustache/**", "/app/js/**", "/h2-console/**", "/profile","/api/v1/comments/**").permitAll()
                 .antMatchers("/signup", "/login", "/findid", "/findid/**", "/findpassword", "/findpassword/**", "/api/v1/userLogin/**", "/posts", "/posts/detail/**", "/posts/title/**", "/posts/author/**", "/api/v1/search/**").permitAll()
-                .antMatchers("/posts/update/**", "/posts/delete/**", "/api/v1/posts/**", "/mypage/**", "/api/v1/user/**").hasRole(Role.USER.name())
+                .antMatchers("/posts/update/**", "/posts/delete/**", "/api/v1/posts/**", "/mypage/**", "/api/v1/user/**","/api/v1/message/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
