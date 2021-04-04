@@ -1,20 +1,21 @@
 package com.springboot.project.service;
 
 
-
 import com.springboot.project.doamin.message.Message;
 import com.springboot.project.doamin.message.MessageRepository;
 
 import com.springboot.project.doamin.user.User;
 
 import com.springboot.project.doamin.user.UserRepository;
-import com.springboot.project.web.dto.MessageSaveDto;
-import com.springboot.project.web.dto.PageDto;
+import com.springboot.project.web.dto.*;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +29,17 @@ public class MessageService {
     private final UserRepository userRepository;
 
 
-    /*메세지 페이지 서비스*/
+    /*메세지 페이지, 해당 사용자에게 보낸 것만 보기*/
 
     @Transactional
-    public Page<Message> findMessageByPageRequest(Pageable pageable) {
+    public Page<Message> findMessageByPageRequest(String username, Pageable pageable) {
 
-        return messageRepository.findAll(pageable);
+        Long user_id = userRepository.findByUsername(username).getId();
+
+        return messageRepository.findAllByUserId(user_id, pageable);
     }
 
-    //게시물 전체 갯수를 구하는 서비스
+    //메세지 전체 갯수를 구하는 서비스
     @Transactional
     public Long getMessageCount() {
 
@@ -77,15 +80,44 @@ public class MessageService {
 
     }
 
+
+    //메세지 보내기(디비 저장)
     @Transactional
-    public Long save(MessageSaveDto saveDto) {
+    public Long save(MessageSendDto saveDto) {
 
         User user = userRepository.findByUsername(saveDto.getRecipients());
 
         saveDto.setUser(user);
 
+        if(user==null){
+
+            throw new RuntimeException("없는 회원입니다.");
+
+        }
+
         return messageRepository.save(saveDto.toEntity()).getId();
 
+    }
+
+
+    //글번호로 메세지(쪽지) 세부내용
+    @Transactional(readOnly = true)
+    public MessageResponseDto findById(Long id) {
+
+
+        Message entity = messageRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 메세지가 없습니다. id=" + id));
+
+        return new MessageResponseDto(entity);
+    }
+
+    //메세지 삭제
+    @Transactional
+    public void delete(Long id) {
+        Message message = messageRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 메세지가 없습니다. id=" + id));
+
+        messageRepository.delete(message);
     }
 
 

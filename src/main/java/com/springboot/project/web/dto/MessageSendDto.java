@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class MessageSaveDto {
+public class MessageSendDto {
 
     private String title;
     private String content;
@@ -19,7 +19,7 @@ public class MessageSaveDto {
     private User user;
 
     @Builder
-    public MessageSaveDto(String title, String content,String recipients, String author) {
+    public MessageSendDto(String title, String content, String recipients, String author) {
         this.title = title;
         this.content = content;
         this.recipients = recipients;

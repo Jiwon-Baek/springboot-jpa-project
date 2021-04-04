@@ -65,6 +65,12 @@ var main = {
                 _this.messageSave();
             });
 
+            $('#btn-messageDelete').on('click', function () {
+                _this.messageDelete();
+            });
+
+
+
 
         },
 
@@ -589,37 +595,54 @@ var main = {
             });
         },
 
-    messageSave: function () {
+        messageSave: function () {
 
-        if($('#recipients').val()==null){
-            alert("보내는 이를 입력하지 않았습니다.");
+            if ($('#recipients').val() == null) {
+                alert("보내는 이를 입력하지 않았습니다.");
+            }
+
+            if ($('#content').val() == null) {
+                alert("입력된 내용이 없습니다.");
+            }
+
+            var data = {
+                title: $('#title').val(),
+                content: $('#content').val(),
+                author: $('#author').val(),
+                recipients: $('#recipients').val()
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/message/post',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+
+                alert("메세지를 보냈습니다.");
+
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        },
+
+        messageDelete: function () {
+
+            var id = $('#id').val();
+
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/v1/message/delete/' + id,
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            }).done(function () {
+                alert('메세지가 삭제되었습니다.');
+                window.history.back();
+            }).fail(function (error) {
+                alert('없는 회원이거나 잘못된 양식입니다.');
+            });
         }
-
-        if ($('#content').val() == null) {
-            alert("입력된 내용이 없습니다.");
-        }
-
-        var data = {
-            title: $('#title').val(),
-            content: $('#content').val(),
-            author: $('#author').val(),
-            recipients:$('#recipients').val()
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: '/api/v1/message/post',
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        }).done(function () {
-
-            alert("메세지를 보냈습니다.");
-
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
-    }
     }
 ;
 

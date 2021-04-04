@@ -29,6 +29,7 @@
             <h3>나의 쪽지함</h3>
         </div>
         <div class="tabletop">
+            <input type="button" value="선택삭제" class="btn-outline-info" onclick="deleteValue();">
             <table class="table">
                 <thead>
                 <tr>
@@ -41,7 +42,7 @@
                 <tbody id="tbody">
                 {{#messages}}
                     <tr>
-                        <td class="tdId"></td>
+                        <td class="tdId"><input type="checkbox" name="rowCheck" value="{{id}}"></td>
                         <td class="bold"><a href="/mypage/message/detail/{{id}}">{{title}}</a></td>
                         <td class="author">{{author}}</td>
                         <td class="createdDate">{{createdDate}}</td>
@@ -77,6 +78,67 @@
         window.location.href = path + "?page=" + page;
 
     });
+
+    $(function () {
+        var chkObj = document.getElementsByName("rowCheck");
+        var rowCnt = chkObj.length;
+
+        $("input[name='allCheck']").click(function () {
+            var chk_listArr = $("input[name='rowCheck']");
+            for (var i = 0; i < chk_listArr.lenth; i++) {
+                chk_listArr[i].checked = this.checked;
+            }
+        });
+
+        $("input[name='rowCheck']").click(function () {
+            if ($("input[name='rowCheck']:checked").length == rowCnt) {
+                $("input[name='allCheck']")[0].checked = true;
+            } else {
+                $("input[name='allCheck']")[0].checked = false;
+            }
+        });
+    });
+
+    function deleteValue() {
+
+        var url = "/api/v1/message/deleteArr";
+        var valueArr = new Array();
+        var list = $("input[name='rowCheck']");
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].checked) {
+                valueArr.push(list[i].value);
+            }
+        }
+
+        if (valueArr.length == 0) {
+            alert("선택된 글이 없습니다.");
+        } else {
+            var chk = confirm("삭제하시겠습니까?");
+
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                contentType: 'application/json; charset=utf-8',
+                data:{
+                    valueArr: valueArr
+                },
+            }).done(function (data) {
+
+                alert("선택한 글을 삭제했습니다.");
+                var path = window.location.pathname;
+                window.location.href = path;
+
+            }).fail(function (error) {
+                alert("선택한 글을 삭제 실패했습니다.");
+            });
+
+        }
+
+
+    }
+
+
 </script>
 
 
