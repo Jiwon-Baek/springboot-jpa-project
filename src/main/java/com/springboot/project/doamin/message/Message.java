@@ -54,5 +54,8 @@ public class Message extends BaseTimeEntity {
         this.user = user_id;
     }
 
+    public void setReadCheck(boolean readCheck) {
+        this.readCheck = readCheck;
+    }
 
 }

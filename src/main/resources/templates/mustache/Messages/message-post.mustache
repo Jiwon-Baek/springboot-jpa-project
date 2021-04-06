@@ -1,5 +1,5 @@
 {{>mustache/layout/header}}
-
+<h1 class="h1header">마이페이지</h1>
 <nav class="headernav">
     <ul class="headerul">
         <li class="menu2"><a class="headera" href="/">Home</a></li>
@@ -8,50 +8,53 @@
         <li class="menu2"><a class="headera"></a></li>
         <li class="menu2"><a class="headera" href="/posts">게시판</a></li>
         <li class="menu2"><a class="headera" href="/mypage/detail">마이 페이지</a></li>
-
     </ul>
 </nav>
 
 <div class="wrapper">
     <div class="sidebar">
-        <div class="col"></div>
-        <div class="col"></div>
         <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
-        <div class="col1"><a href="/mypage/message/list">나의 쪽지함</a></div>
+        <div class="col1"><a href="/mypage/message/list">나의 쪽지함</a><label style="color: red">{{readCheck2}}</label></div>
         <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
         <div class="col1"><a href="/mypage/update">수정하기</a></div>
         <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
     </div>
+    <div class="main">
+        <div class="wrapper-h3">
+            <h3>메세지 보내기</h3>
+        </div>
+        <div class="tabletop">
+            <form>
+                <table class="table">
+                    <tr>
+                        <th>제목</th>
+                        <td><input type="text" id="title" value="제목없음"></td>
+                    </tr>
+                    <tr>
+                        <th>받는 사람</th>
+                        <td colspan="3">
+                            <input type="text" id="recipients">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="4">보낼 내용</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><textarea id="content"></textarea></td>
+                    </tr>
+                </table>
 
-    <div class="posts-save">
-        <form>
-            <table class="table">
-                <tr>
-                    <th>제목</th>
-                    <td><input type="text" id="title" value="제목없음"></td>
-                </tr>
-                <tr>
-                    <th>받는 사람</th>
-                    <td colspan="3">
-                        <input type="text" id="recipients">
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="4">보낼 내용</th>
-                </tr>
-                <tr>
-                    <td colspan="4"><textarea id="content"></textarea></td>
-                </tr>
-            </table>
+                <input type="hidden" id="author" value="{{messageAuthor}}">
+            </form>
+        </div>
 
-            <input type="hidden" id="author" value="{{messageAuthor}}">
-        </form>
-    </div>
-    <div class="btn-input">
-        <button type="button" class="btn btn-primary" id="btn-messageSave">등록</button>
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <div class="btn-input">
+            <button type="button" class="btn btn-primary" id="btn-messageSave">등록</button>
+            <a href="/" role="button" class="btn btn-secondary">취소</a>
+        </div>
+
+
     </div>
 </div>
-
 <link href="/app/css/mypage.css" rel="stylesheet" type="text/css">
 {{>mustache/layout/footer}}

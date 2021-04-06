@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -37,18 +38,21 @@ public class MessageApiController {
     }
 
     @PostMapping("/api/v1/message/deleteArr")
-    public String[] deleteArr(HttpServletRequest request) {
+    public int deleteArr(@RequestParam(value = "chbox[]") List<String> chArr) {
 
-      String[] checkArr = request.getParameterValues("valueArr");
 
-      for(int i=0;i<checkArr.length;i++){
-          Long checkNum = Long.valueOf(checkArr[i]);
-          messageService.delete(checkNum);
-      }
+        int result = 0;
+        Long cartNum = 0L;
 
-      return checkArr;
+        for(String i : chArr) {
+            cartNum = Long.valueOf(i);
+            messageService.delete(cartNum);
+        }
+
+        result = 1;
+
+        return result;
     }
-
 
 
 }

@@ -3,6 +3,7 @@ package com.springboot.project.web;
 
 import com.springboot.project.config.auth.LoginUser;
 import com.springboot.project.config.auth.dto.SessionUser;
+import com.springboot.project.service.MessageService;
 import com.springboot.project.service.PostsService;
 import com.springboot.project.service.UserService;
 import com.springboot.project.web.dto.UserResponseDto;
@@ -26,6 +27,7 @@ public class UserPageController {
 
     private final UserService userService;
     private final PostsService postsService;
+    private final MessageService messageService;
     private final HttpSession session;
 
     //아이디 찾기
@@ -69,6 +71,9 @@ public class UserPageController {
         UserResponseDto dto = userService.findUserByUsername(user.getUsername());
         model.addAttribute("userD", dto);
 
+        //메세지 안 읽은 갯수
+        model.addAttribute("readCheck4",messageService.countReadMessage(user.getUsername()));
+
         return "/mustache/user/mypage-detail";
     }
 
@@ -79,6 +84,9 @@ public class UserPageController {
         UserResponseDto dto = userService.findUserByUsername(user.getUsername());
         model.addAttribute("users", dto);
 
+        //메세지 안 읽은 갯수
+        model.addAttribute("readCheck5",messageService.countReadMessage(user.getUsername()));
+
         return "/mustache/user/mypage-update";
     }
 
@@ -87,6 +95,9 @@ public class UserPageController {
     public String userWithdrawal(@LoginUser SessionUser user, Model model) {
 
         model.addAttribute("username", user.getUsername());
+
+        //메세지 안 읽은 갯수
+        model.addAttribute("readCheck6",messageService.countReadMessage(user.getUsername()));
 
         return "/mustache/user/mypage-withdrawal";
     }
@@ -102,6 +113,9 @@ public class UserPageController {
         UserResponseDto userDto = userService.findUserByUsername(user.getUsername());
 
         Long id = userDto.getId();
+
+        //메세지 안 읽은 갯수
+        model.addAttribute("readCheck7",messageService.countReadMessage(user.getUsername()));
 
 
         //해당 회원번호로 저장된 게시물을 전부 출력

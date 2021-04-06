@@ -30,6 +30,9 @@ public class MessagePageController {
         //메세지(쪽지) 목록
         model.addAttribute("messages", messageService.findMessageByPageRequest(user.getUsername(),pageable));
 
+        //메세지 안 읽은 갯수
+        model.addAttribute("readCheck",messageService.countReadMessage(user.getUsername()));
+
         //페이지 리스트
         model.addAttribute("messagePageList", messageService.getPageList(pageable));
 
@@ -47,14 +50,20 @@ public class MessagePageController {
 
         model.addAttribute("messageAuthor", user.getUsername());
 
+        //메세지 안 읽은 갯수
+        model.addAttribute("readCheck2",messageService.countReadMessage(user.getUsername()));
+
         return "/mustache/messages/message-post";
     }
 
     //메세지(쪽지) 세부 내용
     @GetMapping("/mypage/message/detail/{id}")
-    public String messageDetail(@LoginUser SessionUser user, Model model,@PathVariable Long id) {
+    public String messageDetail(@LoginUser SessionUser user, Model model,@PathVariable Long id) throws Exception {
 
         model.addAttribute("messageD", messageService.findById(id));
+
+        //메세지 안 읽은 갯수
+        model.addAttribute("readCheck3",messageService.countReadMessage(user.getUsername()));
 
 
         return "/mustache/messages/message-detail";

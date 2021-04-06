@@ -89,7 +89,7 @@ public class MessageService {
 
         saveDto.setUser(user);
 
-        if(user==null){
+        if (user == null) {
 
             throw new RuntimeException("없는 회원입니다.");
 
@@ -102,11 +102,14 @@ public class MessageService {
 
     //글번호로 메세지(쪽지) 세부내용
     @Transactional(readOnly = true)
-    public MessageResponseDto findById(Long id) {
+    public MessageResponseDto findById(Long id) throws Exception {
 
 
         Message entity = messageRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 메세지가 없습니다. id=" + id));
+
+
+        messageRepository.readCheck(id);
 
         return new MessageResponseDto(entity);
     }
@@ -121,4 +124,12 @@ public class MessageService {
     }
 
 
+    @Transactional
+    public int countReadMessage(String username) {
+
+        Long id = userRepository.findByUsername(username).getId();
+
+        return messageRepository.countMessagesByUserRead(id);
+
+    }
 }

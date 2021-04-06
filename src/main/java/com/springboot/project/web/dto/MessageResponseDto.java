@@ -21,6 +21,7 @@ public class MessageResponseDto {
     private String author;
     private LocalDate createdDate;
     private LocalDate modifiedDate;
+    private boolean isReadCheck;
 
     public MessageResponseDto(Message entity) {
         this.id = entity.getId();
@@ -29,6 +30,7 @@ public class MessageResponseDto {
         this.author = entity.getAuthor();
         this.createdDate = entity.getCreatedDate();
         this.modifiedDate = entity.getModifiedDate();
+        this.isReadCheck = entity.isReadCheck();
     }
 
 }

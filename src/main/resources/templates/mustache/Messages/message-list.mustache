@@ -15,21 +15,23 @@
 </nav>
 <div class="wrapper">
     <div class="sidebar">
-        <div class="col"></div>
-        <div class="col"></div>
+
         <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
-        <div class="col1"><a href="/mypage/message/list">나의 쪽지함</a></div>
+        <div class="col1"><a href="/mypage/message/list">나의 쪽지함<label style="color: red">{{readCheck}}</label></a></div>
         <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
         <div class="col1"><a href="/mypage/update">수정하기</a></div>
         <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
     </div>
-    <div class="col1"><a href="/mypage/message/post">쪽지 쓰기</a></div>
     <div class="main">
         <div class="wrapper-h3">
             <h3>나의 쪽지함</h3>
         </div>
         <div class="tabletop">
-            <input type="button" value="선택삭제" class="btn-outline-info" onclick="deleteValue();">
+            <div class="allCheck">
+                <input type="checkbox" name="allCheck" id="allCheck"/><label for="allCheck">모두 선택</label>
+            </div>
+            <button type="button" class="selectDelete_btn">선택삭제</button>
+            <div class="col1"><a href="/mypage/message/post">쪽지 쓰기</a></div>
             <table class="table">
                 <thead>
                 <tr>
@@ -42,7 +44,7 @@
                 <tbody id="tbody">
                 {{#messages}}
                     <tr>
-                        <td class="tdId"><input type="checkbox" name="rowCheck" value="{{id}}"></td>
+                        <td class="tdId"><input type="checkbox" name="chBox" class="chBox" data-cartNum="{{id}}"/></td>
                         <td class="bold"><a href="/mypage/message/detail/{{id}}">{{title}}</a></td>
                         <td class="author">{{author}}</td>
                         <td class="createdDate">{{createdDate}}</td>
@@ -79,65 +81,42 @@
 
     });
 
-    $(function () {
-        var chkObj = document.getElementsByName("rowCheck");
-        var rowCnt = chkObj.length;
-
-        $("input[name='allCheck']").click(function () {
-            var chk_listArr = $("input[name='rowCheck']");
-            for (var i = 0; i < chk_listArr.lenth; i++) {
-                chk_listArr[i].checked = this.checked;
-            }
-        });
-
-        $("input[name='rowCheck']").click(function () {
-            if ($("input[name='rowCheck']:checked").length == rowCnt) {
-                $("input[name='allCheck']")[0].checked = true;
-            } else {
-                $("input[name='allCheck']")[0].checked = false;
-            }
-        });
+    //모두 삭제
+    $("#allCheck").click(function () {
+        var chk = $("#allCheck").prop("checked");
+        if (chk) {
+            $(".chBox").prop("checked", true);
+        } else {
+            $(".chBox").prop("checked", false);
+        }
     });
 
-    function deleteValue() {
+    $(".chBox").click(function () {
+        $("#allCheck").prop("checked", false);
+    });
 
-        var url = "/api/v1/message/deleteArr";
-        var valueArr = new Array();
-        var list = $("input[name='rowCheck']");
-        for (var i = 0; i < list.length; i++) {
-            if (list[i].checked) {
-                valueArr.push(list[i].value);
-            }
-        }
+    //선택 삭제
+    $(".selectDelete_btn").click(function () {
+        var confirm_val = confirm("정말 삭제하시겠습니까?");
 
-        if (valueArr.length == 0) {
-            alert("선택된 글이 없습니다.");
-        } else {
-            var chk = confirm("삭제하시겠습니까?");
+        if (confirm_val) {
+            var checkArr = new Array();
 
-
-            $.ajax({
-                type: 'POST',
-                url: url,
-                contentType: 'application/json; charset=utf-8',
-                data:{
-                    valueArr: valueArr
-                },
-            }).done(function (data) {
-
-                alert("선택한 글을 삭제했습니다.");
-                var path = window.location.pathname;
-                window.location.href = path;
-
-            }).fail(function (error) {
-                alert("선택한 글을 삭제 실패했습니다.");
+            $("input[class='chBox']:checked").each(function () {
+                checkArr.push($(this).attr("data-cartNum"));
             });
 
+            $.ajax({
+                url: "/api/v1/message/deleteArr",
+                type: 'POST',
+                data: {chbox: checkArr},
+                success: function () {
+                    var path = window.location.pathname;
+                    window.location.href = path;
+                }
+            });
         }
-
-
-    }
-
+    });
 
 </script>
 
