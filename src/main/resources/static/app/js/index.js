@@ -69,9 +69,6 @@ var main = {
                 _this.messageDelete();
             });
 
-
-
-
         },
 
         save: function () {
@@ -643,6 +640,7 @@ var main = {
                 alert('없는 회원이거나 잘못된 양식입니다.');
             });
         }
+
     }
 ;
 

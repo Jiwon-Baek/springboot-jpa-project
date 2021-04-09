@@ -139,13 +139,6 @@ html {
     margin-left: 60px;
 }
 
-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 70%;
-}
-
 .wrapper .wrapper-body .wrapper-right {
     width: 70%;
     height: 100%;
@@ -225,7 +218,7 @@ img {
 }
 
 
-/*작성한 게시판*/
+/*메세지 목록*/
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 13px;
@@ -251,9 +244,6 @@ table {
     margin-top: 35px;
 }
 
-table {
-    background-color: #ffffff;
-}
 
 .tdId {
     width: 35px;
@@ -285,14 +275,14 @@ table {
 
 table tr th {
     height: 10px;
-    background: #fafafa;
+    background: #c4dff8;
     center: auto;
-    border-top: 1px solid #1a1515;
+    border-top: 2px solid #061655;
     border-bottom: 1px solid #1a1515;
 }
 
 table th {
-    font-weight: bold;
+
     color: #000000;
     padding: 3px 3px;
     border-bottom: 1px solid #a9a9a9;
@@ -305,64 +295,86 @@ table td {
     font-weight: lighter;
 }
 
-/*수정*/
-.wrapper .main .box {
-    width: 50%;
-    height: 50%;
-    margin-left: 200px;
-    margin-top: 45px;
-}
 
+.tabletop .message-btn .check button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 
-.wrapper .main .box .input {
-    border-bottom: 2px solid #c4c5c4;
-    padding: 20px 0 25px 0;
-}
+    background: var(--button-bg-color);
+    color: var(--button-color);
 
-.wrapper .main .box .input input {
-    width: 100%;
-    color: #000000;
-    font-size: 15px;
-    border: none;
-}
+    margin: 0;
+    padding: 0.5rem 1rem;
 
-.wrapper .main .box .button {
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-button {
-    width: 300px;
-    background-color: #090000;
-    border: none;
-    color: #ffffff;
-    padding: 10px 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
     text-align: center;
     text-decoration: none;
+
+    border: none;
+    border-radius: 4px;
+
     display: inline-block;
-    font-size: 15px;
-    margin-left: 45px;
+    width: auto;
+
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
     cursor: pointer;
-    border-radius: 10px;
-    font-family: 'Gothic A1', sans-serif;
+
+    --button-color: #ffffff;
+    --button-bg-color: #ff1010;
+    --button-hover-bg-color: #025ce2;
 
 }
 
-.wrapper .main .box .last {
-    width: 100%;
-    margin-top: 15px;
-    padding-top: 20px;
-    margin-left: 80px;
+.tabletop .post a{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background: var(--button-bg-color);
+    color: var(--button-color);
+
+    margin: 0;
+    padding: 0.5rem 1rem;
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+
+    border: none;
+    border-radius: 4px;
+
+    display: inline-block;
+    width: auto;
+
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    cursor: pointer;
+
+    --button-color: #ffffff;
+    --button-bg-color: #0d49fd;
+    --button-hover-bg-color: #025ce2;
+
 }
 
-.wrapper .main .box .last :hover {
-    background-color: #004b4b;
+.tabletop .message-btn{
+    margin-top: -25px;
 }
 
-.notice {
-    padding: 20px 0 50px 0;
-    font-weight: bold;
+.check{
+    margin-top: 100px;
 }
+.post{
+
+    margin-top: -30px;
+    margin-left: 820px;
+}
+
 
 /*페이지 버튼*/
 .page_wrap {
@@ -405,7 +417,7 @@ button {
     border: 1px solid #42454c;
 }
 
-/*-----------------------*/
+
 .h1header {
     text-align: center;
     font-weight: normal;
@@ -454,4 +466,89 @@ button {
     padding: 10px 0;
 }
 
+/*---------보내기-------------------*/
+.btn-input{
+    margin-top: 10px;
+    margin-left: 920px;
+}
 
+.btn-input button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background: var(--button-bg-color);
+    color: var(--button-color);
+
+    margin: 0;
+    padding: 0.5rem 1rem;
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+
+    border: none;
+    border-radius: 4px;
+
+    display: inline-block;
+    width: auto;
+
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    cursor: pointer;
+
+    --button-color: #ffffff;
+    --button-bg-color: #0d49fd;
+    --button-hover-bg-color: #025ce2;
+
+}
+
+.btn-input a {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background: var(--button-bg-color);
+    color: var(--button-color);
+
+    margin: 0;
+    padding: 0.5rem 1rem;
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+
+    border: none;
+    border-radius: 4px;
+
+    display: inline-block;
+    width: auto;
+
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    cursor: pointer;
+
+    --button-color: #ffffff;
+    --button-bg-color: #fd0d0d;
+    --button-hover-bg-color: #025ce2;
+
+}
+
+.table textarea {
+    border: none;
+    height: 300px;
+    width: 100%;
+}
+
+.table input{
+    border: none;
+    width: 100%;
+}
+
+.height{
+    height: 300px;
+}

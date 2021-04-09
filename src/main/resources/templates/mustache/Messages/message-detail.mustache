@@ -1,7 +1,6 @@
 {{>mustache/layout/header}}
 
 <h1 class="h1header">마이페이지</h1>
-
 <nav class="headernav">
     <ul class="headerul">
         <li class="menu2"><a class="headera" href="/">Home</a></li>
@@ -12,48 +11,57 @@
         <li class="menu2"><a class="headera" href="/mypage/detail">마이 페이지</a></li>
     </ul>
 </nav>
+
 <div class="wrapper">
     <div class="sidebar">
         <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
-        <div class="col1"><a href="/mypage/message/list">나의 쪽지함<label style="color: red">{{readCheck3}}</label></a></div>
+        <div class="col1"><a href="/mypage/message/list">나의 쪽지함<label style="color: red"> {{readCheck3}}</label></a>
+        </div>
         <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
         <div class="col1"><a href="/mypage/update">수정하기</a></div>
         <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
     </div>
-    <div class="posts-detail">
-        <form>
-            <table class="table">
-                <tr>
-                    <th>제목</th>
-                    <td colspan="3">{{messageD.title}}</td>
-                </tr>
-                <tr>
-                    <th>작성자</th>
-                    <td>{{messageD.author}}</td>
-                </tr>
-                <tr>
-                    <th>작성일</th>
-                    <td>{{messageD.createdDate}}</td>
-                </tr>
-                <tr>
-                    <th colspan="4">내용</th>
-                </tr>
-                <tr>
-                    <td colspan="4" class="height">{{messageD.content}}</td>
-                </tr>
-            </table>
-        </form>
+    <div class="main">
+        <div class="wrapper-h3">
+            <h3>메세지 보내기</h3>
+        </div>
+        <div class="tabletop">
+            <form>
+                <table class="table">
+                    <tr>
+                        <th>제목</th>
+                        <td colspan="3">{{messageD.title}}</td>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <td colspan="3">{{messageD.author}}</td>
+                    </tr>
+                    <tr>
+                        <th>작성일</th>
+                        <td colspan="3"> {{messageD.createdDate}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="4">내용</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="height">{{messageD.content}}</td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div class="btn-input btn-right">
+
+            <input type="hidden" id="id" value="{{messageD.id}}">
+            <button onclick="history.back()">돌아가기</button>
+            <button id="btn-messageDelete">삭제</button>
+        </div>
+
+
     </div>
-    <div class="btn-input btn-right">
-
-        <input type="hidden" id="id" value="{{messageD.id}}">
-        <button onclick="history.back()">돌아가기</button>
-        <button id="btn-messageDelete">삭제</button>
+</div>
 
 
-    </div>
+<link href="/app/css/message.css" rel="stylesheet" type="text/css">
 
-
-    <link href="/app/css/posts.css" rel="stylesheet" type="text/css">
-
-{{>mustache/layout/detail-footer}}
+{{>mustache/layout/footer}}

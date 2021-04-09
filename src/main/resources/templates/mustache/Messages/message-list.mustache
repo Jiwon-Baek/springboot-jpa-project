@@ -1,7 +1,7 @@
 {{>mustache/layout/header}}
 
 <h1 class="h1header">마이페이지</h1>
-
+<!---메인 버튼 ---->
 <nav class="headernav">
     <ul class="headerul">
         <li class="menu2"><a class="headera" href="/">Home</a></li>
@@ -13,11 +13,14 @@
 
     </ul>
 </nav>
+
+<!---사이드 메뉴 바--->
 <div class="wrapper">
     <div class="sidebar">
 
         <div class="col1"><a href="/mypage/detail">나의 정보</a></div>
-        <div class="col1"><a href="/mypage/message/list">나의 쪽지함<label style="color: red">{{readCheck}}</label></a></div>
+        <div class="col1"><a href="/mypage/message/list">나의 쪽지함<label style="color: red"> {{readCheck}}</label></a>
+        </div>
         <div class="col1"><a href="/mypage/posts">나의 게시물</a></div>
         <div class="col1"><a href="/mypage/update">수정하기</a></div>
         <div class="col1"><a href="/mypage/withdrawal">회원탈퇴</a></div>
@@ -27,18 +30,28 @@
             <h3>나의 쪽지함</h3>
         </div>
         <div class="tabletop">
-            <div class="allCheck">
+
+            <!---메세지 버튼---->
+            <div class="message-btn">
+                <div class="check">
                 <input type="checkbox" name="allCheck" id="allCheck"/><label for="allCheck">모두 선택</label>
+                <button type="button" class="selectDelete_btn">선택삭제</button>
+                </div>
+                <div class="post">
+                    <a href="/mypage/message/post">쪽지 쓰기</a>
+                </div>
             </div>
-            <button type="button" class="selectDelete_btn">선택삭제</button>
-            <div class="col1"><a href="/mypage/message/post">쪽지 쓰기</a></div>
+
+
+            <!---메세지 목록---->
+
             <table class="table">
                 <thead>
                 <tr>
                     <th class="tdId"></th>
                     <th>제목</th>
                     <th class="author">보낸이</th>
-                    <th class="createdDate">작성일</th>
+                    <th class="createdDate">수신일</th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
@@ -121,6 +134,6 @@
 </script>
 
 
-<link href="/app/css/mypage.css" rel="stylesheet" type="text/css">
+<link href="/app/css/message.css" rel="stylesheet" type="text/css">
 
 {{>mustache/layout/footer}}footer}}
