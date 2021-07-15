@@ -24,7 +24,7 @@
   * gradle
   * JPA
   
- ### Gradle 버전로 오류가 생길 시
+ #### Gradle 버전
   ![image](https://user-images.githubusercontent.com/75718761/125775722-29c30171-b243-4ec9-b6d2-bcd5b9bfd329.png)
         
       gradle 버전을 gradle-6.7.1로 사용했지만 추후 업데이트시 정상 작동을 안 할 경우
