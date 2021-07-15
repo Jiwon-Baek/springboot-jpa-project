@@ -29,13 +29,7 @@
         
       gradle 버전을 gradle-6.7.1로 사용했지만 추후 업데이트시 정상 작동을 안 할 경우
       gradlew wrapper --gradle-version 4.x.x와 같은 4버전으로 다운그레이드를 하여 사용
-      
- ### DB 연결 단위 테스트 JUnit4
- ![image](https://user-images.githubusercontent.com/75718761/125779019-ff2ac2f0-45f7-40a1-87d0-02b1570e7b2e.png)
-        
-        DB가 연결이 되었는지 확인하기 위해 JUnit4를 이용하여 단위 테스트
-        Junit5가 기본 설정이므로 gradle에 Junit4 버전을 추가 후 설정에서 Run tests using을 IntelliJ IDEA로 변경
-        
+          
 
 ##  메인 기능 화면
 
